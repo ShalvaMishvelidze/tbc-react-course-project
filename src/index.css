@@ -13,6 +13,7 @@ html {
   --clr-gray-light: #d3d3d3;
   --clr-white: #fff;
   --clr-black: #000;
+  --padding-section-default: 5rem;
 }
 
 body {
@@ -33,9 +34,11 @@ code {
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 button {
   border: 0;
   background: none;
+  cursor: pointer;
 }
