@@ -1,9 +1,10 @@
 import React from "react";
+import Products from "./Products";
 
 const Content = () => {
   return (
     <main className="content">
-      <h1>landing page main content will be here</h1>
+      <Products />
     </main>
   );
 };
