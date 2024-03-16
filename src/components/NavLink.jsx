@@ -1,6 +1,6 @@
 export function NavLink({ name }) {
   return (
-    <a href="#">
+    <a href="#root">
       <li>{name}</li>
     </a>
   );

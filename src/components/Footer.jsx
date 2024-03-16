@@ -5,10 +5,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-left">
         <span className="copyright">&copy; all rights reserved</span>
-        <a href="#" className="terms">
+        <a href="#root" className="terms">
           terms and conditions
         </a>
-        <a href="#" className="privacy-policy">
+        <a href="#root" className="privacy-policy">
           privacy policy
         </a>
       </div>
