@@ -1,8 +1,7 @@
-import React from "react";
-export function NavLink({}) {
+export function NavLink({ name }) {
   return (
     <a href="#">
-      <li>home</li>
+      <li>{name}</li>
     </a>
   );
 }
