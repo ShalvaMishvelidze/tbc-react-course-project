@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-left">
         <span className="copyright">
-          &copy; all rights reserved {new Date().getDate()}
+          &copy; all rights reserved {new Date().getFullYear()}
         </span>
         <a href="#root" className="terms">
           terms and conditions

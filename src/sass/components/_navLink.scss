@@ -1,0 +1,21 @@
+.navigation ul {
+  & a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: $clr-gray;
+    color: $clr-white;
+
+    & li {
+      list-style-type: none;
+      padding: 0 1.5rem;
+      text-transform: uppercase;
+    }
+
+    &:hover {
+      opacity: 0.85;
+      background-color: $clr-gray-dark;
+    }
+  }
+}

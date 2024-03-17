@@ -4,16 +4,13 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  box-sizing: inherit;
+  font-family: inherit;
+  color: inherit;
 }
 
 html {
   font-size: 62.5%;
-  --clr-gray: #808080;
-  --clr-gray-dark: #6b6b6b;
-  --clr-gray-light: #d3d3d3;
-  --clr-white: #fff;
-  --clr-black: #000;
-  --padding-section-default: 3rem;
 }
 
 body {
@@ -29,23 +26,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-button {
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
 }

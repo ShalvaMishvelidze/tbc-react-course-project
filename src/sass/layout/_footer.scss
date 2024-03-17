@@ -1,0 +1,37 @@
+.footer {
+  background-color: $clr-gray-dark;
+  text-transform: capitalize;
+  padding: $padding-section-default;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &-left {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.6rem;
+
+    & a:hover {
+      text-decoration: underline;
+      opacity: 0.75;
+    }
+  }
+
+  &-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    & input {
+      height: 3rem;
+      width: 20rem;
+    }
+
+    & button {
+      background-color: $clr-gray-light;
+      padding: 0.7rem 1.5rem;
+      border-radius: 0.3rem;
+      text-transform: uppercase;
+    }
+  }
+}

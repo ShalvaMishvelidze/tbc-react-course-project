@@ -1,0 +1,14 @@
+.navigation {
+  background-color: $clr-gray;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & ul {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
