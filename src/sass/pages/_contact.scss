@@ -1,0 +1,47 @@
+.contact {
+  max-width: 100rem;
+  margin: 0 auto;
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    &-header {
+      text-transform: capitalize;
+    }
+  }
+
+  &-form {
+    margin-top: 2rem;
+
+    &-header {
+      text-transform: capitalize;
+      text-align: center;
+    }
+
+    & form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.3rem;
+
+      & label {
+        text-transform: capitalize;
+        font-weight: 500;
+      }
+
+      & input {
+        width: clamp(15rem, 30rem, 45rem);
+      }
+
+      & textarea {
+        width: clamp(15rem, 30rem, 45rem);
+        height: 10rem;
+      }
+    }
+  }
+}
