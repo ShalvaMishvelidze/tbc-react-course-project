@@ -7,8 +7,14 @@
 @import "./layout/content";
 @import "./layout/footer";
 
+@import "./pages/home";
+@import "./pages/about";
+@import "./pages/blog";
+@import "./pages/contact";
+@import "./pages/products";
+@import "./pages/error";
+
 @import "./components/nav";
 @import "./components/navLink";
-@import "./components/products";
 @import "./components/search";
 @import "./components/product";
