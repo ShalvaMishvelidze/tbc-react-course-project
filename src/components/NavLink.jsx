@@ -1,7 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function NavLink({ name }) {
-  return (
-    <a href="#root">
-      <li>{name}</li>
-    </a>
-  );
+  return <Link to={name !== "home" ? name : "/"}>{name}</Link>;
 }

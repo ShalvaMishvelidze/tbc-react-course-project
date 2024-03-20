@@ -1,5 +1,6 @@
 import React from "react";
 import { navLinks } from "../utils/constants";
+import { NavLink } from "../components/NavLink";
 
 const Footer = () => {
   return (
@@ -15,7 +16,7 @@ const Footer = () => {
           privacy policy
         </a>
         {navLinks.map((name) => {
-          return <a href="#root">{name}</a>;
+          return <NavLink name={name} />;
         })}
       </div>
       <div className="footer-right">
