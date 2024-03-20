@@ -1,12 +1,7 @@
 import React from "react";
-import Products from "../components/Products";
 
-const Content = () => {
-  return (
-    <main className="content">
-      <Products />
-    </main>
-  );
+const Content = ({ children }) => {
+  return <main className="content">{children}</main>;
 };
 
 export default Content;

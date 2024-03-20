@@ -1,6 +1,6 @@
 import { products } from "../utils/constants";
-import Product from "./Product";
-import { Search } from "./Search";
+import Product from "../components/Product";
+import { Search } from "../components/Search";
 import React from "react";
 
 const Products = () => {
