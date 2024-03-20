@@ -17,6 +17,7 @@ const Contact = () => {
           <input type="email" />
           <label>message</label>
           <textarea></textarea>
+          <button type="submit">submit</button>
         </form>
       </div>
     </section>

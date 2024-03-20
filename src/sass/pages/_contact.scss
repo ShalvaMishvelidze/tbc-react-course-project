@@ -1,6 +1,9 @@
 .contact {
   max-width: 100rem;
   margin: 0 auto;
+  background-color: $clr-gray-light;
+  border-radius: 0.6rem;
+  padding: 2rem 0;
 
   &-info {
     display: flex;
@@ -36,11 +39,23 @@
 
       & input {
         width: clamp(15rem, 30rem, 45rem);
+        padding: 0.3rem;
       }
 
       & textarea {
         width: clamp(15rem, 30rem, 45rem);
         height: 10rem;
+        padding: 0.3rem;
+      }
+
+      & button {
+        padding: 1rem 3rem;
+        background-color: cadetblue;
+        margin-top: 1rem;
+        border-radius: 0.6rem;
+        color: $clr-white;
+        text-transform: uppercase;
+        font-size: 1.5rem;
       }
     }
   }
