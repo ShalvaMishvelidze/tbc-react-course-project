@@ -16,7 +16,7 @@ const Footer = () => {
           privacy policy
         </a>
         {navLinks.map((name) => {
-          return <NavLink name={name} />;
+          return <NavLink key={name} name={name} />;
         })}
       </div>
       <div className="footer-right">

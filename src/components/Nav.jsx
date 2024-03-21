@@ -5,7 +5,7 @@ const Nav = () => {
   return (
     <nav className="navigation">
       {navLinks.map((name) => {
-        return <NavLink name={name} />;
+        return <NavLink key={name} name={name} />;
       })}
     </nav>
   );
