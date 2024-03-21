@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Error from "./pages/Error";
 import Contact from "./pages/Contact";
+import Premium from "./pages/Premium";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/premium" element={<Premium />} />
             </Route>
             <Route path="*" element={<Error />} />
           </Routes>

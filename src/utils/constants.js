@@ -1,4 +1,11 @@
-export const navLinks = ["home", "about", "products", "blog", "contact"];
+export const navLinks = [
+  "home",
+  "about",
+  "products",
+  "blog",
+  "contact",
+  "premium",
+];
 
 export const products = [
   {
