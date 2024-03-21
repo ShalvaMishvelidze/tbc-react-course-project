@@ -1,0 +1,37 @@
+.card {
+  width: clamp(10rem, 30rem, 50rem);
+  border: 3px solid $clr-gray-light;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 1rem 2rem 3rem $clr-gray-light;
+
+  &.active {
+    border-color: cadetblue;
+  }
+
+  &-duration {
+    text-transform: capitalize;
+  }
+
+  &-price {
+    padding: 3rem 0;
+    font-size: 5.6rem;
+  }
+
+  &-benefit {
+    text-transform: capitalize;
+    font-weight: 500;
+    text-decoration: line-through;
+    color: $clr-gray-light;
+
+    &.active {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
