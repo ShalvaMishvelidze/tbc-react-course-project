@@ -1,0 +1,22 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  & div {
+    width: 32rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  & button {
+    padding: 1rem 2rem;
+    background-color: aquamarine;
+    border-radius: 1rem;
+    margin-top: 4rem;
+    text-transform: uppercase;
+  }
+}

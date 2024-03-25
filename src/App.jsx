@@ -9,6 +9,8 @@ import Blog from "./pages/Blog";
 import Error from "./pages/Error";
 import Contact from "./pages/Contact";
 import Premium from "./pages/Premium";
+import Profile from "./pages/Profile";
+import { user } from "./utils/constants";
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/premium" element={<Premium />} />
+              <Route path="/profile" element={<Profile {...user} />} />
             </Route>
             <Route path="*" element={<Error />} />
           </Routes>
