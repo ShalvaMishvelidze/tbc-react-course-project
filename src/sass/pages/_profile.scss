@@ -4,19 +4,25 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  height: 100%;
+  padding: 5rem;
 
   & div {
     width: 32rem;
     display: flex;
     justify-content: space-between;
     gap: 2rem;
+
+    & label {
+      text-transform: capitalize;
+    }
   }
 
   & button {
     padding: 1rem 2rem;
     background-color: aquamarine;
     border-radius: 1rem;
-    margin-top: 4rem;
+    margin-top: 3rem;
     text-transform: uppercase;
   }
 }
