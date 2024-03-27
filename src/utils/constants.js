@@ -2,7 +2,7 @@ export const navLinks = [
   "home",
   "about",
   "products",
-  "blog",
+  "blogs",
   "contact",
   "premium",
   "profile",

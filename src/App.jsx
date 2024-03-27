@@ -5,7 +5,7 @@ import Header from "./layout/Header";
 import About from "./pages/About";
 import Products from "./pages/Products";
 import Home from "./pages/Home";
-import Blog from "./pages/Blog";
+import Blogs from "./pages/Blogs";
 import Error from "./pages/Error";
 import Contact from "./pages/Contact";
 import Premium from "./pages/Premium";
@@ -23,7 +23,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/products" element={<Products />} />
-              <Route path="/blog" element={<Blog />} />
+              <Route path="/blogs" element={<Blogs />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/premium" element={<Premium />} />
               <Route path="/profile" element={<Profile {...user} />} />

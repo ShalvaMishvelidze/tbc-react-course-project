@@ -1,0 +1,44 @@
+.blog {
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 1000px) {
+    padding: 0;
+  }
+
+  &-title {
+    text-align: center;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 1000px) {
+      padding: 0 1.5rem;
+    }
+  }
+
+  &-image {
+    width: 15rem;
+    height: 10rem;
+    object-fit: cover;
+  }
+
+  &-desc {
+    height: 8rem;
+    font-size: 1.4rem;
+
+    @media screen and (max-width: 1000px) {
+      padding: 0 1.5rem;
+    }
+
+    & button {
+      color: blue;
+      text-decoration: underline;
+    }
+  }
+}
