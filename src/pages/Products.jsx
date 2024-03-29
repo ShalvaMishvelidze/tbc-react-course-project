@@ -1,46 +1,71 @@
 import { products as staticProducts } from "../utils/constants";
 import Product from "../components/Product";
-// import { Search } from "../components/Search";
+import { Search } from "../components/Search";
 import React, { useState } from "react";
 import Sort from "../components/Sort";
 
 const Products = () => {
+  // we need two states for products to keep one unsorted copy of the searched products
   const [products, setProducts] = useState(staticProducts);
+  const [searchedProducts, setSearchedProducts] = useState(staticProducts);
   const [sort, setSort] = useState("a-z");
-  const [clearSort, setClearSort] = useState(true);
+  const [clearSort, setClearSort] = useState(false);
+  const [search, setSearch] = useState("");
 
   const sortProducts = () => {
     if (clearSort) {
-      setProducts(staticProducts);
+      setProducts([...searchedProducts]);
       setClearSort(false);
       return;
     }
-    setProducts((prevState) => {
+    setProducts((_) => {
       setClearSort(true);
       if (sort === "a-z") {
-        return [...prevState].sort((a, b) => a.title.localeCompare(b.title));
+        return [...searchedProducts].sort((a, b) =>
+          a.title.localeCompare(b.title)
+        );
       }
       if (sort === "z-a") {
-        return [...prevState].sort((a, b) => b.title.localeCompare(a.title));
+        return [...searchedProducts].sort((a, b) =>
+          b.title.localeCompare(a.title)
+        );
       }
       if (sort === "price-ascending") {
-        return [...prevState].sort((a, b) => a.price - b.price);
+        return [...searchedProducts].sort((a, b) => a.price - b.price);
       }
       if (sort === "price-descending") {
-        return [...prevState].sort((a, b) => b.price - a.price);
+        return [...searchedProducts].sort((a, b) => b.price - a.price);
       }
     });
+  };
+
+  const searchProducts = (searchString) => {
+    setSearchedProducts(
+      [...staticProducts].filter((item) => {
+        return item.title.toLowerCase().includes(searchString);
+      })
+    );
+    setProducts(
+      [...staticProducts].filter((item) => {
+        return item.title.toLowerCase().includes(searchString);
+      })
+    );
   };
 
   const handleChange = (e) => {
     setSort(e.target.value);
   };
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    searchProducts(e.target.value);
+  };
+
   return (
     <section className="products">
+      <Search handleSearch={handleSearch} search={search} />
       <div className="products-header">
         <h2>products</h2>
-        {/* <Search /> */}
         <Sort handleChange={handleChange} sortProducts={sortProducts} />
       </div>
       <div className="products-container">

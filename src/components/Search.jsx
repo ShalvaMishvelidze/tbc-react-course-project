@@ -1,9 +1,15 @@
-import React from "react";
-export function Search() {
+export function Search({ handleSearch, search }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
-    <form className="search">
-      <input type="search" />
-      <button type="submit">search</button>
+    <form className="search" onSubmit={handleSubmit}>
+      <input
+        placeholder="Enter what you're looking for :)"
+        type="search"
+        value={search}
+        onChange={handleSearch}
+      />
     </form>
   );
 }
