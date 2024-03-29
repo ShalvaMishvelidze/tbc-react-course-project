@@ -8,21 +8,38 @@
   padding: 5rem;
 
   & div {
-    width: 32rem;
+    width: 60rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 2rem;
 
     & label {
       text-transform: capitalize;
+      font-size: 2.4rem;
+    }
+
+    & input {
+      padding: 0.5rem;
+      font-size: 1.6rem;
+      width: 30rem;
     }
   }
 
   & button {
     padding: 1rem 2rem;
-    background-color: aquamarine;
+    background-color: cadetblue;
     border-radius: 1rem;
     margin-top: 3rem;
     text-transform: uppercase;
+    font-size: 2.4rem;
+    color: $clr-white;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: rgb(58, 168, 170);
+      color: rgb(216, 232, 233);
+      box-shadow: 2px 4px 12px cadetblue;
+    }
   }
 }

@@ -130,13 +130,6 @@ export const blogs = [
     date: "9/29/2023",
   },
 ];
-
-export const user = {
-  name: "tinatin",
-  lastName: "otarashivili",
-  email: "tinatin@example.com",
-};
-
 export const products = [
   {
     id: 1,

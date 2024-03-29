@@ -10,7 +10,6 @@ import Error from "./pages/Error";
 import Contact from "./pages/Contact";
 import Premium from "./pages/Premium";
 import Profile from "./pages/Profile";
-import { user } from "./utils/constants";
 
 function App() {
   return (
@@ -26,7 +25,7 @@ function App() {
               <Route path="/blogs" element={<Blogs />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/premium" element={<Premium />} />
-              <Route path="/profile" element={<Profile {...user} />} />
+              <Route path="/profile" element={<Profile />} />
             </Route>
             <Route path="*" element={<Error />} />
           </Routes>
