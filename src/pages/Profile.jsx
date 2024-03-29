@@ -14,7 +14,10 @@ const Profile = () => {
   };
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.dataset.type]: e.target.value });
+    setUser((prevState) => ({
+      ...prevState,
+      [e.target.dataset.type]: e.target.value,
+    }));
   };
 
   return (
