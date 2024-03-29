@@ -1,11 +1,11 @@
 .navigation {
-  background-color: $clr-gray;
+  background-color: $clr-bcg-primary;
   height: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
 
   @media screen and (max-width: 1000px) {
-    font-size: 1.4rem;
+    font-size: $fs-regular-small;
   }
 }

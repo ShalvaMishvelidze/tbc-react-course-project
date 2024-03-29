@@ -1,5 +1,5 @@
 .footer {
-  background-color: $clr-gray-dark;
+  background-color: $clr-bcg-primary;
   text-transform: capitalize;
   padding: $padding-section-default;
   display: flex;
@@ -28,7 +28,8 @@
     }
 
     & button {
-      background-color: $clr-gray-light;
+      background-color: $clr-purple;
+      font-weight: $fw-bold;
       padding: 0.7rem 1.5rem;
       border-radius: 0.3rem;
       text-transform: uppercase;

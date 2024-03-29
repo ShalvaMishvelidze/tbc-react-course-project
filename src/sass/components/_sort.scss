@@ -4,13 +4,14 @@
 
   &-select {
     padding: 0 0.5rem 0.5rem;
-    font-size: 1.6rem;
+    font-size: $fs-regular;
     text-transform: capitalize;
+    color: $clr-bcg-primary;
   }
 
   &-btn {
-    color: darkcyan;
-    font-size: 2rem;
+    color: $clr-purple;
+    font-size: $fs-big;
     text-transform: capitalize;
 
     &:hover {

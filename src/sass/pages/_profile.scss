@@ -16,30 +16,31 @@
 
     & label {
       text-transform: capitalize;
-      font-size: 2.4rem;
+      font-size: $fs-bigger;
     }
 
     & input {
       padding: 0.5rem;
-      font-size: 1.6rem;
+      font-size: $fs-regular;
       width: 30rem;
+      background-color: $clr-bcg-secondary-light;
     }
   }
 
   & button {
     padding: 1rem 2rem;
-    background-color: cadetblue;
+    background-color: $clr-purple;
     border-radius: 1rem;
     margin-top: 3rem;
     text-transform: uppercase;
-    font-size: 2.4rem;
+    font-size: $fs-bigger;
     color: $clr-white;
     transition: all 0.2s;
 
     &:hover {
-      background-color: rgb(58, 168, 170);
-      color: rgb(216, 232, 233);
-      box-shadow: 2px 4px 12px cadetblue;
+      background-color: $clr-purple-dark;
+      color: $clr-gray-light;
+      box-shadow: 2px 4px 24px $clr-bcg-primary;
     }
   }
 }
