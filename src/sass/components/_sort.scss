@@ -1,0 +1,20 @@
+.sort {
+  display: flex;
+  gap: 1rem;
+
+  &-select {
+    padding: 0 0.5rem 0.5rem;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+  }
+
+  &-btn {
+    color: darkcyan;
+    font-size: 2rem;
+    text-transform: capitalize;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
