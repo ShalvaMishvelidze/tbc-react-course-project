@@ -56,14 +56,20 @@ const Products = () => {
     setSort(e.target.value);
   };
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-    searchProducts(e.target.value);
+  const debounce = () => {
+    let timeoutID;
+    return (e) => {
+      setSearch(e.target.value);
+      clearTimeout(timeoutID);
+      timeoutID = setTimeout(() => {
+        searchProducts(e.target.value);
+      }, 500);
+    };
   };
 
   return (
     <section className="products">
-      <Search handleSearch={handleSearch} search={search} />
+      <Search handleSearch={debounce()} search={search} />
       <div className="products-header">
         <h2>products</h2>
         <Sort handleChange={handleChange} sortProducts={sortProducts} />
