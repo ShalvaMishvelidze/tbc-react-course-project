@@ -1,5 +1,5 @@
-import { Blog } from "../components/Blog";
-import { blogs } from "../utils/constants";
+import { Blog } from "../../components/Blog";
+import { blogs } from "../../utils/constants";
 
 const Blogs = () => {
   return (

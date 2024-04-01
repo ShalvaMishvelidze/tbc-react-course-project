@@ -1,8 +1,9 @@
-import { products as staticProducts } from "../utils/constants";
-import Product from "../components/Product";
-import { Search } from "../components/Search";
-import React, { useState } from "react";
-import Sort from "../components/Sort";
+"use client";
+import { products as staticProducts } from "../../utils/constants";
+import Product from "../../components/Product";
+import { Search } from "../../components/Search";
+import { useState } from "react";
+import Sort from "../../components/Sort";
 
 const Products = () => {
   // we need two states for products to keep one unsorted copy of the searched products

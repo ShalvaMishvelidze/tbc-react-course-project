@@ -5,8 +5,7 @@ export function Blog({ blog }) {
       <img className="blog-image" src={blog.image} alt={blog.title} />
       <h4>{blog.date}</h4>
       <p className="blog-desc">
-        {blog.desc}{" "}
-        <button onClick={() => console.log("hello")}>read more</button>
+        {blog.desc} <button>read more</button>
       </p>
     </article>
   );
