@@ -1,0 +1,32 @@
+.single-blog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-title {
+    font-size: $fs-giant;
+    font-weight: $fw-bold;
+    margin: 1rem 0;
+  }
+
+  &-reactions {
+    color: $clr-purple;
+  }
+
+  &-tag {
+    padding: 0.5rem 1.3rem;
+    background-color: $clr-bcg-primary-dark;
+    color: $clr-violet;
+    border-radius: 1rem;
+    text-transform: uppercase;
+
+    &-container {
+      margin-top: 2rem;
+      width: 32rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}

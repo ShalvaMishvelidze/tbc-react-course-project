@@ -27,9 +27,8 @@
   &-desc {
     height: 7rem;
     font-size: $fs-regular-small;
-    padding-top: 1.6rem;
 
-    & button {
+    & a {
       color: $clr-violet;
       text-decoration: underline;
     }
