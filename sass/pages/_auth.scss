@@ -1,0 +1,51 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  width: clamp(12rem, 50%, 50rem);
+  height: 100%;
+  margin: 0 auto;
+  gap: 1rem;
+  margin-top: calc(50vh - 15rem);
+  height: 28rem;
+
+  & label {
+    text-transform: capitalize;
+  }
+
+  & input {
+    height: 2rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  &-btn {
+    margin: 0 auto;
+    background-color: $clr-violet;
+    width: 40%;
+    padding: 0.8rem 0;
+    font-size: $fs-big;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    color: $clr-bcg-primary-dark;
+
+    &:hover {
+      background-color: $clr-purple;
+      color: $clr-bcg-primary;
+    }
+  }
+
+  &-container {
+    margin: 0 auto;
+    width: clamp(12rem, 50%, 50rem);
+    text-align: center;
+    text-transform: capitalize;
+
+    button {
+      text-transform: uppercase;
+      font-weight: $fw-bold;
+      color: $clr-purple;
+      font-size: $fs-regular;
+    }
+  }
+}
