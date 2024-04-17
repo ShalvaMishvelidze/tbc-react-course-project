@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { POSTS_API_URL } from "../../../utils/constants";
+import { POSTS_API_URL } from "../../../../utils/constants";
 
 const SingleBlog = ({ params: { id } }) => {
   const [post, setPost] = useState({});

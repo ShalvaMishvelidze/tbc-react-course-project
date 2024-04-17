@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const { PRODUCTS_API_URL } = require("../../utils/constants");
+const { PRODUCTS_API_URL } = require("../../../utils/constants");
 
 const SingleProduct = ({ params: { id } }) => {
   const [product, setProduct] = useState({});
