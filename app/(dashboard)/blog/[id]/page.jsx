@@ -1,31 +1,7 @@
-"use client";
-import { useEffect, useState } from "react";
-import { POSTS_API_URL } from "../../../../utils/constants";
+import { getSinglePost } from "../../../../utils/actions";
 
-const SingleBlog = ({ params: { id } }) => {
-  const [post, setPost] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  const fetchPost = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(`${POSTS_API_URL}/${id}`);
-      const data = await response.json();
-      setPost(data);
-      setLoading(false);
-    } catch (e) {
-      setLoading(true);
-      console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    fetchPost();
-  }, [id]);
-
-  if (loading) {
-    return <div className="single-post">loading...</div>;
-  }
+const SingleBlog = async ({ params: { id } }) => {
+  const post = await getSinglePost(id);
 
   return (
     <section className="single-blog">

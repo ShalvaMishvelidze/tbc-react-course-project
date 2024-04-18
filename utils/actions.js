@@ -88,11 +88,31 @@ export const getProducts = async (searchString) => {
   }
 };
 
+export const getSingleProduct = async (id) => {
+  try {
+    const response = await fetch(`${PRODUCTS_API_URL}/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 export const getPosts = async () => {
   try {
     const response = await fetch(POSTS_API_URL);
     const data = await response.json();
     return data.posts;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const getSinglePost = async (id) => {
+  try {
+    const response = await fetch(`${POSTS_API_URL}/${id}`);
+    const data = await response.json();
+    return data;
   } catch (e) {
     console.error(e);
   }
