@@ -1,0 +1,11 @@
+@mixin loadAnimation {
+  background: linear-gradient(
+    to right,
+    $clr-bcg-primary-dark 25%,
+    $clr-bcg-primary-light 50%,
+    $clr-bcg-primary-dark 75%
+  );
+  background-size: 500% 100%;
+  animation-timing-function: linear;
+  animation: loading 2s ease-in-out infinite;
+}
