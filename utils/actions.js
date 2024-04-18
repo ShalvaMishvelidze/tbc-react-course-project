@@ -47,8 +47,8 @@ export const login = async (user) => {
   const password = cookies().get("password");
 
   if (
-    username.value === userData.username &&
-    password.value === userData.password
+    username?.value === userData.username &&
+    password?.value === userData.password
   ) {
     const response = await fetch("https://dummyjson.com/auth/login", {
       method: "POST",
