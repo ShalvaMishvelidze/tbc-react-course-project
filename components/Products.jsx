@@ -42,22 +42,26 @@ const Products = ({ products }) => {
   };
 
   useEffect(() => {
-    if (sortStatus === "cleared") {
-      setSortedProducts([...products]);
-      return;
-    }
-    sortProducts();
+    setSortedProducts([...products]);
   }, [products]);
 
   if (!sortedProducts) {
-    return <div className="loading">loading...</div>;
+    return (
+      <div className="products loading">
+        <div className="search"></div>
+        <div className="products-header">
+          <div className="products-header-title"></div>
+          <div className="sort"></div>
+        </div>
+      </div>
+    );
   }
 
   return (
     <section className="products">
       <Search />
       <div className="products-header">
-        <h2>products</h2>
+        <h2 className="products-header-title">products</h2>
         <Sort handleChange={handleChange} sortProducts={sortProducts} />
       </div>
       <div className="products-container">
