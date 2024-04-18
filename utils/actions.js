@@ -67,7 +67,6 @@ export const login = async (user) => {
 
 export const logout = async () => {
   cookies().delete("token");
-  // redirect("/login");
 };
 
 // just in case
