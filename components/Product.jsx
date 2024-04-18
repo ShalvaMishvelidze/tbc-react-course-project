@@ -5,16 +5,27 @@ const Product = (props) => {
   const [product, setProduct] = useState(undefined);
 
   useEffect(() => {
-    setProduct(props.product);
+    let timeout = setTimeout(() => {
+      setProduct(props.product);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
   }, [props.product]);
 
   if (!product) {
-    return <div className="loading">loading...</div>;
+    return (
+      <article className="product loading">
+        <div className="product-title"></div>
+        <div className="product-img"></div>
+        <div className="product-price"></div>
+        <div className="product-desc"></div>
+      </article>
+    );
   }
 
   return (
     <article className="product">
-      <h5 className="product-title">{product.title}</h5>
+      <h5 className="product-title">{product.title.substring(0, 20)}</h5>
       <div className="product-img">
         <Image
           src={product.thumbnail}
