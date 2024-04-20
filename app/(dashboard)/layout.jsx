@@ -11,6 +11,7 @@ export default function layout({ children }) {
   if (!token) {
     redirect("/login");
   }
+
   return (
     <>
       <Header />

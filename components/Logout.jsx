@@ -1,12 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { logout } from "../utils/actions";
 
 const Logout = () => {
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
-    logout()
+    fetch("/api/auth/logout")
       .then(() => {
         router.push("/login");
       })
