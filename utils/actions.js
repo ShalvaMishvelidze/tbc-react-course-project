@@ -1,4 +1,5 @@
 "use server";
+import { cookies } from "next/headers";
 import { PRODUCTS_API_URL } from "./constants";
 import { POSTS_API_URL } from "./constants";
 
@@ -42,4 +43,28 @@ export const getSinglePost = async (id) => {
   } catch (e) {
     console.error(e);
   }
+};
+
+export const getSystemPreferences = async () => {
+  const cookieStore = cookies();
+  const theme = cookieStore.get("theme");
+  const language = cookieStore.get("language");
+
+  return {
+    theme: theme?.value,
+    language: language?.value,
+  };
+};
+
+export const setSystemPreferences = async (preferences) => {
+  const cookieStore = cookies();
+  cookieStore.set("theme", preferences.theme);
+  cookieStore.set("language", preferences.language);
+  const theme = cookieStore.get("theme");
+  const language = cookieStore.get("language");
+
+  return {
+    theme: theme?.value,
+    language: language?.value,
+  };
 };
