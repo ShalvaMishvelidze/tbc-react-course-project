@@ -11,6 +11,39 @@
 
 html {
   font-size: 62.5%;
+  --clr-white: #fff;
+  --clr-black: #000;
+  --clr-bcg-primary: #25262c;
+  --clr-bcg-primary-light: #40424d;
+  --clr-bcg-primary-dark: #1a1a1f;
+  --clr-bcg-secondary: #2e3037;
+  --clr-bcg-secondary-light: #7d8396;
+  --clr-bcg-secondary-dark: #212227;
+  --clr-gray: #808080;
+  --clr-gray-light: #d3d3d3;
+  --clr-gray-dark: #6b6b6b;
+  --clr-purple: #c955ff;
+  --clr-purple-light: #d16dff;
+  --clr-purple-dark: #ab46da;
+  --clr-violet: #7171e2;
+}
+
+.dark {
+  --clr-white: #000;
+  --clr-black: #fff;
+  --clr-bcg-primary: #d1cfc8;
+  --clr-bcg-primary-dark: #d1cfc8;
+  --clr-bcg-primary-light: #deddd8;
+  --clr-bcg-secondary: #dad9d3;
+  --clr-bcg-secondary-dark: #bfbdb2;
+  --clr-bcg-secondary-light: #e5e5e0;
+  --clr-gray: #7f7f7f;
+  --clr-gray-light: #2c2c2c;
+  --clr-gray-dark: #949494;
+  --clr-purple: #36aa00;
+  --clr-purple-light: #2e9200;
+  --clr-purple-dark: #54b925;
+  --clr-violet: #8e8e1d;
 }
 
 body {
@@ -20,8 +53,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: $fs-regular;
-  color: $clr-white;
+  font-size: 1.6rem;
+  color: var(--clr-white);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

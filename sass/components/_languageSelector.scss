@@ -1,0 +1,13 @@
+.language-selector {
+  background-color: $clr-bcg-primary-light;
+  height: 2.3rem;
+  border-radius: 0.5rem;
+  color: $clr-violet;
+  margin-right: 0.2rem;
+  margin-bottom: 0.2rem;
+
+  & option {
+    color: $clr-violet;
+    background-color: $clr-bcg-primary;
+  }
+}

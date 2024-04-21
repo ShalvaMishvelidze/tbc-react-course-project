@@ -1,6 +1,7 @@
+@import "./base/base";
+
 @import "./abstract/variables";
 
-@import "./base/base";
 @import "./base/animations";
 @import "./base/typography";
 
@@ -28,3 +29,6 @@
 @import "./components/sort";
 @import "./components/singleProduct";
 @import "./components/singleBlog";
+@import "./components/languageSelector";
+@import "./components/changeTheme";
+@import "./components/logout";

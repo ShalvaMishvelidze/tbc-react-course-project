@@ -1,0 +1,20 @@
+.change-theme {
+  color: $clr-violet;
+  position: relative;
+
+  &-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+
+    &.inactive {
+      opacity: 0;
+      animation: sunSet 1s ease-in;
+    }
+
+    &.active {
+      animation: sunRise 1s ease-in;
+    }
+  }
+}
