@@ -20,7 +20,6 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("tried");
     fetch("/api/auth/register", {
       method: "POST",
       body: JSON.stringify(user),

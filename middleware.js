@@ -5,10 +5,14 @@ export default function middleware(request) {
 
   if (
     request.nextUrl.pathname === "/api/auth/register" ||
-    request.nextUrl.pathname === "/api/auth/login" ||
-    request.nextUrl.pathname === "/api/auth/logout"
+    request.nextUrl.pathname === "/api/auth/login"
   ) {
     return NextResponse.next();
+  }
+  if (request.nextUrl.pathname === "/api/auth/logout") {
+    const response = NextResponse.next();
+    response.cookies.delete("token");
+    return response;
   }
   if (token && request.nextUrl.pathname === "/login") {
     return NextResponse.redirect(new URL("/", request.url));
