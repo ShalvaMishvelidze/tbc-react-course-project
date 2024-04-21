@@ -1,5 +1,13 @@
-import { getSingleProduct } from "../../../utils/actions";
+import { getProducts, getSingleProduct } from "../../../utils/actions";
 import ImageContainer from "@/ImageContainer";
+
+export const generateStaticParams = async () => {
+  const product = await getProducts();
+
+  return product.map((post) => {
+    return { id: post.id.toString() };
+  });
+};
 
 const SingleProduct = async ({ params: { id } }) => {
   const product = await getSingleProduct(id);

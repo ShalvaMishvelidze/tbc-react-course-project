@@ -1,4 +1,12 @@
-import { getSinglePost } from "../../../../utils/actions";
+import { getPosts, getSinglePost } from "../../../../utils/actions";
+
+export const generateStaticParams = async () => {
+  const posts = await getPosts();
+
+  return posts.map((post) => {
+    return { id: post.id.toString() };
+  });
+};
 
 const SingleBlog = async ({ params: { id } }) => {
   const post = await getSinglePost(id);

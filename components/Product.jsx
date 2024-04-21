@@ -7,7 +7,7 @@ const Product = (props) => {
   useEffect(() => {
     let timeout = setTimeout(() => {
       setProduct(props.product);
-    }, 2000);
+    }, 1800);
 
     return () => clearTimeout(timeout);
   }, [props.product]);
