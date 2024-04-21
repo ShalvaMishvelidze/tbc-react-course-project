@@ -1,5 +1,4 @@
 "use server";
-// import { redirect } from "next/navigation";
 import { PRODUCTS_API_URL } from "./constants";
 import { POSTS_API_URL } from "./constants";
 
