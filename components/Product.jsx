@@ -33,7 +33,7 @@ const Product = (props) => {
           width={160}
           height={90}
         />
-        <button className="cart-btn">add to cart</button>
+        <button className="cart-btn">{props.addToCart}</button>
       </div>
       <p className="product-price">{product.price}$</p>
       <p className="product-desc">{product.description.substring(0, 45)}</p>

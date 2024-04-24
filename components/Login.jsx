@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const Login = () => {
+const Login = ({ pageText }) => {
   const router = useRouter();
   const [user, setUser] = useState({ username: "", email: "", password: "" });
 
@@ -31,14 +31,14 @@ const Login = () => {
   return (
     <>
       <form className="auth" onSubmit={handleSubmit}>
-        <label htmlFor="username">username</label>
+        <label htmlFor="username">{pageText.username}</label>
         <input
           onChange={handleChange}
           data-type="username"
           name="username"
           type="text"
         />
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">{pageText.password}</label>
         <input
           onChange={handleChange}
           data-type="password"
@@ -46,7 +46,7 @@ const Login = () => {
           type="password"
         />
         <button className="auth-btn" type="submit" onSubmit={handleSubmit}>
-          log in
+          {pageText.login}
         </button>
       </form>
     </>

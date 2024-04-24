@@ -1,7 +1,11 @@
-import React from "react";
+import { getSystemPreferences } from "../../../utils/actions";
+import { libraries } from "../../../utils/constants";
 
-const About = () => {
-  return <div>About</div>;
+const About = async () => {
+  const { language } = await getSystemPreferences();
+  const about = await libraries[language].main.about;
+
+  return <div>{about.heading}</div>;
 };
 
 export default About;

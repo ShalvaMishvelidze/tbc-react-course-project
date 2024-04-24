@@ -1,19 +1,18 @@
 import Logout from "./Logout";
-import { navLinks } from "../utils/constants";
 import { NavLink } from "./NavLink";
 import LanguageSelector from "./LanguageSelector";
 import ChangeTheme from "./ChangeTheme";
 
-const Nav = () => {
+const Nav = ({ nav, lang, systemPreferences }) => {
   return (
     <nav className="navigation">
       <div className="navigation-left">
-        {navLinks.map((name) => {
-          return <NavLink key={name} name={name} />;
+        {nav.map((link) => {
+          return <NavLink key={link.text} text={link.text} href={link.href} />;
         })}
       </div>
       <div className="navigation-right">
-        <LanguageSelector />
+        <LanguageSelector lang={lang} systemPreferences={systemPreferences} />
         <ChangeTheme />
         <Logout />
       </div>

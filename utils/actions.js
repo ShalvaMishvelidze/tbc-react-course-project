@@ -52,7 +52,7 @@ export const getSystemPreferences = async () => {
 
   return {
     theme: theme?.value,
-    language: language?.value,
+    language: language ? language.value : "en",
   };
 };
 
@@ -65,6 +65,6 @@ export const setSystemPreferences = async (preferences) => {
 
   return {
     theme: theme?.value,
-    language: language?.value,
+    language: language ? language.value : "en",
   };
 };

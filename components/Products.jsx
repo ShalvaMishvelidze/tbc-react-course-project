@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Sort from "./Sort";
 import Link from "next/link";
 
-const Products = ({ products }) => {
+const Products = ({ products, pageText }) => {
   const [sortedProducts, setSortedProducts] = useState(undefined);
   const [sort, setSort] = useState("a-z");
   const [sortStatus, setSortStatus] = useState("cleared"); // cleared || updated || sorted
@@ -59,16 +59,20 @@ const Products = ({ products }) => {
 
   return (
     <section className="products">
-      <Search />
+      <Search pageText={pageText.search} />
       <div className="products-header">
-        <h2 className="products-header-title">products</h2>
-        <Sort handleChange={handleChange} sortProducts={sortProducts} />
+        <h2 className="products-header-title">{pageText.heading}</h2>
+        <Sort
+          pageText={pageText.sort}
+          handleChange={handleChange}
+          sortProducts={sortProducts}
+        />
       </div>
       <div className="products-container">
         {sortedProducts.map((product) => {
           return (
             <Link href={`/${product.id}`} key={product.id}>
-              <Product product={product} />
+              <Product product={product} addToCart={pageText.addToCart} />
             </Link>
           );
         })}

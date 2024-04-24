@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 export default function middleware(request) {
   let token = request.cookies.get("token");
+  let language = request.cookies.get("language");
 
   if (
     request.nextUrl.pathname === "/api/auth/register" ||
@@ -19,6 +20,11 @@ export default function middleware(request) {
   }
   if (!token && request.nextUrl.pathname !== "/login") {
     return NextResponse.redirect(new URL("/login", request.url));
+  }
+  if (request.nextUrl.pathname !== "/login" && !language) {
+    const response = NextResponse.next();
+    response.cookies.set("language", "en");
+    return response;
   }
   return NextResponse.next();
 }

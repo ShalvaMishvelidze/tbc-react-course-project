@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 
-export function Search({}) {
+export function Search({ pageText }) {
   const router = useRouter();
   const [text, setText] = useState("");
   const [query] = useDebounce(text, 300);
@@ -20,7 +20,7 @@ export function Search({}) {
   return (
     <form className="search">
       <input
-        placeholder="Enter what you're looking for :)"
+        placeholder={pageText + " :)"}
         type="search"
         value={text}
         onChange={(e) => setText(e.target.value)}

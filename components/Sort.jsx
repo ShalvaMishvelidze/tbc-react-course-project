@@ -1,16 +1,16 @@
 import React from "react";
 
-const Sort = ({ handleChange, sortProducts }) => {
+const Sort = ({ handleChange, sortProducts, pageText }) => {
   return (
     <div className="sort">
       <select className="sort-select" onChange={handleChange}>
-        <option value="a-z">a-z</option>
-        <option value="z-a">z-a</option>
-        <option value="price-ascending">price ascending</option>
-        <option value="price-descending">price descending</option>
+        <option value="a-z">{pageText.options[0]}</option>
+        <option value="z-a">{pageText.options[1]}</option>
+        <option value="price-ascending">{pageText.options[2]}</option>
+        <option value="price-descending">{pageText.options[3]}</option>
       </select>
       <button className="sort-btn" onClick={sortProducts}>
-        sort
+        {pageText.heading}
       </button>
     </div>
   );
