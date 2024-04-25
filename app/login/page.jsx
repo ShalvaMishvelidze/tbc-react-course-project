@@ -8,8 +8,8 @@ import {
   getSystemPreferences,
   setSystemPreferences,
 } from "../../utils/actions";
-import ChangeTheme from "@/ChangeTheme";
-import LanguageSelector from "@/LanguageSelector";
+import ChangeTheme from "../../components/ChangeTheme";
+import LanguageSelector from "../../components/LanguageSelector";
 
 const getPreference = () => {
   if (window.matchMedia("(prefers-color-scheme)").media !== "not all") {

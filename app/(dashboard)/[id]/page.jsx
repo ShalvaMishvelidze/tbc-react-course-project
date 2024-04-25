@@ -1,5 +1,5 @@
 import { getProducts, getSingleProduct } from "../../../utils/actions";
-import ImageContainer from "@/ImageContainer";
+import ImageContainer from "../../../components/ImageContainer";
 
 export const generateStaticParams = async () => {
   const product = await getProducts();
