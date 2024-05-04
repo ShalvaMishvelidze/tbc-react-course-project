@@ -72,3 +72,8 @@ export const setSystemPreferences = async (preferences: {
     language: language ? language.value : "en",
   };
 };
+
+export const setSystemLanguage = async (language: string) => {
+  const { theme } = await getSystemPreferences();
+  await setSystemPreferences({ language, theme });
+};
