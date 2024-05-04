@@ -5,7 +5,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 
 const Login = ({ pageText }: { pageText: { [key: string]: string } }) => {
   const router = useRouter();
-  const [user, setUser] = useState({ username: "", email: "", password: "" });
+  const [user, setUser] = useState({ username: "", password: "" });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUser((prevState) => ({

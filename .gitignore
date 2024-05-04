@@ -20,6 +20,8 @@ node_modules
 /build
 
 # misc
+.env
+/.env
 .DS_Store
 .env.local
 .env.development.local
@@ -46,3 +48,5 @@ next-env.d.ts
 
 
 
+
+.vercel

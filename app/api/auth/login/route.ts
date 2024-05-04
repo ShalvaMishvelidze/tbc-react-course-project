@@ -1,35 +1,33 @@
 import { cookies } from "next/headers";
+import { comparePassword, createJWT } from "../../../../utils/functions";
+import { sql } from "@vercel/postgres";
+import { NextResponse } from "next/server";
 
-export const POST = async (request: Request) => {
+export async function POST(request: Request) {
+  const body = await request.json();
+  const cookieStore = cookies();
+
   try {
-    const cookieStore = cookies();
+    const data =
+      await sql`SELECT * FROM usersdb where username = ${body.username};`;
+    const { id, username, email, password } = data.rows[0];
 
-    const user = await request.json();
+    const isMatch = await comparePassword(body.password, password);
 
-    const username = cookieStore.get("username");
-    const password = cookieStore.get("password");
-    if (
-      username?.value === user.username &&
-      password?.value === user.password
-    ) {
-      const response = await fetch("https://dummyjson.com/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: "kminchelle",
-          password: "0lelplR",
-        }),
-      });
-      const data = await response.json();
-      cookieStore.set("token", data.token);
-    } else {
-      return new Response("Invalid credentials!", { status: 401 });
+    if (isMatch) {
+      const jwt = await createJWT({ username, email, id });
+
+      cookieStore.set("token", jwt);
+      return NextResponse.json(
+        { msg: "Logged in successfully!" },
+        { status: 200 }
+      );
     }
 
-    return new Response("Logged in successfully!", {
-      status: 200,
-    });
+    return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   } catch (error) {
-    return new Response("Invalid credentials!", { status: 400 });
+    console.log(error);
+
+    return NextResponse.json({ error: "Bad request" }, { status: 400 });
   }
-};
+}

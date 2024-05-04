@@ -1,40 +1,48 @@
+import { createJWT, hashPassword } from "../../../../utils/functions";
+import { sql } from "@vercel/postgres";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
   try {
+    const body = await request.json();
     const cookieStore = cookies();
-    const user = await request.json();
 
-    const res = await fetch("https://dummyjson.com/users/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        firstName: user.username,
-        lastName: "Ovi",
-        age: 250,
-        email: user.email,
-        password: user.password,
-      }),
-    });
-    const fetchedUser = await res.json();
+    const isWithUsername =
+      await sql`SELECT * FROM usersdb where username = ${body.username};`;
+    const isWithEmail =
+      await sql`SELECT * FROM usersdb where username = ${body.email};`;
 
-    cookieStore.set("username", fetchedUser.firstName);
-    cookieStore.set("password", fetchedUser.password);
+    if (isWithUsername.rows.length > 0) {
+      return NextResponse.json(
+        { error: "user with this username already exists" },
+        { status: 409 }
+      );
+    }
 
-    const response = await fetch("https://dummyjson.com/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: "kminchelle",
-        password: "0lelplR",
-      }),
-    });
-    const data = await response.json();
-    cookieStore.set("token", data.token);
+    if (isWithEmail.rows.length > 0) {
+      return NextResponse.json(
+        { error: "user with this email already exists" },
+        { status: 409 }
+      );
+    }
 
-    return new Response("Registered successfully!", {
-      status: 201,
-    });
+    const hashedPassword = await hashPassword(body.password);
+
+    await sql`INSERT INTO usersdb (username, email, password) VALUES (${body.username}, ${body.email}, ${hashedPassword});`;
+
+    const data =
+      await sql`SELECT * FROM usersdb where username = ${body.username};`;
+    const { id, username, email } = data.rows[0];
+
+    const jwt = await createJWT({ username, email, id });
+
+    cookieStore.set("token", jwt);
+
+    return NextResponse.json(
+      { msg: "Registered successfully!" },
+      { status: 201 }
+    );
   } catch (error) {
     return new Response("Failed to register", {
       status: 400,
