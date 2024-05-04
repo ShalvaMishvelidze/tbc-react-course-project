@@ -10,6 +10,13 @@ export async function POST(request: Request) {
   try {
     const data =
       await sql`SELECT * FROM usersdb where username = ${body.username};`;
+
+    if (data.rows.length === 0) {
+      return NextResponse.json(
+        { error: "User with such credentials doesn't exist" },
+        { status: 401 }
+      );
+    }
     const { id, username, email, password } = data.rows[0];
 
     const isMatch = await comparePassword(body.password, password);
