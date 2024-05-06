@@ -58,7 +58,24 @@ const Auth = () => {
   }, []);
 
   if (loading) {
-    return <div>loading...</div>;
+    return (
+      <>
+        <div className="controls loading">
+          <div></div>
+          <div></div>
+        </div>
+        <div className="auth loading">
+          <div className="small"></div>
+          <div className="big"></div>
+          <div className="small"></div>
+          <div className="big"></div>
+          <div className="btn"></div>
+        </div>
+        <div className="auth-container loading">
+          <div className="msg"></div>
+        </div>
+      </>
+    );
   }
 
   return (
