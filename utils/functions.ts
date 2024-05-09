@@ -5,6 +5,7 @@ export const createJWT = async (user: {
   username: string;
   email: string;
   id: number;
+  role: string;
 }): Promise<string> => {
   const jwt = await new jose.SignJWT({
     ...user,

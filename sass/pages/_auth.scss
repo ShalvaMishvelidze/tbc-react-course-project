@@ -36,6 +36,13 @@
   margin-top: calc(50vh - 15rem);
   height: 28rem;
 
+  &-radio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
   &.loading {
     .small {
       height: 2rem;
@@ -86,7 +93,7 @@
   }
 
   &-container {
-    margin: 0 auto;
+    margin: 7rem auto 0;
     width: clamp(12rem, 50%, 50rem);
     text-align: center;
     text-transform: capitalize;

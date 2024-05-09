@@ -15,8 +15,9 @@ const Register = ({
     username: "",
     email: "",
     password: "",
+    role: "user",
   });
-
+  0;
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUser((prevState) => ({
       ...prevState,
@@ -64,6 +65,25 @@ const Register = ({
         type="password"
         value={user.password}
       />
+      <div className="auth-radio-container">
+        <label>{pageText.user}</label>
+        <input
+          type="radio"
+          name="role"
+          value="user"
+          onChange={handleChange}
+          data-type="role"
+          checked={user.role === "user"}
+        />
+        <label>{pageText.admin}</label>
+        <input
+          type="radio"
+          name="role"
+          value="admin"
+          onChange={handleChange}
+          data-type="role"
+        />
+      </div>
       <button className="auth-btn" type="submit" onSubmit={handleSubmit}>
         {pageText.register}
       </button>

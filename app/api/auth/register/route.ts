@@ -9,9 +9,9 @@ export const POST = async (request: Request) => {
     const cookieStore = cookies();
 
     const isWithUsername =
-      await sql`SELECT * FROM usersdb where username = ${body.username};`;
+      await sql`SELECT * FROM users where username = ${body.username};`;
     const isWithEmail =
-      await sql`SELECT * FROM usersdb where username = ${body.email};`;
+      await sql`SELECT * FROM users where username = ${body.email};`;
 
     if (isWithUsername.rows.length > 0) {
       return NextResponse.json(
@@ -29,13 +29,14 @@ export const POST = async (request: Request) => {
 
     const hashedPassword = await hashPassword(body.password);
 
-    await sql`INSERT INTO usersdb (username, email, password) VALUES (${body.username}, ${body.email}, ${hashedPassword});`;
+    await sql`INSERT INTO users (username, email, password, role) 
+    VALUES (${body.username}, ${body.email}, ${hashedPassword}, ${body.role});`;
 
     const data =
-      await sql`SELECT * FROM usersdb where username = ${body.username};`;
-    const { id, username, email } = data.rows[0];
+      await sql`SELECT * FROM users where username = ${body.username};`;
+    const { id, username, email, role } = data.rows[0];
 
-    const jwt = await createJWT({ username, email, id });
+    const jwt = await createJWT({ username, email, id, role });
 
     cookieStore.set("token", jwt);
 
