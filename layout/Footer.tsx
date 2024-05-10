@@ -1,4 +1,3 @@
-import React from "react";
 import { libraries } from "../utils/constants";
 import { NavLink } from "../components/NavLink";
 import { getSystemPreferences } from "../utils/actions";
