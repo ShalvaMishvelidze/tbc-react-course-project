@@ -25,6 +25,7 @@ export async function POST(request: Request) {
       const jwt = await createJWT({ username, email, id, role });
 
       cookieStore.set("token", jwt);
+      cookieStore.set("role", role);
       return NextResponse.json(
         { msg: "Logged in successfully!" },
         { status: 200 }

@@ -39,6 +39,7 @@ export const POST = async (request: Request) => {
     const jwt = await createJWT({ username, email, id, role });
 
     cookieStore.set("token", jwt);
+    cookieStore.set("role", role);
 
     return NextResponse.json(
       { msg: "Registered successfully!" },

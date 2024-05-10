@@ -11,6 +11,14 @@ export const PRODUCTS_API_URL = "https://dummyjson.com/products";
 
 export const POSTS_API_URL = "https://dummyjson.com/posts";
 
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  age: number | null;
+  role: string;
+}
+
 export interface Product {
   id: number;
   title: string;
@@ -59,6 +67,9 @@ interface Main {
   profile: {
     [key: string]: string;
   };
+  admin: {
+    [key: string]: string;
+  };
 }
 
 export interface Footer {
@@ -102,6 +113,7 @@ export const libraries: Libraries = {
         { text: "contact", href: "/contact" },
         { text: "premium", href: "/premium" },
         { text: "profile", href: "/profile" },
+        { text: "admin", href: "/admin" },
       ],
       lang: ["en", "ka"],
     },
@@ -159,6 +171,11 @@ export const libraries: Libraries = {
         confirmPassword: "Confirm Password",
         save: "save",
       },
+      admin: {
+        edit: "edit",
+        delete: "delete",
+        save: "save",
+      },
     },
     footer: {
       copy: "all rights reserved",
@@ -196,6 +213,7 @@ export const libraries: Libraries = {
         { text: "კონტაქტი", href: "/contact" },
         { text: "პრემიუმი", href: "/premium" },
         { text: "პროფილი", href: "/profile" },
+        { text: "ადმინისტრატორი", href: "/admin" },
       ],
       lang: ["ინგ", "ქარ"],
     },
@@ -251,6 +269,11 @@ export const libraries: Libraries = {
         email: "იმეილი",
         password: "ახალი პაროლი",
         confirmPassword: "გაიმეორეთ პაროლი",
+        save: "შენახვა",
+      },
+      admin: {
+        edit: "რედაქტირება",
+        delete: "წაშლა",
         save: "შენახვა",
       },
     },
