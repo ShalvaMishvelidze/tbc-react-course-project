@@ -2,6 +2,7 @@ import Logout from "./Logout";
 import { NavLink } from "./NavLink";
 import LanguageSelector from "./LanguageSelector";
 import ChangeTheme from "./ChangeTheme";
+import CartBtn from "./CartBtn";
 
 const Nav = ({
   nav,
@@ -20,6 +21,7 @@ const Nav = ({
         })}
       </div>
       <div className="navigation-right">
+        <CartBtn />
         <LanguageSelector
           reload={false}
           lang={lang}

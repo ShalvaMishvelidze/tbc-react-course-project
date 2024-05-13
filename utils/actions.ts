@@ -109,3 +109,8 @@ export const deleteUser = async (id: number) => {
     body: JSON.stringify(id),
   });
 };
+
+export const setCartTotalCookie = async (total: number) => {
+  const cookieStore = cookies();
+  cookieStore.set("cart_total", total.toString());
+};

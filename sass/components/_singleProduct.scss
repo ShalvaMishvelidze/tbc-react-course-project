@@ -56,4 +56,15 @@
       }
     }
   }
+
+  .cart-btn {
+    background-color: $clr-purple;
+    text-transform: capitalize;
+    font-weight: $fw-bold;
+    color: $clr-white;
+    font-size: $fs-small;
+    width: 8rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+  }
 }
