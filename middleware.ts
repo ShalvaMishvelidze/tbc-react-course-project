@@ -10,7 +10,7 @@ export default function middleware(request: NextRequest) {
     request.nextUrl.pathname === "/api/auth/users" ||
     request.nextUrl.pathname === "/api/cart" ||
     request.nextUrl.pathname === "/api/products" ||
-    request.nextUrl.pathname === "/api/test"
+    request.nextUrl.pathname === "/api/product"
 
   ) {
     return NextResponse.next();

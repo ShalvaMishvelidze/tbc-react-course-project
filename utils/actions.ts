@@ -18,19 +18,22 @@ export const getProducts = async (searchString: string | undefined) => {
 
 export const getSingleProduct = async (id: string) => {
   try {
-    const response = await fetch(`${process.env.SITE_URL as string}api/products`, {
+    const response = await fetch(`${process.env.SITE_URL as string}/api/product`, {
       method: "POST",
-      body: JSON.stringify({id: 93})
+      body: JSON.stringify({ id: id })
     });
 
-    console.log(response)
-    // const data = await response.json();
-    // console.log(data.data)
-    // return data.data;
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.data;
   } catch (e) {
     console.error(e);
   }
 };
+
 
 export const getPosts = async () => {
   try {
