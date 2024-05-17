@@ -1,19 +1,18 @@
 "use client";
-import { useCartContext } from "@/context/cart_context";
-import { useEffect } from "react";
 
 const AddToCart = ({ text, product }: { text: string; product: any }) => {
-  const { cart, addToCart } = useCartContext();
-
-  useEffect(() => {
-    console.log("cart", cart);
-  }, [cart]);
+  const addProduct = async () => {
+    await fetch("/api/cart", {
+      method: "POST",
+      body: JSON.stringify({ product_id: 93, quantity: 1 }),
+    });
+  };
 
   return (
     <button
       className="cart-btn"
       onClick={() => {
-        addToCart(product);
+        addProduct();
       }}
     >
       {text}

@@ -2,6 +2,8 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { BsCartCheck } from "react-icons/bs";
 
+export const revalidate = 0;
+
 const CartBtn = () => {
   const cookieStore = cookies();
   const cart_total: any = cookieStore.get("cart_total");

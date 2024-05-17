@@ -7,7 +7,8 @@ export default function middleware(request: NextRequest) {
   if (
     request.nextUrl.pathname === "/api/auth/register" ||
     request.nextUrl.pathname === "/api/auth/login" ||
-    request.nextUrl.pathname === "/api/auth/users"
+    request.nextUrl.pathname === "/api/auth/users" ||
+    request.nextUrl.pathname === "/api/cart" 
   ) {
     return NextResponse.next();
   }
