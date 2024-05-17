@@ -8,7 +8,7 @@ import AddToCart from "@/components/AddToCart";
 import { libraries } from "@/utils/constants";
 
 export const generateStaticParams = async () => {
-  const products: { id: number }[] = await getProducts("");
+  const products: { id: number }[] = await getProducts();
 
   return products.map((post) => {
     return { id: post.id.toString() };

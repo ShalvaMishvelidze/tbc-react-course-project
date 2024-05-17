@@ -24,10 +24,9 @@ export const POST = async (request: Request) => {
 
       const quantity = productsData.rows.reduce((acc:number, cur:{quantity:number}) => acc + cur.quantity, 0)
 
-      cookies().set("cart_total", quantity)
 
       return NextResponse.json(
-        { error: "update product successfully" },
+        { msg: "update product successfully", quantity},
         { status: 200 }
       );
     }
@@ -40,10 +39,10 @@ export const POST = async (request: Request) => {
 
        const quantity = productsData.rows.reduce((acc:number, cur:{quantity:number}) => acc + cur.quantity, 0)
 
-       cookies().set("cart_total", quantity)
+
 
       return NextResponse.json(
-        { msg: "Product is added successfully!" },
+        { msg: "Product is added successfully!", quantity },
         { status: 201 }
       );
     } catch (error) {

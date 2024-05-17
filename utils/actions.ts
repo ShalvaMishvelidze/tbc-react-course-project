@@ -1,9 +1,13 @@
 "use server";
 import { cookies } from "next/headers";
-import { PRODUCTS_API_URL, User } from "./constants";
+import { 
+  // PRODUCTS_API_URL,
+   User } from "./constants";
 import { POSTS_API_URL } from "./constants";
 
-export const getProducts = async (searchString: string | undefined) => {
+export const getProducts = async (
+  // searchString: string | undefined
+  ) => {
   try {
     const response = await fetch(
       `${process.env.SITE_URL as string}api/products`
