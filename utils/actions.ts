@@ -6,11 +6,11 @@ import { POSTS_API_URL } from "./constants";
 export const getProducts = async (searchString: string | undefined) => {
   try {
     const response = await fetch(
-      `${PRODUCTS_API_URL}/search?q=${searchString || ""}`
+      `${process.env.SITE_URL as string}api/products`
     );
 
     const data = await response.json();
-    return data.products;
+    return data.data;
   } catch (e) {
     console.log(e);
   }
@@ -18,9 +18,15 @@ export const getProducts = async (searchString: string | undefined) => {
 
 export const getSingleProduct = async (id: string) => {
   try {
-    const response = await fetch(`${PRODUCTS_API_URL}/${id}`);
-    const data = await response.json();
-    return data;
+    const response = await fetch(`${process.env.SITE_URL as string}api/products`, {
+      method: "POST",
+      body: JSON.stringify({id: 93})
+    });
+
+    console.log(response)
+    // const data = await response.json();
+    // console.log(data.data)
+    // return data.data;
   } catch (e) {
     console.error(e);
   }

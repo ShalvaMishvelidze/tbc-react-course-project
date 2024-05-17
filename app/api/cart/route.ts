@@ -33,7 +33,7 @@ export const POST = async (request: Request) => {
     }
 
         await sql`INSERT INTO cart (user_id, product_id, quantity, created_at, updated_at)
-        VALUES (${info.id}, ${body.product_id}, ${body.quantity}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);`
+        VALUES (${info.id}, ${body.product_id}, ${1}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);`
         .catch((err)=> console.log(err))
 
        const productsData: any = await sql`SELECT * FROM cart;`
