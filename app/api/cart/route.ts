@@ -142,3 +142,24 @@ export const PATCH = async (req: NextRequest) => {
     return NextResponse.json({ msg: "Error!" }, { status: 400 });
   }
 };
+
+export const DELETE = async (req: NextRequest) => {
+  const authorizationHeader = req.headers.get("authorization");
+
+  const info: any = await validateJWT(authorizationHeader as string).catch(
+    (err) => console.log(err)
+  );
+
+  try {
+    await sql`DELETE FROM cart
+    WHERE user_id = ${info.id};
+    `;
+    return NextResponse.json(
+      { msg: "Product quantity changed!" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ msg: "Error!" }, { status: 400 });
+  }
+};

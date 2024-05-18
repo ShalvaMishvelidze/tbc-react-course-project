@@ -3,12 +3,14 @@
 import Image from "next/image";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { GrClear } from "react-icons/gr";
-import { changeQuantity, setCartTotalCookie } from "@/utils/actions";
+import { changeQuantity, setCartTotalCookie, emptyCart } from "@/utils/actions";
 
 const Cart = async ({ data }: any) => {
   return (
     <section className="cart">
-      <button className="cart-clear">
+      <button className="cart-clear" onClick={() => emptyCart().then((_) => {
+        setCartTotalCookie(0);
+      })}>
         <GrClear />
       </button>
       {data.data.map((item: any) => {
@@ -27,7 +29,6 @@ const Cart = async ({ data }: any) => {
                 className="cart-btn"
                 onClick={() =>
                   changeQuantity(item.id, "dec").then((arg) => {
-                    console.log(arg);
                     setCartTotalCookie(arg.data.total_quantity);
                   })
                 }
