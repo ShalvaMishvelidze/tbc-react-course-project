@@ -144,3 +144,14 @@ export const changeQuantity = async (id: number, method: string) => {
   const data = await result.json();
   return data;
 };
+
+export const emptyCart = async () => {
+  const token: any = cookies().get("token");
+  await fetch(`${process.env.SITE_URL as string}api/cart`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `${token.value}`,
+      "Content-Type": "application/json",
+    },
+  });
+};
