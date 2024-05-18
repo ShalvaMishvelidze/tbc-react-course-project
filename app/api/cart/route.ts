@@ -96,9 +96,14 @@ export const POST = async (request: Request) => {
 };
 
 export const PATCH = async (req: NextRequest) => {
+  const authorizationHeader = req.headers.get("authorization");
+
+  const info: any = await validateJWT(authorizationHeader as string).catch(
+    (err) => console.log(err)
+  );
+
   const args = await req.json();
 
-  console.log(args);
   try {
     if (args.method === "inc") {
       await sql`
@@ -124,8 +129,9 @@ export const PATCH = async (req: NextRequest) => {
       }
     }
 
-    const sumQuantity =
-      await sql`SELECT SUM(quantity) AS total_quantity FROM cart;`;
+    const sumQuantity = await sql`SELECT SUM(quantity) AS total_quantity 
+      FROM cart 
+      WHERE user_id = ${info.id}`;
 
     return NextResponse.json(
       { msg: "Product quantity changed!", data: sumQuantity.rows[0] },

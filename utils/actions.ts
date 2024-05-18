@@ -132,9 +132,14 @@ export const setCartTotalCookie = async (total: number) => {
 };
 
 export const changeQuantity = async (id: number, method: string) => {
+  const token: any = cookies().get("token");
   const result = await fetch(`${process.env.SITE_URL as string}api/cart`, {
     method: "PATCH",
     body: JSON.stringify({ id: id, method: method }),
+    headers: {
+      Authorization: `${token.value}`,
+      "Content-Type": "application/json",
+    },
   });
   const data = await result.json();
   return data;
