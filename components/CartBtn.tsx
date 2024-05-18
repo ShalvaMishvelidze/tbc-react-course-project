@@ -1,12 +1,17 @@
-import { cookies } from "next/headers";
+"use client";
+import { changeQuantity, setCartTotalCookie } from "@/utils/actions";
 import Link from "next/link";
+import { useEffect } from "react";
 import { BsCartCheck } from "react-icons/bs";
 
 export const revalidate = 0;
 
-const CartBtn = () => {
-  const cookieStore = cookies();
-  const cart_total: any = cookieStore.get("cart_total");
+const CartBtn = ({ cart_total }: any) => {
+  useEffect(() => {
+    changeQuantity(0, "GET").then((arg) => {
+      setCartTotalCookie(arg.data.total_quantity);
+    });
+  }, []);
 
   return (
     <div className="cart-btn">
