@@ -1,31 +1,35 @@
 "use server";
 import { cookies } from "next/headers";
-import { 
+import {
   // PRODUCTS_API_URL,
-   User } from "./constants";
+  User,
+} from "./constants";
 import { POSTS_API_URL } from "./constants";
 
-export const getProducts = async (
+export const getProducts = async () =>
   // searchString: string | undefined
-  ) => {
-  try {
-    const response = await fetch(
-      `${process.env.SITE_URL as string}api/products`
-    );
+  {
+    try {
+      const response = await fetch(
+        `${process.env.SITE_URL as string}api/products`
+      );
 
-    const data = await response.json();
-    return data.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
+      const data = await response.json();
+      return data.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
 export const getSingleProduct = async (id: string) => {
   try {
-    const response = await fetch(`${process.env.SITE_URL as string}/api/product`, {
-      method: "POST",
-      body: JSON.stringify({ id: id })
-    });
+    const response = await fetch(
+      `${process.env.SITE_URL as string}/api/product`,
+      {
+        method: "POST",
+        body: JSON.stringify({ id: id }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);
@@ -37,7 +41,6 @@ export const getSingleProduct = async (id: string) => {
     console.error(e);
   }
 };
-
 
 export const getPosts = async () => {
   try {
@@ -126,4 +129,13 @@ export const deleteUser = async (id: number) => {
 export const setCartTotalCookie = async (total: number) => {
   const cookieStore = cookies();
   cookieStore.set("cart_total", total.toString());
+};
+
+export const changeQuantity = async (id: number, method: string) => {
+  const result = await fetch(`${process.env.SITE_URL as string}api/cart`, {
+    method: "PATCH",
+    body: JSON.stringify({ id: id, method: method }),
+  });
+  const data = await result.json();
+  return data;
 };
