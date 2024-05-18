@@ -1,16 +1,20 @@
 "use server";
 import { cookies } from "next/headers";
-import { PRODUCTS_API_URL, User } from "./constants";
+import { 
+  // PRODUCTS_API_URL,
+   User } from "./constants";
 import { POSTS_API_URL } from "./constants";
 
-export const getProducts = async (searchString: string | undefined) => {
+export const getProducts = async (
+  // searchString: string | undefined
+  ) => {
   try {
     const response = await fetch(
-      `${PRODUCTS_API_URL}/search?q=${searchString || ""}`
+      `${process.env.SITE_URL as string}api/products`
     );
 
     const data = await response.json();
-    return data.products;
+    return data.data;
   } catch (e) {
     console.log(e);
   }
@@ -18,13 +22,22 @@ export const getProducts = async (searchString: string | undefined) => {
 
 export const getSingleProduct = async (id: string) => {
   try {
-    const response = await fetch(`${PRODUCTS_API_URL}/${id}`);
+    const response = await fetch(`${process.env.SITE_URL as string}/api/product`, {
+      method: "POST",
+      body: JSON.stringify({ id: id })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
     const data = await response.json();
-    return data;
+    return data.data;
   } catch (e) {
     console.error(e);
   }
 };
+
 
 export const getPosts = async () => {
   try {

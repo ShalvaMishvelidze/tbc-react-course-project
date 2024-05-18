@@ -1,19 +1,22 @@
 "use client";
-import { useCartContext } from "@/context/cart_context";
-import { useEffect } from "react";
+
+import { setCartTotalCookie } from "@/utils/actions";
 
 const AddToCart = ({ text, product }: { text: string; product: any }) => {
-  const { cart, addToCart } = useCartContext();
-
-  useEffect(() => {
-    console.log("cart", cart);
-  }, [cart]);
+  const addProduct = async () => {
+    const response = await fetch("/api/cart", {
+      method: "POST",
+      body: JSON.stringify({ product_id: product.id }),
+    });
+    const data = await response.json();
+    await setCartTotalCookie(data.quantity);
+  };
 
   return (
     <button
       className="cart-btn"
       onClick={() => {
-        addToCart(product);
+        addProduct();
       }}
     >
       {text}
