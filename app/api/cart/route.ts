@@ -134,7 +134,12 @@ export const PATCH = async (req: NextRequest) => {
       WHERE user_id = ${info.id}`;
 
     return NextResponse.json(
-      { msg: "Product quantity changed!", data: sumQuantity.rows[0] },
+      {
+        msg: "Product quantity changed!",
+        data: sumQuantity.rows[0].total_quantity
+          ? sumQuantity.rows[0].total_quantity
+          : 0,
+      },
       { status: 200 }
     );
   } catch (error) {

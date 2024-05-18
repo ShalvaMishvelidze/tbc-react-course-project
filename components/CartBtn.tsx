@@ -9,7 +9,7 @@ export const revalidate = 0;
 const CartBtn = ({ cart_total }: any) => {
   useEffect(() => {
     changeQuantity(0, "GET").then((arg) => {
-      setCartTotalCookie(arg.data.total_quantity);
+      setCartTotalCookie(arg.data);
     });
   }, []);
 
