@@ -77,15 +77,15 @@ export const POST = async (request: Request) => {
       console.log(err)
     );
 
-    const productsData: any = await sql`SELECT * FROM cart;`;
-
-    const quantity = productsData.rows.reduce(
-      (acc: number, cur: { quantity: number }) => acc + cur.quantity,
-      0
-    );
+    const quantity = await sql`SELECT SUM(quantity) AS total_quantity 
+      FROM cart 
+      WHERE user_id = ${info.id}`;
 
     return NextResponse.json(
-      { msg: "Product is added successfully!", quantity },
+      {
+        msg: "Product is added successfully!",
+        quantity: quantity.rows[0].total_quantity,
+      },
       { status: 201 }
     );
   } catch (error) {

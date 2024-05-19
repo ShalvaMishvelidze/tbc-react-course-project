@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { GrClear } from "react-icons/gr";
-import { changeQuantity, setCartTotalCookie, emptyCart } from "@/utils/actions";
+import { changeQuantity, emptyCart, setCartTotalCookie } from "@/utils/actions";
 
 const Cart = async ({ data }: any) => {
   const totalPrice = data.data.reduce((acc: number, item: any) => {
@@ -51,7 +51,7 @@ const Cart = async ({ data }: any) => {
                   onClick={() =>
                     changeQuantity(item.id, "dec").then((arg) => {
                       console.log(arg);
-                      setCartTotalCookie(arg.data.total_quantity);
+                      setCartTotalCookie(arg.data);
                     })
                   }
                 >
@@ -62,7 +62,7 @@ const Cart = async ({ data }: any) => {
                   className="cart-btn"
                   onClick={() =>
                     changeQuantity(item.id, "inc").then((arg) => {
-                      setCartTotalCookie(arg.data.total_quantity);
+                      setCartTotalCookie(arg.data);
                     })
                   }
                 >
@@ -75,7 +75,12 @@ const Cart = async ({ data }: any) => {
         {data.data.length === 0 ? (
           <p>Card Is Empty</p>
         ) : (
-          <button className="cart-clear">
+          <button
+            className="cart-clear"
+            onClick={() => {
+              emptyCart().then(() => setCartTotalCookie(0));
+            }}
+          >
             <GrClear />
           </button>
         )}
