@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { GrClear } from "react-icons/gr";
-import { changeQuantity, setCartTotalCookie } from "@/utils/actions";
+import { changeQuantity, setCartTotalCookie, emptyCart } from "@/utils/actions";
 
 const Cart = async ({ data }: any) => {
   const totalPrice = data.data.reduce((acc: number, item: any) => {

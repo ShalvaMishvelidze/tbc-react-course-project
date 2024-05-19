@@ -3,6 +3,7 @@ import { NavLink } from "./NavLink";
 import LanguageSelector from "./LanguageSelector";
 import ChangeTheme from "./ChangeTheme";
 import CartBtn from "./CartBtn";
+import { cookies } from "next/headers";
 
 const Nav = ({
   nav,
@@ -13,6 +14,9 @@ const Nav = ({
   lang: string[];
   systemPreferences: { language: string; theme: string };
 }) => {
+  const cookieStore = cookies();
+  const cart_total: any = cookieStore.get("cart_total");
+
   return (
     <nav className="navigation">
       <div className="navigation-left">
@@ -21,7 +25,7 @@ const Nav = ({
         })}
       </div>
       <div className="navigation-right">
-        <CartBtn />
+        <CartBtn cart_total={cart_total} />
         <LanguageSelector
           reload={false}
           lang={lang}
