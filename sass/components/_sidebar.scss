@@ -14,6 +14,12 @@
 
   &-btn {
     display: none;
+    color: $clr-violet;
+    margin-right: 1rem;
+
+    &:hover {
+      color: $clr-violet-dark;
+    }
 
     @include respond(tab-portrait) {
       font-size: $fs-huge;

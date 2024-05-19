@@ -5,7 +5,7 @@ const About = async () => {
   const { language }: { language: string } = await getSystemPreferences();
   const about = libraries[language].main.about;
 
-  return <div>{about.heading}</div>;
+  return <section className="about">{about.heading}</section>;
 };
 
 export default About;

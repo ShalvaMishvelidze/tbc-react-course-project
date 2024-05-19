@@ -8,8 +8,14 @@
   justify-content: center;
   align-items: center;
 
+  @include normalizeForAll;
+
   @include respond(tab-landscape) {
     padding: 1rem;
+  }
+
+  @include respond(tab-portrait) {
+    padding: 3rem;
   }
 
   &-title {
@@ -18,8 +24,18 @@
     display: flex;
     align-items: center;
 
+    @include respond(tab-landscape) {
+      margin-bottom: 1.5rem;
+      font-size: $fs-big;
+    }
+
+    @include respond(tab-portrait) {
+      font-size: $fs-big;
+    }
+
     @include respond(phone) {
-      font-size: $fs-bigger;
+      font-size: $fs-giant;
+      margin-bottom: 3rem;
     }
   }
 
@@ -30,10 +46,15 @@
 
   &-desc {
     height: 7rem;
-    font-size: $fs-regular-small;
+    font-size: $fs-regular;
+
+    @include respond(tab-portrait) {
+      font-size: $fs-big;
+      margin-bottom: 1rem;
+    }
 
     @include respond(phone) {
-      font-size: $fs-big;
+      font-size: $fs-bigger;
     }
 
     & a {

@@ -6,8 +6,11 @@
   @include respond(tab-portrait) {
     grid-template-columns: repeat(3, 1fr);
   }
+
   @include respond(phone) {
     grid-template-columns: repeat(1, 1fr);
+    padding: 2rem 5rem;
+    gap: 2rem;
   }
 
   // @media screen and (max-width: 1000px) {
