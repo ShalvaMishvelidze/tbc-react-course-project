@@ -9,18 +9,24 @@ const Footer = async () => {
   return (
     <footer className="footer">
       <div className="footer-left">
-        <span className="copyright">
-          &copy; {footer.copy} {new Date().getFullYear()}
-        </span>
-        <a href="#root" className="terms">
-          {footer.terms}
-        </a>
-        <a href="#root" className="privacy-policy">
-          {footer.privacy}
-        </a>
-        {footer.nav.map((link) => {
-          return <NavLink key={link.text} text={link.text} href={link.href} />;
-        })}
+        <div className="footer-left-top">
+          <span className="copyright">
+            &copy; {footer.copy} {new Date().getFullYear()}
+          </span>
+          <a href="#root" className="terms">
+            {footer.terms}
+          </a>
+          <a href="#root" className="privacy-policy">
+            {footer.privacy}
+          </a>
+        </div>
+        <div className="footer-left-bottom">
+          {footer.nav.map((link) => {
+            return (
+              <NavLink key={link.text} text={link.text} href={link.href} />
+            );
+          })}
+        </div>
       </div>
       <div className="footer-right">
         <form className="newsletter">

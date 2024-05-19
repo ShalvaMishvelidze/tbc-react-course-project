@@ -16,3 +16,36 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin normalize($breakpoint) {
+  @if $breakpoint == phone {
+    // 600px
+    font-size: 250%;
+  }
+  @if $breakpoint == tab-portrait {
+    // 900px
+    font-size: 166.666%;
+  }
+  @if $breakpoint == tab-landscape {
+    // 1200px
+    font-size: 125%;
+  }
+  @if $breakpoint == big-desktop {
+    // 1800px
+    font-size: 83.333%;
+  }
+}
+
+@mixin normalizeForAll {
+  @include respond(tab-landscape) {
+    @include normalize(tab-landscape);
+  }
+  @include respond(tab-portrait) {
+    font-size: 166.666%;
+    @include normalize(tab-portrait);
+  }
+  @include respond(phone) {
+    font-size: 250%;
+    @include normalize(phone);
+  }
+}

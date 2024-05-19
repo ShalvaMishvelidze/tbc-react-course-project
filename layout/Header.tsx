@@ -1,3 +1,4 @@
+import Sidebar from "@/components/Sidebar";
 import Nav from "../components/Nav";
 import { getSystemPreferences } from "../utils/actions";
 import { libraries } from "../utils/constants";
@@ -11,9 +12,7 @@ const Header = async () => {
   return (
     <header className="header">
       <Nav nav={nav} lang={lang} systemPreferences={systemPreferences} />
-      {/* <div className="header-content">
-        <h1 className="header-content-heading">header content will be here</h1>
-      </div> */}
+      <Sidebar nav={nav} lang={lang} systemPreferences={systemPreferences} />
     </header>
   );
 };
