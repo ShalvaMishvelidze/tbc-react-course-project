@@ -1,0 +1,72 @@
+.sidebar {
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 2rem;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.6s ease-in-out;
+
+  @include respond(tab-portrait) {
+    display: flex;
+  }
+
+  &-btn {
+    display: none;
+
+    @include respond(tab-portrait) {
+      font-size: $fs-huge;
+      margin-left: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 5rem;
+      width: 5rem;
+    }
+
+    @include respond(phone) {
+      height: 7rem;
+      width: 7rem;
+      font-size: $fs-huge-big;
+    }
+  }
+
+  &-open {
+    height: 40vh;
+  }
+
+  &-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+
+    @include normalizeForAll;
+
+    a {
+      width: 100%;
+    }
+  }
+
+  &-controls {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(1rem);
+
+    @include respond(phone) {
+      gap: $fs-giant;
+    }
+
+    .language-selector {
+      transform: translateX(-1rem);
+
+      @include respond(phone) {
+        $font-size: $fs-bigger;
+        height: 5rem;
+      }
+    }
+  }
+}
