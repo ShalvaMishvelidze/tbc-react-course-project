@@ -2,10 +2,14 @@
 
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
+import LoadingSpinner from "./LoadingSpinner";
+import { toast } from "react-toastify";
+import Toast from "./Toast";
 
 const Login = ({ pageText }: { pageText: { [key: string]: string } }) => {
   const router = useRouter();
   const [user, setUser] = useState({ username: "", password: "" });
+  const [pending, setPending] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUser((prevState) => ({
@@ -16,11 +20,24 @@ const Login = ({ pageText }: { pageText: { [key: string]: string } }) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    setPending(true);
+    toast.info("Trying to log in the user...");
     fetch("/api/auth/login", {
       method: "POST",
       body: JSON.stringify(user),
     })
-      .then(() => {
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.msg) {
+          toast.success(res.msg);
+        }
+        if (res.error) {
+          toast.error(res.error);
+          setPending(false);
+          return;
+        }
+
+        setPending(false);
         router.push("/");
       })
       .catch((error) => {
@@ -30,6 +47,7 @@ const Login = ({ pageText }: { pageText: { [key: string]: string } }) => {
 
   return (
     <>
+      <Toast />
       <form className="auth" onSubmit={handleSubmit}>
         <label htmlFor="username">{pageText.username}</label>
         <input
@@ -45,8 +63,13 @@ const Login = ({ pageText }: { pageText: { [key: string]: string } }) => {
           name="password"
           type="password"
         />
-        <button className="auth-btn" type="submit" onSubmit={handleSubmit}>
-          {pageText.login}
+        <button
+          className="auth-btn"
+          type="submit"
+          onSubmit={handleSubmit}
+          disabled={pending}
+        >
+          {pending ? <LoadingSpinner /> : pageText.login}
         </button>
       </form>
     </>
