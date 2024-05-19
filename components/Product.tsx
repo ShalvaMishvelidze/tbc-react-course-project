@@ -33,7 +33,7 @@ const Product = (props: { product: P; addToCart: string }) => {
   return (
     <article className="product">
       <h5 className="product-title">{product.title.substring(0, 20)}</h5>
-      <div className="product-img">
+      <div className="product-image">
         <Image
           src={product.thumbnail}
           alt={product.title}
