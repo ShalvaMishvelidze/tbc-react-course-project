@@ -57,15 +57,15 @@ export const POST = async (request: Request) => {
     if (data.rows.length > 0) {
       await sql`UPDATE cart SET quantity = quantity + 1 WHERE product_id = ${body.product_id} AND user_id = ${info.id};`;
 
-      const productsData: any = await sql`SELECT * FROM cart;`;
-
-      const quantity = productsData.rows.reduce(
-        (acc: number, cur: { quantity: number }) => acc + cur.quantity,
-        0
-      );
+      const quantity = await sql`SELECT SUM(quantity) AS total_quantity 
+      FROM cart 
+      WHERE user_id = ${info.id}`;
 
       return NextResponse.json(
-        { msg: "update product successfully", quantity },
+        {
+          msg: "update product successfully",
+          quantity: quantity.rows[0].total_quantity,
+        },
         { status: 200 }
       );
     }
@@ -134,7 +134,12 @@ export const PATCH = async (req: NextRequest) => {
       WHERE user_id = ${info.id}`;
 
     return NextResponse.json(
-      { msg: "Product quantity changed!", data: sumQuantity.rows[0] },
+      {
+        msg: "Product quantity changed!",
+        data: sumQuantity.rows[0].total_quantity
+          ? sumQuantity.rows[0].total_quantity
+          : 0,
+      },
       { status: 200 }
     );
   } catch (error) {

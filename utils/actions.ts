@@ -142,6 +142,7 @@ export const changeQuantity = async (id: number, method: string) => {
     },
   });
   const data = await result.json();
+
   return data;
 };
 
