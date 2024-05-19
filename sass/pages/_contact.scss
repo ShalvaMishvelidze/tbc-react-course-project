@@ -5,6 +5,7 @@
   border-radius: 0.6rem;
   padding: 2rem 0;
 
+
   &-info {
     display: flex;
     flex-direction: column;
@@ -12,17 +13,33 @@
     align-items: center;
     gap: 1rem;
 
+    @include respond(tab-portrait) {
+      font-size: $fs-bigger ;
+    }
+    @include respond(phone) {
+      font-size: $fs-giant ;
+    }
+
     &-header {
       text-transform: capitalize;
+      @include respond(phone) {
+        font-size: $fs-huge ;
+      }
     }
   }
 
   &-form {
     margin-top: 2rem;
 
+
     &-header {
       text-transform: capitalize;
       text-align: center;
+
+      @include respond(phone) {
+        font-size: $fs-giant ;
+      }
+  
     }
 
     & form {
@@ -35,6 +52,18 @@
       & label {
         text-transform: capitalize;
         font-weight: 500;
+        margin-top: 12px;
+
+        @include respond(tab-portrait) {
+          font-size: $fs-big ;
+          margin-top: 10px;
+        }
+
+        @include respond(phone) {
+          font-size: $fs-giant ;
+          margin-top: 10px;
+        }
+
       }
 
       & input {
@@ -59,6 +88,11 @@
         text-transform: uppercase;
         font-size: $fs-regular;
         transition: all 0.3s;
+
+        @include respond(phone) {
+          font-size: $fs-giant ;
+          margin-top: 10px;
+        }
 
         &:hover {
           background-color: $clr-purple-dark;

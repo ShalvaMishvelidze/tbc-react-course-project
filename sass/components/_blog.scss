@@ -17,7 +17,12 @@
     height: 8rem;
     display: flex;
     align-items: center;
+    
+  @include respond(phone) {
+    font-size: $fs-bigger;
   }
+  }
+
 
   &-image {
     object-fit: cover;
@@ -28,9 +33,14 @@
     height: 7rem;
     font-size: $fs-regular-small;
 
+    @include respond(phone) {
+      font-size: $fs-big;
+    }
+
     & a {
       color: $clr-violet;
       text-decoration: underline;
     }
   }
+
 }
