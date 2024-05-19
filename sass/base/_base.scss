@@ -9,6 +9,56 @@
   color: inherit;
 }
 
+// media query manager
+/*
+0-600px:    phone
+600-900px:  tablet portrait
+900-1200px: tablet landscape
+1800px+     big desktop
+
+$breakpoint argument choices:
+- phone
+- tab-portrait
+- tab-landscape
+- big-desktop
+
+order: base + typography > general layout + grid 
+      > page layout > components
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    // 600px
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-portrait {
+    // 900px
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-landscape {
+    // 1200px
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
+  @if $breakpoint == big-desktop {
+    // 1800px
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
+
+// 75% of 16px = 12px
+// 62.5% of 16px = 10px
+// 50% of 16px = 8px
+// 37.5% of 16px = 6px
+// 25% of 16px = 4px
+
 html {
   font-size: 62.5%;
   --clr-white: #fff;
@@ -27,6 +77,20 @@ html {
   --clr-purple-dark: #ab46da;
   --clr-violet: #7171e2;
   --clr-violet-dark: #5b5bb8;
+
+  @include respond(tab-landscape) {
+    font-size: 50%;
+  }
+  @include respond(tab-portrait) {
+    font-size: 37.5%;
+  }
+  @include respond(phone) {
+    font-size: 25%;
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%;
+  }
 }
 
 .light {
