@@ -3,6 +3,8 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 
+  @include normalizeForAll;
+
   @media (max-width: $breakpoint-xl) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -27,7 +29,14 @@
     border: 1px solid $clr-gray;
     border-radius: 0.5rem;
 
-    @media (max-width:768px){
+    @include respond(tab-portrait) {
+      font-size: $fs-huge;
+    }
+    @include respond(phone) {
+      font-size: $fs-huge-big;
+    }
+
+    @media (max-width: 768px) {
       height: 100px;
     }
 
@@ -65,6 +74,13 @@
       font-weight: $fw-bold;
       font-size: $fs-big;
       color: $clr-violet;
+
+      @include respond(tab-portrait) {
+        font-size: $fs-giant;
+      }
+      @include respond(phone) {
+        font-size: $fs-huge;
+      }
     }
   }
 }
