@@ -1,17 +1,13 @@
 .single-product {
   display: flex;
   flex-direction: column;
+ 
 
   &-container {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     margin-bottom: 2rem;
-
-    @media screen and (max-width: 750px) {
-      flex-direction: row;
-      margin-bottom: 0;
-    }
   }
 
   &-title {
@@ -40,11 +36,13 @@
       flex-direction: row;
       justify-content: flex-start;
       gap: 1rem;
-
+      margin-top: 2rem;
       @media screen and (max-width: 750px) {
-        flex-direction: column;
+        flex-direction: row;
         justify-content: space-between;
         gap: 0;
+        flex-wrap: wrap;
+        margin-top: 2rem;
       }
 
       &-small {
@@ -66,5 +64,11 @@
     width: 8rem;
     height: 3rem;
     border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+}
+@media screen and (max-width: 750px) {
+  .single-product-img{
+    width: 100%;
   }
 }
