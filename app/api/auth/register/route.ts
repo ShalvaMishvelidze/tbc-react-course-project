@@ -11,18 +11,18 @@ export const POST = async (request: Request) => {
     const isWithUsername =
       await sql`SELECT * FROM users where username = ${body.username};`;
     const isWithEmail =
-      await sql`SELECT * FROM users where username = ${body.email};`;
+      await sql`SELECT * FROM users where email = ${body.email};`;
 
     if (isWithUsername.rows.length > 0) {
       return NextResponse.json(
-        { error: "user with this username already exists" },
+        { error: "User with this username already exists!" },
         { status: 409 }
       );
     }
 
     if (isWithEmail.rows.length > 0) {
       return NextResponse.json(
-        { error: "user with this email already exists" },
+        { error: "User with this email already exists!" },
         { status: 409 }
       );
     }
@@ -46,8 +46,6 @@ export const POST = async (request: Request) => {
       { status: 201 }
     );
   } catch (error) {
-    return new Response("Failed to register", {
-      status: 400,
-    });
+    return NextResponse.json({ error: "Failed to register!" }, { status: 400 });
   }
 };

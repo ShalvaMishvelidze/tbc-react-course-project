@@ -4,14 +4,25 @@
   justify-content: center;
   align-items: center;
 
+  @include respond(phone) {
+    font-size: 150%;
+  }
+
   &-title {
     font-size: $fs-giant;
     font-weight: $fw-bold;
     margin: 1rem 0;
   }
 
+  &-content {
+    @include respond(tab-landscape) {
+      padding: 4.8rem;
+    }
+  }
+
   &-reactions {
     color: $clr-purple;
+    margin-top: 2.4rem;
   }
 
   &-tag {
@@ -22,11 +33,15 @@
     text-transform: uppercase;
 
     &-container {
-      margin-top: 2rem;
+      margin-top: 3.6rem;
       width: 32rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      & span {
+        margin-right: 1.6rem;
+      }
     }
   }
 }

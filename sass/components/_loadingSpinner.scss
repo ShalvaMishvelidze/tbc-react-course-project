@@ -1,0 +1,19 @@
+.loading-spinner {
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  margin: 0 auto;
+  z-index: 1000;
+  border: 5px solid $clr-gray-light;
+  border-top: 5px solid $clr-violet-dark;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  animation: spin 1.2s linear infinite;
+}

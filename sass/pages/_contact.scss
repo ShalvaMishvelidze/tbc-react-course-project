@@ -5,6 +5,8 @@
   border-radius: 0.6rem;
   padding: 2rem 0;
 
+  @include normalizeForAll;
+
   &-info {
     display: flex;
     flex-direction: column;
@@ -12,8 +14,18 @@
     align-items: center;
     gap: 1rem;
 
+    @include respond(tab-portrait) {
+      font-size: $fs-bigger;
+    }
+    @include respond(phone) {
+      font-size: $fs-giant;
+    }
+
     &-header {
       text-transform: capitalize;
+      @include respond(phone) {
+        font-size: $fs-huge;
+      }
     }
   }
 
@@ -23,6 +35,10 @@
     &-header {
       text-transform: capitalize;
       text-align: center;
+
+      @include respond(phone) {
+        font-size: $fs-giant;
+      }
     }
 
     & form {
@@ -35,18 +51,45 @@
       & label {
         text-transform: capitalize;
         font-weight: 500;
+        margin-top: 12px;
+
+        @include respond(tab-portrait) {
+          font-size: $fs-big;
+          margin-top: 10px;
+        }
+
+        @include respond(phone) {
+          font-size: $fs-giant;
+          margin-top: 10px;
+        }
       }
 
       & input {
         width: clamp(15rem, 30rem, 45rem);
         padding: 0.3rem;
+
+        @include respond(tab-portrait) {
+          width: clamp(15rem, 70%, 100%);
+        }
+
+        @include respond(phone) {
+          width: clamp(15rem, 80%, 100%);
+        }
       }
 
       & textarea {
-        color: $clr-bcg-primary;
         width: clamp(15rem, 30rem, 45rem);
         height: 10rem;
         padding: 0.3rem;
+        color: $clr-bcg-primary;
+
+        @include respond(tab-portrait) {
+          width: clamp(15rem, 70%, 100%);
+        }
+
+        @include respond(phone) {
+          width: clamp(15rem, 80%, 100%);
+        }
       }
 
       & button {
@@ -59,6 +102,11 @@
         text-transform: uppercase;
         font-size: $fs-regular;
         transition: all 0.3s;
+
+        @include respond(phone) {
+          font-size: $fs-giant;
+          margin-top: 10px;
+        }
 
         &:hover {
           background-color: $clr-purple-dark;

@@ -1,7 +1,24 @@
+
 .admin {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+  @media (max-width: $breakpoint-xl) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 
   &-add-btn {
     background-color: $clr-bcg-secondary-dark;
@@ -13,6 +30,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 768px) {
+      height: 100px;
+    }
 
     &:hover {
       background-color: $clr-bcg-primary-dark;

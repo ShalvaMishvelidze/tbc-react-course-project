@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
     if (data.rows.length === 0) {
       return NextResponse.json(
-        { error: "User with such credentials doesn't exist" },
+        { error: "User with such credentials doesn't exist!" },
         { status: 401 }
       );
     }
@@ -32,10 +32,13 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Invalid credentials!" },
+      { status: 401 }
+    );
   } catch (error) {
     console.log(error);
 
-    return NextResponse.json({ error: "Bad request" }, { status: 400 });
+    return NextResponse.json({ error: "Bad request!" }, { status: 400 });
   }
 }
