@@ -9,6 +9,8 @@
   height: 100%;
   overflow: hidden;
 
+  @include normalizeForAll;
+
   &.loading {
     width: 18vw;
     height: 26.6rem;
@@ -94,6 +96,13 @@
   &-desc {
     font-size: $fs-small;
     padding: 0.5rem 0 1.2rem;
+
+    @include respond(tab-portrait) {
+      font-size: $fs-big;
+    }
+    @include respond(phone) {
+      font-size: $fs-bigger;
+    }
   }
 
   &:hover {
@@ -109,7 +118,7 @@
   }
 }
 
-.product-image{
+.product-image {
   width: 100%;
   height: 150px;
   overflow: hidden;

@@ -2,11 +2,20 @@
   display: flex;
   gap: 1rem;
 
+  @include normalizeForAll;
+
   &-select {
     padding: 0 0.5rem 0.5rem;
     font-size: $fs-regular;
     text-transform: capitalize;
     color: $clr-bcg-primary;
+
+    @include respond(tab-portrait) {
+      font-size: $fs-big;
+    }
+    @include respond(phone) {
+      font-size: $fs-bigger;
+    }
   }
 
   &-btn {
@@ -15,6 +24,9 @@
     text-transform: capitalize;
     font-weight: $fw-bold;
 
+    @include respond(phone) {
+      font-size: $fs-giant;
+    }
     &:hover {
       opacity: 0.8;
     }

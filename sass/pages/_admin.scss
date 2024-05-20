@@ -1,8 +1,10 @@
-
 .admin {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+
+  @include normalizeForAll;
+
   @media (max-width: $breakpoint-xl) {
     grid-template-columns: repeat(3, 1fr);
   }

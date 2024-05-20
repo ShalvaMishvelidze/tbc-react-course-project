@@ -4,6 +4,8 @@
   align-items: center;
   gap: 1rem;
 
+  @include normalizeForAll;
+
   & input {
     height: 3.5rem;
     width: 100%;
@@ -11,6 +13,13 @@
     border-width: 0.1rem;
     border-color: $clr-gray-light;
     padding: 0 0.5rem;
+
+    @include respond(tab-portrait) {
+      height: 4.5rem;
+    }
+    @include respond(phone) {
+      height: 6rem;
+    }
   }
 
   & button {

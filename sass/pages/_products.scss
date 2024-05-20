@@ -3,6 +3,8 @@
   flex-direction: column;
   gap: 1.5rem;
 
+  @include normalizeForAll;
+
   &.loading {
     .search {
       width: 100%;
