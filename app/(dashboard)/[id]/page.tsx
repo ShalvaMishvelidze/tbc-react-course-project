@@ -1,5 +1,5 @@
 import {
-  getProducts,
+  // getProducts,
   getSingleProduct,
   getSystemPreferences,
 } from "../../../utils/actions";
@@ -7,13 +7,13 @@ import ImageContainer from "../../../components/ImageContainer";
 import AddToCart from "@/components/AddToCart";
 import { libraries } from "@/utils/constants";
 
-export const generateStaticParams = async () => {
-  const products: { id: number }[] = await getProducts();
+// export const generateStaticParams = async () => {
+//   const products: { id: number }[] = await getProducts();
 
-  return products.map((post) => {
-    return { id: post.id.toString() };
-  });
-};
+//   return products.map((post) => {
+//     return { id: post.id.toString() };
+//   });
+// };
 
 const SingleProduct = async ({
   params: { id },

@@ -1,4 +1,6 @@
-import { getPosts, getSinglePost } from "../../../../utils/actions";
+import {
+  //  getPosts,
+    getSinglePost } from "../../../../utils/actions";
 
 interface Post {
   title: string;
@@ -7,13 +9,13 @@ interface Post {
   tags: string[];
 }
 
-export const generateStaticParams = async () => {
-  const posts: { id: number }[] = await getPosts();
+// export const generateStaticParams = async () => {
+//   const posts: { id: number }[] = await getPosts();
 
-  return posts.map((post) => {
-    return { id: post.id.toString() };
-  });
-};
+//   return posts.map((post) => {
+//     return { id: post.id.toString() };
+//   });
+// };
 
 const SingleBlog = async ({ params: { id } }: { params: { id: string } }) => {
   const post: Post = await getSinglePost(id);
