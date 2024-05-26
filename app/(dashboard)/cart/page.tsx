@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 const page = async () => {
   const token: any = cookies().get("token");
 
-  const response = await fetch(`${process.env.SITE_URL as string}api/cart`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/cart`, {
     method: "GET",
     headers: {
       Authorization: `${token.value}`,
