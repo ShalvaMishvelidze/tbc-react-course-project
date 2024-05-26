@@ -11,7 +11,7 @@ export const getProducts = async () =>
   {
     try {
       const response = await fetch(
-        `${process.env.SITE_URL as string}api/products`
+        `${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/products`
       );
 
       const data = await response.json();
@@ -24,7 +24,7 @@ export const getProducts = async () =>
 export const getSingleProduct = async (id: string) => {
   try {
     const response = await fetch(
-      `${process.env.SITE_URL as string}/api/product`,
+      `${process.env.NEXT_PUBLIC_VERCEL_URL as string}/api/product`,
       {
         method: "POST",
         body: JSON.stringify({ id: id }),
@@ -95,7 +95,7 @@ export const setSystemLanguage = async (language: string) => {
 };
 
 export const getUsers = async () => {
-  const response = await fetch(`${process.env.SITE_URL}api/auth/users`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}api/auth/users`);
   const data = await response.json();
   return data.data;
 };
@@ -107,20 +107,20 @@ export const addUser = async (user: {
   role: string;
   password: string;
 }) => {
-  await fetch(`${process.env.SITE_URL}api/auth/users`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}api/auth/users`, {
     method: "POST",
     body: JSON.stringify(user),
   });
 };
 export const updateUser = async (user: User) => {
-  await fetch(`${process.env.SITE_URL}api/auth/users`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}api/auth/users`, {
     method: "PATCH",
     body: JSON.stringify(user),
   });
 };
 
 export const deleteUser = async (id: number) => {
-  await fetch(`${process.env.SITE_URL}api/auth/users`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}api/auth/users`, {
     method: "DELETE",
     body: JSON.stringify(id),
   });
@@ -133,7 +133,7 @@ export const setCartTotalCookie = async (total: number) => {
 
 export const changeQuantity = async (id: number, method: string) => {
   const token: any = cookies().get("token");
-  const result = await fetch(`${process.env.SITE_URL as string}api/cart`, {
+  const result = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/cart`, {
     method: "PATCH",
     body: JSON.stringify({ id: id, method: method }),
     headers: {
@@ -148,7 +148,7 @@ export const changeQuantity = async (id: number, method: string) => {
 
 export const emptyCart = async () => {
   const token: any = cookies().get("token");
-  await fetch(`${process.env.SITE_URL as string}api/cart`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/cart`, {
     method: "DELETE",
     headers: {
       Authorization: `${token.value}`,
