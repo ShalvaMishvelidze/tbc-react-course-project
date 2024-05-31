@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import LanguageSelector from "./LanguageSelector";
 import { NavLink } from "./NavLink";
 // import Logout from "./Logout";
-// import ChangeTheme from "./ChangeTheme";
+import ChangeTheme from "./ChangeTheme";
 
 const Nav = () => {
   const t = useTranslations("nav");
@@ -14,11 +14,12 @@ const Nav = () => {
         <NavLink text={t("gallery")} href="/gallery" />
         <NavLink text={t("map")} href="/map" />
         <NavLink text={t("trips")} href="/trips" />
+        <NavLink text={t("profile")} href="/profile" />
       </div>
       <div className="navigation-right">
         <LanguageSelector />
-        {/* <ChangeTheme />
-        <Logout /> */}{" "}
+        <ChangeTheme />
+        {/* <Logout /> */}
       </div>
     </nav>
   );
