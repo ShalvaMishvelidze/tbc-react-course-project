@@ -1,38 +1,24 @@
-import Logout from "./Logout";
-import { NavLink } from "./NavLink";
+import { useTranslations } from "next-intl";
 import LanguageSelector from "./LanguageSelector";
-import ChangeTheme from "./ChangeTheme";
-import CartBtn from "./CartBtn";
-import { cookies } from "next/headers";
+import { NavLink } from "./NavLink";
+// import Logout from "./Logout";
+// import ChangeTheme from "./ChangeTheme";
 
-const Nav = ({
-  nav,
-  lang,
-  systemPreferences,
-}: {
-  nav: { [key: string]: string }[];
-  lang: string[];
-  systemPreferences: { language: string; theme: string };
-}) => {
-  const cookieStore = cookies();
-  const cart_total: any = cookieStore.get("cart_total");
+const Nav = () => {
+  const t = useTranslations("nav");
 
   return (
     <nav className="navigation">
       <div className="navigation-left">
-        {nav.map((link) => {
-          return <NavLink key={link.text} text={link.text} href={link.href} />;
-        })}
+        <NavLink text={t("home")} href="/" />
+        <NavLink text={t("gallery")} href="/gallery" />
+        <NavLink text={t("map")} href="/map" />
+        <NavLink text={t("trips")} href="/trips" />
       </div>
       <div className="navigation-right">
-        <CartBtn cart_total={cart_total} />
-        <LanguageSelector
-          reload={false}
-          lang={lang}
-          systemPreferences={systemPreferences}
-        />
-        <ChangeTheme />
-        <Logout />
+        <LanguageSelector />
+        {/* <ChangeTheme />
+        <Logout /> */}{" "}
       </div>
     </nav>
   );

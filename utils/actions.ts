@@ -95,7 +95,9 @@ export const setSystemLanguage = async (language: string) => {
 };
 
 export const getUsers = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}api/auth/users`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}api/auth/users`
+  );
   const data = await response.json();
   return data.data;
 };
@@ -133,14 +135,17 @@ export const setCartTotalCookie = async (total: number) => {
 
 export const changeQuantity = async (id: number, method: string) => {
   const token: any = cookies().get("token");
-  const result = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/cart`, {
-    method: "PATCH",
-    body: JSON.stringify({ id: id, method: method }),
-    headers: {
-      Authorization: `${token.value}`,
-      "Content-Type": "application/json",
-    },
-  });
+  const result = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/cart`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({ id: id, method: method }),
+      headers: {
+        Authorization: `${token.value}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
   const data = await result.json();
 
   return data;
@@ -155,4 +160,10 @@ export const emptyCart = async () => {
       "Content-Type": "application/json",
     },
   });
+};
+
+export const getLocaleCookie = async () => {
+  const cookieStore = cookies();
+  const locale = cookieStore.get("NEXT_LOCALE");
+  return locale ? locale.value : "en";
 };

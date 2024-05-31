@@ -1,5 +1,10 @@
 {
-  "Index": {
-    "title": "Hello world!"
+  "nav": {
+    "home": "home",
+    "gallery": "gallery",
+    "map": "map",
+    "trips": "trips",
+    "english": "english",
+    "georgian": "georgian"
   }
 }
