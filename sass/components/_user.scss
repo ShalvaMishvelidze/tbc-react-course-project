@@ -1,0 +1,38 @@
+.user {
+  position: relative;
+  height: 100%;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-icon {
+    font-size: $fs-bigger;
+  }
+
+  &-dropdown {
+    position: absolute;
+    top: 4.5rem;
+    width: 8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $clr-charcoal-2;
+    color: $clr-white-1;
+
+    & > * {
+      padding: 0.5rem 0;
+      width: 100%;
+      text-align: center;
+      font-size: $fs-regular;
+      text-transform: capitalize;
+
+      &:hover {
+        background-color: $clr-charcoal-3;
+      }
+    }
+  }
+}

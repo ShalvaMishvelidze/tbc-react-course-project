@@ -103,24 +103,24 @@
 
   &-btn {
     margin: 0 auto;
-    background-color: $clr-violet;
+    // background-color: $clr-violet;
     width: 40%;
     padding: 0.8rem 0;
     font-size: $fs-big;
     border-radius: 0.5rem;
     text-transform: uppercase;
     transition: all 0.2s;
-    color: $clr-bcg-primary-dark;
+    // color: $clr-bcg-primary-dark;
 
     @include respond(phone) {
       font-size: 80%;
       margin-top: 3.6rem;
     }
 
-    &:hover {
-      background-color: $clr-purple;
-      color: $clr-bcg-primary;
-    }
+    // &:hover {
+    //   background-color: $clr-purple;
+    //   color: $clr-bcg-primary;
+    // }
   }
 
   &-container {
@@ -142,7 +142,7 @@
     button {
       text-transform: uppercase;
       font-weight: $fw-bold;
-      color: $clr-purple;
+      // color: $clr-purple;
       font-size: $fs-regular;
     }
 

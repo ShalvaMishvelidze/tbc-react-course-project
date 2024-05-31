@@ -1,9 +1,10 @@
 .navigation {
-  background-color: $clr-bcg-primary;
+  background-color: $clr-charcoal-5;
   height: 6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: $clr-white-1;
 
   @include respond(tab-portrait) {
     display: none;
@@ -22,7 +23,7 @@
     align-items: center;
     justify-content: flex-end;
     height: 100%;
-    padding-right: 1.2rem;
+    padding-right: 3rem;
     gap: 3rem;
   }
 }

@@ -23,24 +23,24 @@
       padding: 0.5rem;
       font-size: $fs-regular;
       width: 30rem;
-      background-color: $clr-bcg-secondary-light;
+      // background-color: $clr-bcg-secondary-light;
     }
   }
 
   & button {
     padding: 1rem 2rem;
-    background-color: $clr-purple;
+    // background-color: $clr-purple;
     border-radius: 1rem;
     margin-top: 3rem;
     text-transform: uppercase;
     font-size: $fs-bigger;
-    color: $clr-white;
+    // color: $clr-white;
     transition: all 0.2s;
 
-    &:hover {
-      background-color: $clr-purple-dark;
-      color: $clr-gray-light;
-      box-shadow: 2px 4px 24px $clr-bcg-primary;
-    }
+    // &:hover {
+    //   background-color: $clr-purple-dark;
+    //   color: $clr-gray-light;
+    //   box-shadow: 2px 4px 24px $clr-bcg-primary;
+    // }
   }
 }

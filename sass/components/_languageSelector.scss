@@ -1,15 +1,43 @@
-.language-selector {
-  background-color: $clr-bcg-primary-light;
-  height: 3rem;
-  border-radius: 0.5rem;
-  color: $clr-violet;
-  margin-right: 0.2rem;
-  margin-bottom: 0.2rem;
-  font-size: $fs-big;
-  text-transform: uppercase;
+.language {
+  &-selector {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: $clr-white-1;
 
-  & option {
-    color: $clr-violet;
-    background-color: $clr-bcg-primary;
+    &:hover {
+      color: $clr-white-2;
+    }
+  }
+
+  &-toggle {
+    font-weight: $fw-bold;
+    text-transform: capitalize;
+  }
+
+  &-dropdown {
+    position: absolute;
+    top: 4.5rem;
+    width: 10rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $clr-charcoal-2;
+    color: $clr-white-1;
+  }
+
+  &-option {
+    text-transform: capitalize;
+    padding: 1rem 0;
+    width: 100%;
+
+    &:hover {
+      background-color: $clr-charcoal-3;
+    }
   }
 }

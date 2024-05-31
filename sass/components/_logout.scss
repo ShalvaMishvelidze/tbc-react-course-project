@@ -1,12 +1,12 @@
 .logout {
   & button {
-    color: $clr-violet;
+    // color: $clr-violet;
     text-transform: uppercase;
     font-weight: bold;
     transition: color 0.3s ease-out;
 
-    &:hover {
-      color: $clr-purple;
-    }
+    // &:hover {
+    //   // color: $clr-purple;
+    // }
   }
 }
