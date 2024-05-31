@@ -11,10 +11,11 @@ const Nav = () => {
     <nav className="navigation">
       <div className="navigation-left">
         <NavLink text={t("home")} href="/" />
-        <NavLink text={t("gallery")} href="/gallery" />
+        <NavLink text={t("tours")} href="/tours" />
         <NavLink text={t("map")} href="/map" />
-        <NavLink text={t("trips")} href="/trips" />
+        <NavLink text={t("blog")} href="/blog" />
         <NavLink text={t("profile")} href="/profile" />
+        <NavLink text={t("contact")} href="/contact" />
       </div>
       <div className="navigation-right">
         <LanguageSelector />

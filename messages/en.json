@@ -1,10 +1,13 @@
 {
   "nav": {
     "home": "home",
-    "gallery": "gallery",
-    "profile": "profile",
+    "tours": "tours",
+    "contact": "contact",
+    "orders": "orders",
+    "cart": "cart",
+    "blog": "blog",
     "map": "map",
-    "trips": "trips",
+    "profile": "profile",
     "english": "english",
     "georgian": "georgian"
   }
