@@ -1,37 +1,49 @@
-import { libraries } from "../utils/constants";
-import { NavLink } from "../components/NavLink";
-import { getSystemPreferences } from "../utils/actions";
+import { Link } from "@/navigation";
+import { useTranslations } from "next-intl";
 
-const Footer = async () => {
-  const systemPreferences = await getSystemPreferences();
-  const footer = libraries[systemPreferences.language].footer;
+const Footer = () => {
+  const t = useTranslations("footer");
+  const t1 = useTranslations("nav");
 
   return (
     <footer className="footer">
       <div className="footer-left">
         <div className="footer-left-top">
           <span className="copyright">
-            &copy; {footer.copy} {new Date().getFullYear()}
+            &copy; {t("copy")} {new Date().getFullYear()}
           </span>
           <a href="#root" className="terms">
-            {footer.terms}
+            {t("terms")}
           </a>
           <a href="#root" className="privacy-policy">
-            {footer.privacy}
+            {t("privacy")}
           </a>
         </div>
         <div className="footer-left-bottom">
-          {footer.nav.map((link) => {
-            return (
-              <NavLink key={link.text} text={link.text} href={link.href} />
-            );
-          })}
+          <Link className="nav-link" href="/">
+            {t1("home")}
+          </Link>
+          <Link className="nav-link" href="/tours">
+            {t1("tours")}
+          </Link>
+          <Link className="nav-link" href="/map">
+            {t1("map")}
+          </Link>
+          <Link className="nav-link" href="/blog">
+            {t1("blog")}
+          </Link>
+          <Link className="nav-link" href="/profile">
+            {t1("profile")}
+          </Link>
+          <Link className="nav-link" href="/contact">
+            {t1("contact")}
+          </Link>
         </div>
       </div>
       <div className="footer-right">
         <form className="newsletter">
-          <input type="email" placeholder={footer.newsletter + "!"} />
-          <button type="submit">{footer.subscribe}</button>
+          <input type="email" placeholder={t("placeholder") + "!"} />
+          <button type="submit">{t("subscribe")}</button>
         </form>
       </div>
     </footer>

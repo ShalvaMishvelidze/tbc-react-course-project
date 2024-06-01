@@ -5,14 +5,10 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import LoadingSpinner from "./LoadingSpinner";
 import Toast from "./Toast";
+import { useTranslations } from "next-intl";
 
-const Register = ({
-  pageText,
-}: {
-  pageText: {
-    [key: string]: string;
-  };
-}) => {
+const Register = () => {
+  const t = useTranslations("auth");
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [user, setUser] = useState({
@@ -33,23 +29,23 @@ const Register = ({
     e.preventDefault();
     setPending(true);
     toast.info("Trying to register user...");
-    fetch("/api/auth/register", {
+    fetch("/api/user/register", {
       method: "POST",
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.msg) {
+        if (res.msg === "user registered successfully") {
           toast.success(res.msg);
+          setPending(false);
+          router.push("/");
         }
+
         if (res.error) {
           toast.error(res.error);
           setPending(false);
           return;
         }
-
-        setPending(false);
-        router.push("/");
       })
       .catch((error) => {
         console.error("Failed to register:", error);
@@ -60,7 +56,7 @@ const Register = ({
     <>
       <Toast />
       <form className="auth" onSubmit={handleSubmit}>
-        <label htmlFor="username">{pageText.username}</label>
+        <label htmlFor="username">{t("username")}</label>
         <input
           onChange={handleChange}
           data-type="username"
@@ -68,7 +64,7 @@ const Register = ({
           type="text"
           value={user.username}
         />
-        <label htmlFor="email">{pageText.email}</label>
+        <label htmlFor="email">{t("email")}</label>
         <input
           onChange={handleChange}
           data-type="email"
@@ -76,7 +72,7 @@ const Register = ({
           type="email"
           value={user.email}
         />
-        <label htmlFor="password">{pageText.password}</label>
+        <label htmlFor="password">{t("password")}</label>
         <input
           onChange={handleChange}
           data-type="password"
@@ -84,32 +80,13 @@ const Register = ({
           type="password"
           value={user.password}
         />
-        <div className="auth-radio-container">
-          <label>{pageText.user}</label>
-          <input
-            type="radio"
-            name="role"
-            value="user"
-            onChange={handleChange}
-            data-type="role"
-            checked={user.role === "user"}
-          />
-          <label>{pageText.admin}</label>
-          <input
-            type="radio"
-            name="role"
-            value="admin"
-            onChange={handleChange}
-            data-type="role"
-          />
-        </div>
         <button
           className="auth-btn"
           type="submit"
           onSubmit={handleSubmit}
           disabled={pending}
         >
-          {pending ? <LoadingSpinner /> : pageText.register}
+          {pending ? <LoadingSpinner /> : t("register")}
         </button>
       </form>
     </>

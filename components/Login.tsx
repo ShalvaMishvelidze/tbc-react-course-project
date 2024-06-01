@@ -5,10 +5,12 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import { toast } from "react-toastify";
 import Toast from "./Toast";
+import { useTranslations } from "next-intl";
 
-const Login = ({ pageText }: { pageText: { [key: string]: string } }) => {
+const Login = () => {
   const router = useRouter();
-  const [user, setUser] = useState({ username: "", password: "" });
+  const t = useTranslations("auth");
+  const [user, setUser] = useState({ email: "", password: "" });
   const [pending, setPending] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,23 +24,22 @@ const Login = ({ pageText }: { pageText: { [key: string]: string } }) => {
     e.preventDefault();
     setPending(true);
     toast.info("Trying to log in the user...");
-    fetch("/api/auth/login", {
+    fetch("/api/user/login", {
       method: "POST",
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.msg) {
+        if (res.msg === "User logged in successfully") {
           toast.success(res.msg);
+          setPending(false);
+          router.push("/");
         }
         if (res.error) {
           toast.error(res.error);
           setPending(false);
           return;
         }
-
-        setPending(false);
-        router.push("/");
       })
       .catch((error) => {
         console.error("Failed to log in:", error);
@@ -49,14 +50,14 @@ const Login = ({ pageText }: { pageText: { [key: string]: string } }) => {
     <>
       <Toast />
       <form className="auth" onSubmit={handleSubmit}>
-        <label htmlFor="username">{pageText.username}</label>
+        <label htmlFor="email">{t("email")}</label>
         <input
           onChange={handleChange}
-          data-type="username"
-          name="username"
+          data-type="email"
+          name="email"
           type="text"
         />
-        <label htmlFor="password">{pageText.password}</label>
+        <label htmlFor="password">{t("password")}</label>
         <input
           onChange={handleChange}
           data-type="password"
@@ -69,7 +70,7 @@ const Login = ({ pageText }: { pageText: { [key: string]: string } }) => {
           onSubmit={handleSubmit}
           disabled={pending}
         >
-          {pending ? <LoadingSpinner /> : pageText.login}
+          {pending ? <LoadingSpinner /> : t("login")}
         </button>
       </form>
     </>

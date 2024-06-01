@@ -162,8 +162,10 @@ export const emptyCart = async () => {
   });
 };
 
-export const getLocaleCookie = async () => {
-  const cookieStore = cookies();
-  const locale = cookieStore.get("NEXT_LOCALE");
-  return locale ? locale.value : "en";
+export const hasAuthToken = async () => {
+  return cookies().has("authToken");
+};
+
+export const deleteAuthToken = async () => {
+  return cookies().delete("authToken");
 };

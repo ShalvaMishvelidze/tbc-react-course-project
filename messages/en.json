@@ -10,5 +10,21 @@
     "profile": "profile",
     "english": "english",
     "georgian": "georgian"
+  },
+  "auth": {
+    "username": "username",
+    "password": "password",
+    "email": "email",
+    "login": "login",
+    "register": "register",
+    "loginMsg": "don't have an account yet?",
+    "registerMsg": "already have an account?"
+  },
+  "footer": {
+    "copy": "all rights reserved",
+    "terms": "terms and conditions",
+    "privacy": "privacy policy",
+    "subscribe": "subscribe",
+    "placeholder": "subscribe to our newsletter!"
   }
 }

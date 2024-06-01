@@ -1,10 +1,8 @@
 import { ReactNode } from "react";
 import "../../sass/main.scss";
-import Content from "@/layout/Content";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { unstable_setRequestLocale } from "next-intl/server";
-import Header from "@/layout/Header";
 
 export const metadata = {
   title: "Travel experience tracker🌍🌎🌏",
@@ -37,8 +35,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          <Content>{children}</Content>
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>

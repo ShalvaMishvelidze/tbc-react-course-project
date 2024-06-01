@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
 import LanguageSelector from "./LanguageSelector";
-import { NavLink } from "./NavLink";
 import ChangeTheme from "./ChangeTheme";
 import User from "./User";
+import { Link } from "@/navigation";
 
 const Nav = () => {
   const t = useTranslations("nav");
@@ -10,12 +10,24 @@ const Nav = () => {
   return (
     <nav className="navigation">
       <div className="navigation-left">
-        <NavLink text={t("home")} href="/" />
-        <NavLink text={t("tours")} href="/tours" />
-        <NavLink text={t("map")} href="/map" />
-        <NavLink text={t("blog")} href="/blog" />
-        <NavLink text={t("profile")} href="/profile" />
-        <NavLink text={t("contact")} href="/contact" />
+        <Link className="nav-link" href="/">
+          {t("home")}
+        </Link>
+        <Link className="nav-link" href="/tours">
+          {t("tours")}
+        </Link>
+        <Link className="nav-link" href="/map">
+          {t("map")}
+        </Link>
+        <Link className="nav-link" href="/blog">
+          {t("blog")}
+        </Link>
+        <Link className="nav-link" href="/profile">
+          {t("profile")}
+        </Link>
+        <Link className="nav-link" href="/contact">
+          {t("contact")}
+        </Link>
       </div>
       <div className="navigation-right">
         <LanguageSelector />
