@@ -8,8 +8,8 @@ const Nav = () => {
   const t = useTranslations("nav");
 
   return (
-    <nav className="navigation">
-      <div className="navigation-left">
+    <nav className="nav">
+      <div className="nav-left">
         <Link className="nav-link" href="/">
           {t("home")}
         </Link>
@@ -29,7 +29,7 @@ const Nav = () => {
           {t("contact")}
         </Link>
       </div>
-      <div className="navigation-right">
+      <div className="nav-right">
         <LanguageSelector />
         <ChangeTheme />
         <User />

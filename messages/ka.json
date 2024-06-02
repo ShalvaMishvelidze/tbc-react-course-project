@@ -12,8 +12,10 @@
     "georgian": "ქართული"
   },
   "auth": {
-    "username": "სახელი",
+    "name": "სახელი",
+    "lastName": "გვარი",
     "password": "პაროლი",
+    "confirmPassword": "გაიმეორეთ პაროლი",
     "email": "იმეილი",
     "login": "შესვლა",
     "register": "რეგისტრაცია",

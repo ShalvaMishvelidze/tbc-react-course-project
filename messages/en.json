@@ -12,8 +12,10 @@
     "georgian": "georgian"
   },
   "auth": {
-    "username": "username",
+    "name": "name",
+    "lastName": "last name",
     "password": "password",
+    "confirmPassword": "confirm password",
     "email": "email",
     "login": "login",
     "register": "register",

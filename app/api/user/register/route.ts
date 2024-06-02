@@ -5,8 +5,23 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (request: NextRequest) => {
-  const { email, password, username } = await request.json();
+  const { email, password, name, lastName, confirmPassword } =
+    await request.json();
   const cookieStore = cookies();
+
+  if (password.length < 8) {
+    return NextResponse.json(
+      { error: "Password must be at least 8 characters long" },
+      { status: 404 }
+    );
+  }
+
+  if (password !== confirmPassword) {
+    return NextResponse.json(
+      { error: "Passwords do not match!" },
+      { status: 404 }
+    );
+  }
 
   try {
     const userCredential = await createUserWithEmailAndPassword(
@@ -35,14 +50,15 @@ export const POST = async (request: NextRequest) => {
     });
 
     await setDoc(doc(db, "users", user.uid), {
-      username,
+      name,
+      lastName,
       email,
       role: "user",
     });
 
     return NextResponse.json(
       { msg: "user registered successfully" },
-      { status: 200 }
+      { status: 201 }
     );
   } catch (error: any) {
     console.log(error);

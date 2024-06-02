@@ -84,8 +84,8 @@ html {
   --clr-gray-1: #edf4f2;
   --clr-gray-2: #f1f1f2;
   --clr-gray-3: #d3d3d3;
-  --clr-gray-4: #6b6b6b;
-  --clr-gray-5: #808080;
+  --clr-gray-4: #808080;
+  --clr-gray-5: #6b6b6b;
 
   --clr-blue-1: #cee6f2;
   --clr-blue-2: #cadcfc;
@@ -98,8 +98,24 @@ html {
   --clr-blue-9: #1995ad;
   --clr-blue-10: #375e97;
   --clr-blue-11: #2f3c7e;
-  --clr-blue-12: #00246b;
-  --clr-blue-13: #000435;
+  --clr-blue-12: #1e2761;
+  --clr-blue-13: #00246b;
+  --clr-blue-14: #000435;
+
+  // --clr-blue-dark: #00246b;
+  // --clr-blue-light: #cadcfc;
+  // --clr-blue-teal: #1995ad;
+  // --clr-blue-light: #a1d6e2;
+  // --clr-gray-light: #f1f1f2;
+
+  // --clr-red-terracotta: #b85042;
+  // --clr-beige-light: #e7e8d1;
+  // --clr-teal-muted: #a7beae;
+  // --clr-pink-salmon: #f98866;
+  // --clr-peach-soft: #fff2d7;
+  // --clr-mauve: #962e2a;
+  // --clr-rose-dusty: #e3867d;
+  // --clr-blue-gray-soft: #cee6f2;
 
   --clr-pink-1: #fdf6f6;
   --clr-pink-2: #fbeaeb;
@@ -131,7 +147,7 @@ html {
   --clr-green-1: #c4dfe6;
   --clr-green-2: #a7beae;
   --clr-green-3: #a1be95;
-  --clr-lemon-4: #e4ea8c;
+  --clr-green-4: #e4ea8c;
   --clr-green-5: #97bc62;
   --clr-green-6: #6ab187;
   --clr-green-7: #20948b;
@@ -295,7 +311,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.6rem;
-  color: var(--clr-black-1);
+  color: var(--clr-green-7);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -1,13 +1,31 @@
-.navigation {
-  background-color: $clr-charcoal-5;
+.nav {
+  background-color: $clr-pink-4;
   height: 6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: $clr-white-1;
+  color: $clr-gray-2;
 
   @include respond(tab-portrait) {
     display: none;
+  }
+
+  &-link {
+    font-size: $fs-bigger;
+    color: $clr-gray-2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 1.2rem;
+    text-transform: uppercase;
+    font-weight: $fw-bold;
+
+    &:hover {
+      opacity: 0.85;
+      background-color: $clr-red-6;
+      color: $clr-peach-2;
+    }
   }
 
   &-left {

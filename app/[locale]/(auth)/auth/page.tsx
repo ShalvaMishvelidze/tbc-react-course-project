@@ -1,8 +1,14 @@
-import Auth from "@/pages/Auth"
+"use client";
+import Toast from "@/components/Toast";
+import Content from "@/layout/Content";
+import Auth from "@/pages/Auth";
 
 const page = () => {
   return (
-    <Auth/>
-  )
-}
-export default page
+    <Content>
+      <Toast />
+      <Auth />
+    </Content>
+  );
+};
+export default page;
