@@ -13,11 +13,11 @@
     "incremental": true,
     "strict": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    // "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
+    // "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
+    // "noImplicitAny": true,
     "plugins": [
       {
         "name": "next"

@@ -1,8 +1,10 @@
-import Profile from "@/pages/Profile"
+"use server";
+import Profile from "@/pages/Profile";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-const page = () => {
-  return (
-    <Profile/>
-  )
-}
-export default page
+export default withPageAuthRequired(
+  async function page() {
+    return <Profile />;
+  },
+  { returnTo: "/profile" }
+);

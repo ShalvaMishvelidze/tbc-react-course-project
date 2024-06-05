@@ -3,6 +3,8 @@ import "../../sass/main.scss";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { unstable_setRequestLocale } from "next-intl/server";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+import { getThemePreferenceCookie } from "@/utils/actions";
 
 export const metadata = {
   title: "Travel experience tracker🌍🌎🌏",
@@ -28,16 +30,19 @@ export default async function RootLayout({
   children: ReactNode;
   params: { locale: string };
 }) {
+  const themePreference = await getThemePreferenceCookie();
   unstable_setRequestLocale(locale);
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
+    <html lang={locale} className={themePreference?.value}>
+      <UserProvider>
+        <body>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </body>
+      </UserProvider>
     </html>
   );
 }

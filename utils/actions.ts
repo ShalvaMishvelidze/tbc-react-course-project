@@ -167,5 +167,13 @@ export const hasAuthToken = async () => {
 };
 
 export const deleteAuthToken = async () => {
-  return cookies().delete("authToken");
+  cookies().delete("authToken");
+};
+
+export const setThemePreferenceCookie = async (theme: string) => {
+  cookies().set("theme", theme);
+};
+
+export const getThemePreferenceCookie = async () => {
+  return cookies().get("theme");
 };

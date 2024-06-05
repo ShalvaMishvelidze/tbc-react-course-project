@@ -28,6 +28,8 @@ node_modules
 .env.test.local
 .env.production.local
 *.pem
+secret.json
+/secret.json
 
 # debug
 npm-debug.log*

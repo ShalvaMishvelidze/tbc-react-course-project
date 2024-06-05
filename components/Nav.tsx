@@ -13,6 +13,9 @@ const Nav = () => {
         <Link className="nav-link" href="/">
           {t("home")}
         </Link>
+        <Link className="nav-link" href="/store">
+          {t("store")}
+        </Link>
         <Link className="nav-link" href="/tours">
           {t("tours")}
         </Link>

@@ -3,7 +3,10 @@
 import { useEffect, useState } from "react";
 import { GrSun } from "react-icons/gr";
 import { BsMoonStars } from "react-icons/bs";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import {
+  getThemePreferenceCookie,
+  setThemePreferenceCookie,
+} from "@/utils/actions";
 
 const getPreference = () => {
   if (
@@ -11,25 +14,37 @@ const getPreference = () => {
     window.matchMedia("(prefers-color-scheme)").media !== "not all"
   ) {
     const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+    setThemePreferenceCookie(prefersDarkMode.matches ? "dark" : "light");
     return prefersDarkMode.matches ? "dark" : "light";
   }
   return "dark";
 };
 
 const ChangeTheme = () => {
-  const [theme, setTheme] = useLocalStorage("theme", getPreference());
-  const [themePreference, setThemePreference] = useState(theme);
+  const [themePreference, setThemePreference] = useState("");
 
   const handleClick = () => {
+    setThemePreferenceCookie(themePreference === "dark" ? "light" : "dark");
     setThemePreference(themePreference === "dark" ? "light" : "dark");
   };
 
   useEffect(() => {
-    setTheme(themePreference);
+    getThemePreferenceCookie().then((res) => {
+      if (res) {
+        setThemePreference(res.value);
+      } else {
+        setThemePreference(getPreference());
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     if (themePreference === "light") {
+      document.documentElement.classList.remove("dark");
       document.documentElement.classList.add("light");
     } else {
       document.documentElement.classList.remove("light");
+      document.documentElement.classList.add("dark");
     }
   }, [themePreference]);
 

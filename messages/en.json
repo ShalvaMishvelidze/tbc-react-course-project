@@ -4,6 +4,7 @@
     "tours": "tours",
     "contact": "contact",
     "orders": "orders",
+    "store": "store",
     "cart": "cart",
     "blog": "blog",
     "map": "map",
@@ -13,14 +14,15 @@
   },
   "auth": {
     "name": "name",
-    "lastName": "last name",
+    "lastname": "last name",
     "password": "password",
     "confirmPassword": "confirm password",
     "email": "email",
     "login": "login",
     "register": "register",
     "loginMsg": "don't have an account yet?",
-    "registerMsg": "already have an account?"
+    "registerMsg": "already have an account?",
+    "save": "save changes"
   },
   "footer": {
     "copy": "all rights reserved",

@@ -15,14 +15,18 @@ export default function middleware(request: NextRequest) {
 
   if (
     // request.nextUrl.pathname === "/api/auth/register" ||
-    // request.nextUrl.pathname === "/api/auth/login" ||
     // request.nextUrl.pathname === "/api/auth/users" ||
     // request.nextUrl.pathname === "/api/cart" ||
     // request.nextUrl.pathname === "/api/products" ||
     // request.nextUrl.pathname === "/api/product"
-    request.nextUrl.pathname === "/api/user/register" ||
+    request.nextUrl.pathname === "/api/auth/login" ||
+    request.nextUrl.pathname === "/api/auth/logout" ||
+    request.nextUrl.pathname === "/api/auth/callback" ||
+    request.nextUrl.pathname === "/api/auth/me" ||
     request.nextUrl.pathname === "/api/user/login" ||
-    request.nextUrl.pathname === "/api/user/logout"
+    request.nextUrl.pathname === "/api/avatar/upload" ||
+    request.nextUrl.pathname === "/api/user/updateProfile" ||
+    request.nextUrl.pathname === "/api/user/getUser"
   ) {
     return NextResponse.next();
   }

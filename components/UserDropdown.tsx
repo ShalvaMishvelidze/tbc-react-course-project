@@ -1,12 +1,11 @@
 import { Link } from "@/navigation";
-import Logout from "./Logout";
 
-const UserDropdown = ({ setIsLoggedIn }: any) => {
+const UserDropdown = () => {
   return (
     <div className="user-dropdown">
       <Link href="/profile">profile</Link>
       <Link href="/gallery">gallery</Link>
-      <Logout setIsLoggedIn={setIsLoggedIn} />
+      <a href="/api/auth/logout">Logout</a>
     </div>
   );
 };

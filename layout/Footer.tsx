@@ -23,6 +23,9 @@ const Footer = () => {
           <Link className="nav-link" href="/">
             {t1("home")}
           </Link>
+          <Link className="nav-link" href="/store">
+            {t1("store")}
+          </Link>
           <Link className="nav-link" href="/tours">
             {t1("tours")}
           </Link>

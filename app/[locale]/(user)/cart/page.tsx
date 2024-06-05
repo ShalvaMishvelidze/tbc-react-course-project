@@ -1,6 +1,9 @@
 import Cart from "@/pages/Cart";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-const page = () => {
-  return <Cart />;
-};
-export default page;
+export default withPageAuthRequired(
+  async function page() {
+    return <Cart />;
+  },
+  { returnTo: "/gallery" }
+);

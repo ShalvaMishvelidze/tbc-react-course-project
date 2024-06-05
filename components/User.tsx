@@ -1,35 +1,54 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import UserDropdown from "./UserDropdown";
 import UserIcon from "./UserIcon";
-import { deleteAuthToken, hasAuthToken } from "@/utils/actions";
-import { Link } from "@/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const User = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { user, error, isLoading } = useUser();
   const [dropdown, setDropdown] = useState(false);
+  const node: any = useRef();
 
   useEffect(() => {
-    hasAuthToken().then((res) => setIsLoggedIn(res));
+    // Function to check if click is outside of ref
+    if (typeof window !== undefined) {
+      const handleClickOutside = (e: any) => {
+        if (node.current.contains(e.target)) {
+          // Inside click
+          return;
+        }
+        // Outside click
+        setDropdown(false);
+      };
+
+      // Add the outside click checker to the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+
+      // Cleanup
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }
   }, []);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      deleteAuthToken();
-      setDropdown(false);
-    }
-  }, [isLoggedIn]);
+  if (isLoading)
+    return (
+      <div className="user-loading">
+        <div></div>
+      </div>
+    );
+  if (error) return <div>{error.message}</div>;
 
   return (
-    <div className="user">
-      {isLoggedIn ? (
+    <div className="user" ref={node}>
+      {user ? (
         <UserIcon dropdown={dropdown} setDropdown={setDropdown} />
       ) : (
-        <Link href={"/auth"}>login</Link>
+        <a href="/api/auth/login">Login</a>
       )}
-      {dropdown && <UserDropdown setIsLoggedIn={setIsLoggedIn} />}
+      {dropdown && <UserDropdown />}
     </div>
   );
 };
+
 export default User;
