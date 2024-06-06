@@ -110,7 +110,7 @@ const Profile = () => {
           handleChange={handleChange}
           keyName={"name"}
           type={"text"}
-          user={user}
+          obj={user}
           maxLength={15}
         />
         <InputContainer
@@ -118,7 +118,7 @@ const Profile = () => {
           handleChange={handleChange}
           keyName={"lastname"}
           type={"text"}
-          user={user}
+          obj={user}
           maxLength={20}
         />
         <InputContainer
@@ -126,7 +126,7 @@ const Profile = () => {
           handleChange={handleChange}
           keyName={"email"}
           type={"email"}
-          user={user}
+          obj={user}
         />
         <button type="submit" onSubmit={handleSubmit}>
           {t("save")}

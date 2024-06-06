@@ -30,5 +30,16 @@
     "privacy": "privacy policy",
     "subscribe": "subscribe",
     "placeholder": "subscribe to our newsletter!"
+  },
+  "addNewProduct": {
+    "name": "name",
+    "price": "price",
+    "description": "description",
+    "category": "category",
+    "brand": "brand",
+    "discountpercentage": "discount percentage",
+    "image": "image",
+    "images": "images",
+    "addProduct": "add new product"
   }
 }

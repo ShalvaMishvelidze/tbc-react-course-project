@@ -5,7 +5,7 @@ const InputContainer = ({
   handleChange,
   keyName,
   type,
-  user,
+  obj,
   maxLength,
 }: any) => {
   return (
@@ -17,7 +17,7 @@ const InputContainer = ({
         name={keyName}
         type={type}
         maxLength={maxLength ? maxLength : 256}
-        value={user[keyName]}
+        value={obj[keyName]}
       />
     </div>
   );

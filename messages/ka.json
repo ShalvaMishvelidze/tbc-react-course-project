@@ -30,5 +30,16 @@
     "privacy": "კონფიდენციალურობა",
     "placeholder": "გამოიწერეთ ჩვენი ნიუზლეთერი!",
     "subscribe": "გამოწერა"
+  },
+  "addNewProduct": {
+    "name": "სახელი",
+    "price": "ფასი",
+    "description": "აღწერა",
+    "category": "კატეგორია",
+    "brand": "ბრენდი",
+    "discountpercentage": "ფასდაკლება",
+    "image": "სურათი",
+    "images": "სურათები",
+    "addProduct": "ახალი პროდუქტის დამატება"
   }
 }

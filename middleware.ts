@@ -25,6 +25,10 @@ export default function middleware(request: NextRequest) {
     request.nextUrl.pathname === "/api/auth/me" ||
     request.nextUrl.pathname === "/api/user/login" ||
     request.nextUrl.pathname === "/api/avatar/upload" ||
+    request.nextUrl.pathname === "/api/image/upload" ||
+    request.nextUrl.pathname === "/api/product/upload" ||
+    request.nextUrl.pathname === "/api/product/getProduct" ||
+    request.nextUrl.pathname === "/api/products/getProducts" ||
     request.nextUrl.pathname === "/api/user/updateProfile" ||
     request.nextUrl.pathname === "/api/user/getUser"
   ) {

@@ -1,3 +1,4 @@
+import { Link } from "@/navigation";
 import React from "react";
 
 const StoreHeader = () => {
@@ -9,6 +10,11 @@ const StoreHeader = () => {
           search
         </button>
       </form>
+      <div className="store-header-container">
+        <Link className="store-header-btn" href="/add-new-product">
+          add new product
+        </Link>
+      </div>
     </div>
   );
 };
