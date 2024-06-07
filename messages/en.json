@@ -41,5 +41,11 @@
     "image": "image",
     "images": "images",
     "addProduct": "add new product"
+  },
+  "addNewPost": {
+    "title": "title",
+    "body": "body",
+    "tags": "tags",
+    "addPost": "add new post"
   }
 }
