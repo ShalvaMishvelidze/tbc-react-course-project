@@ -3,9 +3,12 @@ import LanguageSelector from "./LanguageSelector";
 import ChangeTheme from "./ChangeTheme";
 import User from "./User";
 import { Link } from "@/navigation";
+import CartBtn from "./CartBtn";
+import { getCartTotalCookie } from "@/utils/cart_actions";
 
-const Nav = () => {
+const Nav = async () => {
   const t = useTranslations("nav");
+  const cart_total = await getCartTotalCookie();
 
   return (
     <nav className="nav">
@@ -34,6 +37,7 @@ const Nav = () => {
       </div>
       <div className="nav-right">
         <LanguageSelector />
+        <CartBtn cart_total={cart_total} />
         <ChangeTheme />
         <User />
       </div>

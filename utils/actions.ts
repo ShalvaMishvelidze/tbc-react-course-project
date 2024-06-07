@@ -128,20 +128,18 @@ export const deleteUser = async (id: number) => {
   });
 };
 
-export const setCartTotalCookie = async (total: number) => {
-  const cookieStore = cookies();
-  cookieStore.set("cart_total", total.toString());
-};
-
-export const changeQuantity = async (id: number, method: string) => {
-  const token: any = cookies().get("token");
+export const changeQuantity = async (
+  id: number,
+  owner_id: string,
+  method: string
+) => {
   const result = await fetch(
     `${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/cart`,
     {
       method: "PATCH",
       body: JSON.stringify({ id: id, method: method }),
       headers: {
-        Authorization: `${token.value}`,
+        owner_id: owner_id,
         "Content-Type": "application/json",
       },
     }
@@ -149,17 +147,6 @@ export const changeQuantity = async (id: number, method: string) => {
   const data = await result.json();
 
   return data;
-};
-
-export const emptyCart = async () => {
-  const token: any = cookies().get("token");
-  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/cart`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `${token.value}`,
-      "Content-Type": "application/json",
-    },
-  });
 };
 
 export const hasAuthToken = async () => {

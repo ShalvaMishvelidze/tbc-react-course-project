@@ -1,9 +1,11 @@
 import { sql } from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const productsData = await sql`SELECT * FROM products where id=${body.id};`;
+export async function GET(request: NextRequest) {
+  const id = request.headers.get("id");
+  console.log(id);
+
+  const productsData = await sql`SELECT * FROM products where id=${id};`;
 
   return NextResponse.json(
     { msg: "success", data: productsData.rows[0] },
