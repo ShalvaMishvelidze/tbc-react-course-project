@@ -1,7 +1,8 @@
 import StoreHeader from "@/components/StoreHeader";
-import React from "react";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-const page = () => {
+const page = ({ params: { locale } }: { params: { locale: string } }) => {
+  unstable_setRequestLocale(locale);
   return (
     <section className="store">
       <StoreHeader />

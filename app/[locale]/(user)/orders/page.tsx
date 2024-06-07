@@ -1,9 +1,16 @@
 import Orders from "@/pages/Orders";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+// import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-export default withPageAuthRequired(
-  async function page() {
-    return <Orders />;
-  },
-  { returnTo: "/gallery" }
-);
+// withPageAuthRequired(
+export default async function page({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  unstable_setRequestLocale(locale);
+  return <Orders />;
+}
+//   ,
+//   { returnTo: "/gallery" }
+// );

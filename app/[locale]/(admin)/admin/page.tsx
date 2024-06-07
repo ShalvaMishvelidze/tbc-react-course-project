@@ -1,8 +1,8 @@
-import Admin from "@/pages/Admin"
+import { unstable_setRequestLocale } from "next-intl/server";
+import Admin from "@/pages/Admin";
 
-const page = () => {
-  return (
-    <Admin />
-  )
-}
-export default page
+const page = ({ params: { locale } }: { params: { locale: string } }) => {
+  unstable_setRequestLocale(locale);
+  return <Admin />;
+};
+export default page;

@@ -1,9 +1,16 @@
 import Gallery from "@/pages/Gallery";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+// import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-export default withPageAuthRequired(
-  async function page() {
-    return <Gallery />;
-  },
-  { returnTo: "/gallery" }
-);
+//  withPageAuthRequired(
+export default async function page({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  unstable_setRequestLocale(locale);
+  return <Gallery />;
+}
+//   ,
+//   { returnTo: "/gallery" }
+// );
