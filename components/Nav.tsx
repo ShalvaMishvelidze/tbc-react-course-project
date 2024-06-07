@@ -1,9 +1,9 @@
-import Logout from "./Logout";
+// import Logout from "./Logout";
 import { NavLink } from "./NavLink";
 import LanguageSelector from "./LanguageSelector";
 import ChangeTheme from "./ChangeTheme";
-import CartBtn from "./CartBtn";
-import { cookies } from "next/headers";
+// import CartBtn from "./CartBtn";
+// import { cookies } from "next/headers";
 
 const Nav = ({
   nav,
@@ -14,8 +14,8 @@ const Nav = ({
   lang: string[];
   systemPreferences: { language: string; theme: string };
 }) => {
-  const cookieStore = cookies();
-  const cart_total: any = cookieStore.get("cart_total");
+  // const cookieStore = cookies();
+  // const cart_total: any = cookieStore.get("cart_total");
 
   return (
     <nav className="navigation">
@@ -25,14 +25,16 @@ const Nav = ({
         })}
       </div>
       <div className="navigation-right">
-        <CartBtn cart_total={cart_total} />
+        {/* <CartBtn cart_total={cart_total} /> */}
         <LanguageSelector
           reload={false}
           lang={lang}
           systemPreferences={systemPreferences}
         />
         <ChangeTheme />
-        <Logout />
+        {/* <Logout /> */}
+        <a href="/api/auth/logout">logout</a>
+        <a href="/api/auth/login">login</a>
       </div>
     </nav>
   );

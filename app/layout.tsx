@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import "../sass/main.scss";
 import { getSystemPreferences } from "../utils/actions";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 export const metadata = {
   title: "TBC final project🔥🔥🔥",
@@ -20,7 +21,9 @@ export default async function RootLayout({
       lang={language ? language : "en"}
       className={theme === "light" ? "light" : ""}
     >
-      <body>{children}</body>
+      <UserProvider>
+        <body>{children}</body>
+      </UserProvider>
     </html>
   );
 }

@@ -6,13 +6,14 @@ import Image from "next/image";
 const ImageContainer = ({
   product,
 }: {
-  product: {
-    title: string;
-    thumbnail: string;
-    images: string[];
-  };
+  product: any;
+  // {
+  // title: string;
+  // thumbnail: string;
+  // images: string[];
+  // };
 }) => {
-  const [image, setImage] = useState(product.thumbnail);
+  const [image, setImage] = useState(product.image);
 
   return (
     <div className="single-product-container">
@@ -24,7 +25,17 @@ const ImageContainer = ({
         height={350}
       />
       <div className="single-product-img-container">
-        {product.images.map((img, index) => {
+        <Image
+          className={`single-product-img-container-small ${
+            image === product.image && "active"
+          }`}
+          src={product.image}
+          alt={product.name}
+          width={100}
+          height={60}
+          onClick={() => setImage(product.image)}
+        />
+        {product.images.map((img: any, index: number) => {
           return (
             <Image
               key={index}
@@ -32,7 +43,7 @@ const ImageContainer = ({
                 image === img && "active"
               }`}
               src={img}
-              alt={product.title}
+              alt={product.name}
               width={100}
               height={60}
               onClick={() => setImage(img)}

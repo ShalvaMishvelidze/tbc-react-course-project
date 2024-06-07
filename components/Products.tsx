@@ -13,6 +13,8 @@ const Products = ({
   products: P[];
   pageText: Type;
 }) => {
+  console.log(products);
+
   const [sortedProducts, setSortedProducts] = useState<P[] | undefined>(
     undefined
   );
