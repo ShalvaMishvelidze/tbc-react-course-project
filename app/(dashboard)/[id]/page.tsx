@@ -1,26 +1,14 @@
-import {
-  // getProducts,
-  getSingleProduct,
-  // getSystemPreferences,
-} from "../../../utils/actions";
+import { getSingleProduct, getSystemPreferences } from "../../../utils/actions";
 import ImageContainer from "../../../components/ImageContainer";
-// import AddToCart from "@/components/AddToCart";
-// import { libraries } from "@/utils/constants";
-
-// export const generateStaticParams = async () => {
-//   const products: { id: number }[] = await getProducts();
-
-//   return products.map((post) => {
-//     return { id: post.id.toString() };
-//   });
-// };
+import AddToCart from "@/components/AddToCart";
+import { libraries } from "@/utils/constants";
 
 const SingleProduct = async ({
   params: { id },
 }: {
   params: { id: string };
 }) => {
-  // const { language } = await getSystemPreferences();
+  const { language } = await getSystemPreferences();
   const product: any = await getSingleProduct(id);
   // {
   //   title: string;
@@ -36,10 +24,10 @@ const SingleProduct = async ({
       <ImageContainer product={product} />
       <p className="single-product-price">${product.price}</p>
       <p className="single-product-desc">{product.description}</p>
-      {/* <AddToCart
+      <AddToCart
         text={libraries[language].main.products.addToCart}
         product={product}
-      /> */}
+      />
     </section>
   );
 };

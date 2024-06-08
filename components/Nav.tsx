@@ -1,11 +1,10 @@
-// import Logout from "./Logout";
 import { NavLink } from "./NavLink";
 import LanguageSelector from "./LanguageSelector";
 import ChangeTheme from "./ChangeTheme";
-// import CartBtn from "./CartBtn";
-// import { cookies } from "next/headers";
+import { getCartTotalCookie } from "@/utils/actions/cart_actions";
+import CartBtn from "./CartBtn";
 
-const Nav = ({
+const Nav = async ({
   nav,
   lang,
   systemPreferences,
@@ -14,9 +13,7 @@ const Nav = ({
   lang: string[];
   systemPreferences: { language: string; theme: string };
 }) => {
-  // const cookieStore = cookies();
-  // const cart_total: any = cookieStore.get("cart_total");
-
+  const total = await getCartTotalCookie();
   return (
     <nav className="navigation">
       <div className="navigation-left">
@@ -25,14 +22,13 @@ const Nav = ({
         })}
       </div>
       <div className="navigation-right">
-        {/* <CartBtn cart_total={cart_total} /> */}
+        <CartBtn cart_total={total} />
         <LanguageSelector
           reload={false}
           lang={lang}
           systemPreferences={systemPreferences}
         />
         <ChangeTheme />
-        {/* <Logout /> */}
         <a href="/api/auth/logout">logout</a>
         <a href="/api/auth/login">login</a>
       </div>

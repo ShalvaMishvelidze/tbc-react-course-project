@@ -6,27 +6,27 @@ import {
 } from "./constants";
 import { POSTS_API_URL } from "./constants";
 
-export const getProducts = async () =>
-  // searchString: string | undefined
-  {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL as string}api/products`
-      );
+// export const getProducts = async () =>
+//   // searchString: string | undefined
+//   {
+//     try {
+//       const response = await fetch(
+//         `${process.env.NEXT_PUBLIC_URL as string}api/products`
+//       );
 
-      const data = await response.json();
-      console.log(data.data[0]);
+//       const data = await response.json();
+//       console.log(data.data[0]);
 
-      return data.data;
-    } catch (e) {
-      console.log(e);
-    }
-  };
+//       return data.data;
+//     } catch (e) {
+//       console.log(e);
+//     }
+//   };
 
 export const getSingleProduct = async (id: string) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_VERCEL_URL as string}/api/product`,
+      `${process.env.NEXT_PUBLIC_URL as string}/api/product`,
       {
         method: "POST",
         body: JSON.stringify({ id: id }),
@@ -97,9 +97,7 @@ export const setSystemLanguage = async (language: string) => {
 };
 
 export const getUsers = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}api/auth/users`
-  );
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}api/auth/users`);
   const data = await response.json();
   return data.data;
 };
@@ -111,63 +109,63 @@ export const addUser = async (user: {
   role: string;
   password: string;
 }) => {
-  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}api/auth/users`, {
+  await fetch(`${process.env.NEXT_PUBLIC_URL}api/auth/users`, {
     method: "POST",
     body: JSON.stringify(user),
   });
 };
 export const updateUser = async (user: User) => {
-  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}api/auth/users`, {
+  await fetch(`${process.env.NEXT_PUBLIC_URL}api/auth/users`, {
     method: "PATCH",
     body: JSON.stringify(user),
   });
 };
 
 export const deleteUser = async (id: number) => {
-  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}api/auth/users`, {
+  await fetch(`${process.env.NEXT_PUBLIC_URL}api/auth/users`, {
     method: "DELETE",
     body: JSON.stringify(id),
   });
 };
 
-export const setCartTotalCookie = async () =>
-  // total: number
-  {
-    // const cookieStore = cookies();
-    // cookieStore.set("cart_total", total.toString());
-  };
+// export const setCartTotalCookie = async () =>
+//   // total: number
+//   {
+//     // const cookieStore = cookies();
+//     // cookieStore.set("cart_total", total.toString());
+//   };
 
-export const changeQuantity = async (
-  user_id: string,
-  id: number,
-  method: string
-) => {
-  // const token: any = cookies().get("token");
-  const result = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/cart`,
-    {
-      method: "PATCH",
-      body: JSON.stringify({ id: id, method: method }),
-      headers: {
-        id: user_id,
-        // Authorization: `${token.value}`,
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  const data = await result.json();
+// export const changeQuantity = async (
+//   user_id: string,
+//   id: number,
+//   method: string
+// ) => {
+//   // const token: any = cookies().get("token");
+//   const result = await fetch(
+//     `${process.env.NEXT_PUBLIC_URL as string}api/cart`,
+//     {
+//       method: "PATCH",
+//       body: JSON.stringify({ id: id, method: method }),
+//       headers: {
+//         id: user_id,
+//         // Authorization: `${token.value}`,
+//         "Content-Type": "application/json",
+//       },
+//     }
+//   );
+//   const data = await result.json();
 
-  return data;
-};
+//   return data;
+// };
 
-export const emptyCart = async (id: string) => {
-  // const token: any = cookies().get("token");
-  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/cart`, {
-    method: "DELETE",
-    headers: {
-      id,
-      // Authorization: `${token.value}`,
-      "Content-Type": "application/json",
-    },
-  });
-};
+// export const emptyCart = async (id: string) => {
+//   // const token: any = cookies().get("token");
+//   await fetch(`${process.env.NEXT_PUBLIC_URL as string}api/cart`, {
+//     method: "DELETE",
+//     headers: {
+//       id,
+//       // Authorization: `${token.value}`,
+//       "Content-Type": "application/json",
+//     },
+//   });
+// };

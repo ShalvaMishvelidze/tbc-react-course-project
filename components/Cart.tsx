@@ -3,12 +3,12 @@
 import Image from "next/image";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { GrClear } from "react-icons/gr";
-import {
-  changeQuantity,
-  emptyCart,
-  // , setCartTotalCookie
-} from "@/utils/actions";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import {
+  clearCart,
+  setCartTotalCookie,
+  updateCartQuantity,
+} from "@/utils/actions/cart_actions";
 
 const Cart = async ({ data }: any) => {
   const { user, error, isLoading } = useUser();
@@ -57,14 +57,14 @@ const Cart = async ({ data }: any) => {
               <div className="btn-container">
                 <button
                   className="cart-btn"
-                  onClick={
-                    () => changeQuantity(user?.sub as string, item.id, "dec")
-                    // .then(
-                    //   (arg) => {
-                    //     console.log(arg);
-                    //     setCartTotalCookie(arg.data);
-                    //   }
-                    // )
+                  onClick={() =>
+                    updateCartQuantity(
+                      user?.sub as string,
+                      item.id,
+                      "dec"
+                    ).then((total) => {
+                      setCartTotalCookie(total);
+                    })
                   }
                 >
                   <FaMinus />
@@ -72,13 +72,14 @@ const Cart = async ({ data }: any) => {
                 <p>{item.quantity}</p>
                 <button
                   className="cart-btn"
-                  onClick={
-                    () => changeQuantity(user?.sub as string, item.id, "inc")
-                    // .then(
-                    //   (arg) => {
-                    //     setCartTotalCookie(arg.data);
-                    //   }
-                    // )
+                  onClick={() =>
+                    updateCartQuantity(
+                      user?.sub as string,
+                      item.id,
+                      "inc"
+                    ).then((total) => {
+                      setCartTotalCookie(total);
+                    })
                   }
                 >
                   <FaPlus />
@@ -93,8 +94,7 @@ const Cart = async ({ data }: any) => {
           <button
             className="cart-clear"
             onClick={() => {
-              emptyCart(user?.sub as string);
-              // .then(() => setCartTotalCookie(0));
+              clearCart(user?.sub as string).then(() => setCartTotalCookie(0));
             }}
           >
             <GrClear />

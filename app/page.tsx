@@ -1,4 +1,4 @@
-import { getProducts, getSystemPreferences } from "../utils/actions";
+import { getSystemPreferences } from "../utils/actions";
 import Products from "../components/Products";
 import Content from "../layout/Content";
 import Footer from "../layout/Footer";
@@ -8,6 +8,7 @@ import {
   Products as Type,
   libraries,
 } from "../utils/constants";
+import { getProducts } from "@/utils/actions/products_actions";
 
 const page = async () =>
   // { searchParams }: { searchParams: { search: string } }

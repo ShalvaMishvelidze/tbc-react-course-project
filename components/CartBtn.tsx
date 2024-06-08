@@ -1,8 +1,8 @@
 "use client";
 import {
-  changeQuantity,
-  // , setCartTotalCookie
-} from "@/utils/actions";
+  getCartQuantity,
+  setCartTotalCookie,
+} from "@/utils/actions/cart_actions";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -14,10 +14,9 @@ const CartBtn = ({ cart_total }: any) => {
   const { user, error, isLoading } = useUser();
 
   useEffect(() => {
-    changeQuantity(user?.sub as string, 0, "GET");
-    // .then((arg) => {
-    //   setCartTotalCookie(arg.data);
-    // });
+    getCartQuantity(user?.sub as string).then((quantity) => {
+      setCartTotalCookie(quantity);
+    });
   }, [user]);
 
   if (isLoading) return <div>Loading...</div>;
