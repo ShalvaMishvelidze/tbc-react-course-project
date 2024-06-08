@@ -70,6 +70,9 @@ interface Main {
   admin: {
     [key: string]: string;
   };
+  addNewPost: {
+    [key: string]: string;
+  };
 }
 
 export interface Footer {
@@ -176,6 +179,12 @@ export const libraries: Libraries = {
         delete: "delete",
         save: "save",
       },
+      addNewPost: {
+        title: "title",
+        body: "body",
+        tags: "tags",
+        addPost: "add new post",
+      },
     },
     footer: {
       copy: "all rights reserved",
@@ -275,6 +284,12 @@ export const libraries: Libraries = {
         edit: "რედაქტირება",
         delete: "წაშლა",
         save: "შენახვა",
+      },
+      addNewPost: {
+        title: "სათაური",
+        body: "სხეული",
+        tags: "ტეგები",
+        addPost: "ახალი პოსტის დამატება",
       },
     },
     footer: {

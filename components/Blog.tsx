@@ -1,13 +1,5 @@
+import { Post } from "@/utils/interfaces";
 import Link from "next/link";
-
-interface Post {
-  id: string;
-  title: string;
-  body: string;
-  reactions: number;
-  tags: string[];
-  userId: number;
-}
 
 export function Blog({ post }: { post: Post }) {
   return (
@@ -17,7 +9,7 @@ export function Blog({ post }: { post: Post }) {
         {post.body.substring(0, 50)}...{" "}
         <Link href={`/blog/${post.id}`}>read more</Link>
       </p>
-      <h4>Reactions: {post.reactions}</h4>
+      <h4>Views: {post.views}</h4>
     </article>
   );
 }

@@ -4,7 +4,7 @@ import {
   // PRODUCTS_API_URL,
   User,
 } from "./constants";
-import { POSTS_API_URL } from "./constants";
+// import { POSTS_API_URL } from "./constants";
 
 // export const getProducts = async () =>
 //   // searchString: string | undefined
@@ -44,25 +44,25 @@ export const getSingleProduct = async (id: string) => {
   }
 };
 
-export const getPosts = async () => {
-  try {
-    const response = await fetch(POSTS_API_URL);
-    const data = await response.json();
-    return data.posts;
-  } catch (e) {
-    console.error(e);
-  }
-};
+// export const getPosts = async () => {
+//   try {
+//     const response = await fetch(POSTS_API_URL);
+//     const data = await response.json();
+//     return data.posts;
+//   } catch (e) {
+//     console.error(e);
+//   }
+// };
 
-export const getSinglePost = async (id: string) => {
-  try {
-    const response = await fetch(`${POSTS_API_URL}/${id}`);
-    const data = await response.json();
-    return data;
-  } catch (e) {
-    console.error(e);
-  }
-};
+// export const getSinglePost = async (id: string) => {
+//   try {
+//     const response = await fetch(`${POSTS_API_URL}/${id}`);
+//     const data = await response.json();
+//     return data;
+//   } catch (e) {
+//     console.error(e);
+//   }
+// };
 
 export const getSystemPreferences = async () => {
   const cookieStore = cookies();

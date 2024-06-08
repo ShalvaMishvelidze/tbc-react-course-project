@@ -1,17 +1,9 @@
+import { getAllPosts } from "@/utils/actions/blog_actions";
 import { Blog } from "../../../components/Blog";
-import { getPosts } from "../../../utils/actions";
-
-interface Post {
-  id: string;
-  title: string;
-  body: string;
-  reactions: number;
-  tags: string[];
-  userId: number;
-}
+import { Post } from "@/utils/interfaces";
 
 const Blogs = async () => {
-  const posts: Post[] = await getPosts();
+  const posts: Post[] = (await getAllPosts()) as Post[];
 
   return (
     <section className="blogs">
