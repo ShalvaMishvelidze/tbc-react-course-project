@@ -1,7 +1,11 @@
-import { getSingleProduct, getSystemPreferences } from "../../../utils/actions";
+import { getSystemPreferences } from "../../../utils/actions";
 import ImageContainer from "../../../components/ImageContainer";
 import AddToCart from "@/components/AddToCart";
 import { libraries } from "@/utils/constants";
+import { getSingleProduct } from "@/utils/actions/products_actions";
+import { Product } from "@/utils/interfaces";
+import Reviews from "@/components/Reviews";
+import { getSession } from "@auth0/nextjs-auth0";
 
 const SingleProduct = async ({
   params: { id },
@@ -9,14 +13,8 @@ const SingleProduct = async ({
   params: { id: string };
 }) => {
   const { language } = await getSystemPreferences();
-  const product: any = await getSingleProduct(id);
-  // {
-  //   title: string;
-  //   price: number;
-  //   description: string;
-  //   thumbnail: string;
-  //   images: string[];
-  // }
+  const product: Product = (await getSingleProduct(id)) as Product;
+  const session = await getSession();
 
   return (
     <section className="single-product">
@@ -28,6 +26,7 @@ const SingleProduct = async ({
         text={libraries[language].main.products.addToCart}
         product={product}
       />
+      <Reviews product_id={id} user={session?.user} />
     </section>
   );
 };
