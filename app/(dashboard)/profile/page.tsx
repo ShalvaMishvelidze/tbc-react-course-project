@@ -1,4 +1,4 @@
-import Profile from "../../../sass/components/Profile";
+import Profile from "../../../components/Profile";
 import { getSystemPreferences } from "../../../utils/actions";
 import { libraries } from "../../../utils/constants";
 

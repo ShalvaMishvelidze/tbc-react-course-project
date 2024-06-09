@@ -4,7 +4,7 @@ import { Search } from "./Search";
 import { ChangeEvent, useEffect, useState } from "react";
 import Sort from "./Sort";
 import Link from "next/link";
-import { Product as P, Products as Type } from "../utils/constants";
+import { Product as P, Products as Type } from "@/utils/interfaces";
 
 const Products = ({
   products,
@@ -31,10 +31,10 @@ const Products = ({
     setSortedProducts((_) => {
       setSortStatus("sorted");
       if (sort === "a-z") {
-        return [...products].sort((a, b) => a.title.localeCompare(b.title));
+        return [...products].sort((a, b) => a.name.localeCompare(b.name));
       }
       if (sort === "z-a") {
-        return [...products].sort((a, b) => b.title.localeCompare(a.title));
+        return [...products].sort((a, b) => b.name.localeCompare(a.name));
       }
       if (sort === "price-ascending") {
         return [...products].sort((a, b) => a.price - b.price);
@@ -74,6 +74,7 @@ const Products = ({
       <Search pageText={pageText.search} />
       <div className="products-header">
         <h2 className="products-header-title">{pageText.heading as string}</h2>
+        <Link href="/add-new-product">add new product</Link>
         <Sort
           pageText={pageText.sort}
           handleChange={handleChange}

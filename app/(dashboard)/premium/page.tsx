@@ -1,6 +1,7 @@
+import { libraries } from "@/utils/constants";
 import Card from "../../../components/Card";
 import { getSystemPreferences } from "../../../utils/actions";
-import { Premium as Type, libraries } from "../../../utils/constants";
+import { Premium as Type } from "@/utils/interfaces";
 
 const Premium = async () => {
   const { language }: { language: string } = await getSystemPreferences();

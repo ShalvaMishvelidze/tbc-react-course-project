@@ -1,7 +1,7 @@
 "use client";
 
-import { addUser, deleteUser, updateUser } from "../utils/actions";
-import { User } from "../utils/constants";
+import { User } from "@/utils/interfaces";
+// import { addUser, deleteUser, updateUser } from "../utils/actions";
 import { ChangeEvent, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 
@@ -28,19 +28,21 @@ const Admin = ({ users }: { users: User[] }) => {
     setSelectedUser({ ...u, age: u.age === null ? 0 : u.age });
     setModal(true);
   };
-  const handleDelete = async (id: number) => {
-    await deleteUser(id);
-    location.reload();
-  };
+  // const handleDelete = async () =>
+  //   // id: number
+  //   {
+  //     // await deleteUser(id);
+  //     location.reload();
+  //   };
 
   const handleSave = async () => {
-    await updateUser(selectedUser);
+    // await updateUser(selectedUser);
     setModal(false);
     location.reload();
   };
 
   const handleRegister = async () => {
-    await addUser(newUser);
+    // await addUser(newUser);
     setModal(false);
     setIsRegistering(false);
     location.reload();
@@ -98,7 +100,14 @@ const Admin = ({ users }: { users: User[] }) => {
           </div>
           <div className="user-btn-container">
             <button onClick={() => handleEdit(user)}>Edit</button>
-            <button onClick={() => handleDelete(user.id)}>Delete</button>
+            <button
+              onClick={
+                () => {}
+                // handleDelete(user.id)
+              }
+            >
+              Delete
+            </button>
           </div>
         </article>
       ))}

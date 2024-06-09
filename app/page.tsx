@@ -3,11 +3,8 @@ import Products from "../components/Products";
 import Content from "../layout/Content";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
-import {
-  // Product,
-  Products as Type,
-  libraries,
-} from "../utils/constants";
+import { libraries } from "../utils/constants";
+import { Products as Type } from "@/utils/interfaces";
 import { getProducts } from "@/utils/actions/products_actions";
 
 const page = async () =>

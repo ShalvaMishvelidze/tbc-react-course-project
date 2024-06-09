@@ -2,24 +2,16 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Product } from "@/utils/interfaces";
 
-const ImageContainer = ({
-  product,
-}: {
-  product: any;
-  // {
-  // title: string;
-  // thumbnail: string;
-  // images: string[];
-  // };
-}) => {
+const ImageContainer = ({ product }: { product: Product }) => {
   const [image, setImage] = useState(product.image);
 
   return (
     <div className="single-product-container">
       <Image
         src={image}
-        alt={product.title}
+        alt={product.name}
         className="single-product-img"
         width={420}
         height={350}
