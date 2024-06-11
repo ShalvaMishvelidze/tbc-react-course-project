@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const Review = ({ review: r }: any) => {
   const [review, setReview] = useState<any>(r);
-  console.log(review);
 
   const handleUpvote = () => {
     if (review.user_vote_type === "upvote") {
