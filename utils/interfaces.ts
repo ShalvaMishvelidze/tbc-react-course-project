@@ -7,6 +7,9 @@ export interface Post {
   likes: number;
   dislikes: number;
   views: number;
+  total_likes: number;
+  total_dislikes: number;
+  user_vote_type: string;
   created_at: string;
   updated_at: string;
 }
