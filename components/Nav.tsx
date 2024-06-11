@@ -4,6 +4,7 @@ import ChangeTheme from "./ChangeTheme";
 import { getCartTotalCookie } from "@/utils/actions/cart_actions";
 import CartBtn from "./CartBtn";
 import { getSession } from "@auth0/nextjs-auth0";
+import User from "./User";
 
 const Nav = async ({
   nav,
@@ -31,11 +32,7 @@ const Nav = async ({
           systemPreferences={systemPreferences}
         />
         <ChangeTheme />
-        {session?.user ? (
-          <a href="/api/auth/logout">logout</a>
-        ) : (
-          <a href="/api/auth/login">login</a>
-        )}
+        {session?.user ? <User /> : <a href="/api/auth/login">login</a>}
       </div>
     </nav>
   );
