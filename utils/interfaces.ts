@@ -55,6 +55,7 @@ export interface Product {
   category: string;
   image: string;
   images: string[];
+  owner_id: string;
 }
 
 export interface Main {

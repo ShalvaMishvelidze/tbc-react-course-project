@@ -1,4 +1,5 @@
 "use server";
+import { del } from "@vercel/blob";
 import { sql } from "@vercel/postgres";
 
 export async function getProducts() {
@@ -103,3 +104,36 @@ export async function voteOnReview(
     await sql`UPDATE reviews SET upvotes = upvotes - 1 WHERE id = ${review_id};`;
   }
 }
+
+export const getUserProducts = async (owner_id: string) => {
+  const products = await sql`SELECT * FROM products 
+  WHERE owner_id = ${owner_id};`;
+  return products.rows;
+};
+
+export const editProduct = async (product: any) => {
+  await sql`UPDATE products SET name = ${product.name}, 
+  description = ${product.description}, 
+  price = ${product.price}, 
+  image = ${product.image},
+  category = ${product.category},
+  brand = ${product.brand},
+  discountpercentage = ${product.discountpercentage},
+  images = ${JSON.stringify(product.images)}
+  WHERE id = ${product.id};`;
+};
+
+export const deleteImage = async (url: string) => {
+  console.log("deleted");
+  await del(url).catch((e) => console.error(e));
+};
+
+// export const uploadImage = async (file: any) => {
+//   try {
+//     const blob = await put(file.name, file, { access: "public" });
+//     return blob.url;
+//   } catch (error) {
+//     console.error(error);
+//     return "";
+//   }
+// };
