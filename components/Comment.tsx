@@ -1,14 +1,19 @@
 "use client";
-import { addNewCommentLike } from "@/utils/actions/blog_actions";
+import {
+  addNewCommentLike,
+  deleteComment,
+  editComment,
+} from "@/utils/actions/blog_actions";
 import { useState } from "react";
 
-const Comment = ({ comment: r, user }: any) => {
-  const [comment, _] = useState<any>(r);
+const Comment = ({ comment: r, user, handleCommentDelete }: any) => {
+  const [comment, setComment] = useState<any>(r);
   const [likes, setLikes] = useState<number>(Number(comment.total_likes));
   const [dislikes, setDislikes] = useState<number>(
     Number(comment.total_dislikes)
   );
   const [vote, setVote] = useState(comment.user_vote_type);
+  const [editing, setEditing] = useState<boolean>(false);
 
   const handleLike = () => {
     if (vote === "like") {
@@ -54,7 +59,43 @@ const Comment = ({ comment: r, user }: any) => {
           dislike 👎 {dislikes}
         </button>
       </div>
-      <p className="comment-text">{comment.content}</p>
+      {editing ? (
+        <input
+          value={comment.content}
+          onChange={(e) => setComment({ ...comment, content: e.target.value })}
+        />
+      ) : (
+        <p className="comment-text">{comment.content}</p>
+      )}
+      <div className="comment-btn-container">
+        {editing ? (
+          <button
+            type="button"
+            onClick={() => {
+              editComment(comment.id, comment.content).then((res) => {
+                setComment({ ...comment, content: res.content });
+                setEditing(false);
+              });
+            }}
+          >
+            save
+          </button>
+        ) : (
+          <button type="button" onClick={() => setEditing(true)}>
+            edit
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={() => {
+            deleteComment(comment.id).then(() => {
+              handleCommentDelete(comment.id);
+            });
+          }}
+        >
+          delete
+        </button>
+      </div>
     </div>
   );
 };

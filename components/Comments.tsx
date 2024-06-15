@@ -27,6 +27,10 @@ const Comments = ({ post_id, user }: any) => {
     }
   };
 
+  const handleCommentDelete = (id: number) => {
+    setComments([comments.filter((comment) => comment.id !== id)]);
+  };
+
   useEffect(() => {
     if (user) {
       getComments(post_id, user?.sub as string).then((comments) => {
@@ -58,7 +62,14 @@ const Comments = ({ post_id, user }: any) => {
       <div className="comments-container">
         {comments.length > 0 &&
           comments.map((comment) => {
-            return <Comment key={comment.id} comment={comment} user={user} />;
+            return (
+              <Comment
+                key={comment.id}
+                comment={comment}
+                user={user}
+                handleCommentDelete={handleCommentDelete}
+              />
+            );
           })}
       </div>
     </div>

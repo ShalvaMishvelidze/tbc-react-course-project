@@ -187,3 +187,13 @@ export const editPost = async (
 export const deletePost = async (post_id: number) => {
   await sql`DELETE FROM posts WHERE id = ${post_id};`;
 };
+
+export const editComment = async (comment_id: number, content: string) => {
+  const comment = await sql`UPDATE comments SET content = ${content} 
+  WHERE id = ${comment_id} RETURNING *;`;
+  return comment.rows[0];
+};
+
+export const deleteComment = async (comment_id: number) => {
+  await sql`DELETE FROM comments WHERE id = ${comment_id};`;
+};
