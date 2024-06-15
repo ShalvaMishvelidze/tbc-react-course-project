@@ -180,20 +180,6 @@ html {
   --clr-charcoal-8: #101820;
 
   --clr-black-1: #000000;
-
-  @include respond(tab-landscape) {
-    font-size: 50%;
-  }
-  @include respond(tab-portrait) {
-    font-size: 37.5%;
-  }
-  @include respond(phone) {
-    font-size: 25%;
-  }
-
-  @include respond(big-desktop) {
-    font-size: 75%;
-  }
 }
 
 .light {

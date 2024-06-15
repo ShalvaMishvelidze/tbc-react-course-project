@@ -42,6 +42,32 @@ LEFT JOIN (
     return [];
   }
 };
+export const getMyPosts = async (current_user_id: string) => {
+  try {
+    const posts = await sql`SELECT p.*,
+       COALESCE(SUM(CASE WHEN pl.vote_type = 'like' THEN 1 ELSE 0 END), 0) AS total_likes,
+       COALESCE(SUM(CASE WHEN pl.vote_type = 'dislike' THEN 1 ELSE 0 END), 0) AS total_dislikes,
+       COALESCE(current_user_vote.vote_type, 'none') AS user_vote_type,
+       COALESCE(v.view_count, 0) AS views
+FROM posts p
+LEFT JOIN post_likes pl ON p.id = pl.post_id
+LEFT JOIN post_likes current_user_vote 
+    ON p.id = current_user_vote.post_id AND current_user_vote.owner_id = ${current_user_id}
+LEFT JOIN (
+    SELECT post_id, COUNT(*) AS view_count
+    FROM post_views
+    GROUP BY post_id
+) v ON p.id = v.post_id 
+WHERE p.owner_id = ${current_user_id}
+ GROUP BY p.id, current_user_vote.vote_type, v.view_count;
+;
+`;
+    return posts.rows;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
 
 export const getPost = async (post_id: string, current_user_id: string) => {
   try {
@@ -143,4 +169,21 @@ ON CONFLICT (post_id, viewer_id) DO NOTHING;
 `;
 
   return views.rows[0];
+};
+
+export const editPost = async (
+  post_id: number,
+  title: string,
+  body: string,
+  tags: string[]
+) => {
+  const post = await sql`UPDATE posts SET title = ${title}, 
+  body = ${body}, 
+  tags = ${JSON.stringify(tags)}  
+  WHERE id = ${post_id} RETURNING *;`;
+  return post.rows[0];
+};
+
+export const deletePost = async (post_id: number) => {
+  await sql`DELETE FROM posts WHERE id = ${post_id};`;
 };

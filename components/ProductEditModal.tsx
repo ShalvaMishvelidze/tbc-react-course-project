@@ -4,11 +4,7 @@ import Image from "next/image";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 
 import { Product } from "@/utils/interfaces";
-import {
-  deleteImage,
-  editProduct,
-  // uploadImage,
-} from "@/utils/actions/products_actions";
+import { deleteImage, editProduct } from "@/utils/actions/products_actions";
 
 const ProductEditModal = ({
   product: p,
@@ -38,12 +34,12 @@ const ProductEditModal = ({
   const { user, error, isLoading } = useUser();
   const inputImageRef = useRef<HTMLInputElement>(null);
   const inputImagesRef = useRef<HTMLInputElement>(null);
-  const [product, setProduct] = useState<any>({ ...p });
+  const [product, setProduct] = useState<Product>({ ...p });
 
   const [image, setImage] = useState<any>({});
   const [images, setImages] = useState<any[]>([]);
-  const [delImages, setDelImages] = useState<any[]>([]);
-  const [keepImages, setKeepImages] = useState<any[]>([...p.images]);
+  const [delImages, setDelImages] = useState<string[]>([]);
+  const [keepImages, setKeepImages] = useState<string[]>([...p.images]);
 
   if (isLoading) {
     return <div className="loading">loading</div>;
@@ -61,7 +57,6 @@ const ProductEditModal = ({
 
     if (image.name) {
       await deleteImage(mainImage);
-      // const newImage = await uploadImage(image);
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_URL}api/image/upload?filename=${image.name}`,
         {
@@ -111,7 +106,7 @@ const ProductEditModal = ({
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => {
-    setProduct((prevState: any) => ({
+    setProduct((prevState: Product) => ({
       ...prevState,
       [e.target.dataset.type as string]: e.target.value,
     }));
@@ -126,7 +121,7 @@ const ProductEditModal = ({
           const reader = new FileReader();
           reader.onload = function (e) {
             if (e.target) {
-              setProduct({ ...product, image: e.target.result });
+              setProduct({ ...product, image: e.target.result as string });
             }
           };
           reader.readAsDataURL(file);
@@ -148,7 +143,7 @@ const ProductEditModal = ({
               }
               setProduct({
                 ...product,
-                images: newImages,
+                images: newImages as string[],
               });
             }
           };
@@ -272,7 +267,7 @@ const ProductEditModal = ({
           multiple
         />
         {product.images.length !== 0 &&
-          product.images.map((img: any, index: number) => {
+          product.images.map((img: string, index: number) => {
             return (
               <div className="image-container" key={index}>
                 <Image src={img} width={100} height={100} alt="product-image" />
