@@ -26,6 +26,9 @@ const Reviews = ({ product_id, user }: any) => {
       );
     }
   };
+  const handleReviewDelete = (id: number) => {
+    setReviews([reviews.filter((r) => r.id !== id)]);
+  };
 
   useEffect(() => {
     if (user) {
@@ -60,7 +63,13 @@ const Reviews = ({ product_id, user }: any) => {
       <div className="reviews-container">
         {reviews.length > 0 &&
           reviews.map((review) => {
-            return <Review key={review.id} review={review} />;
+            return (
+              <Review
+                key={review.id}
+                review={review}
+                handleReviewDelete={handleReviewDelete}
+              />
+            );
           })}
       </div>
     </div>

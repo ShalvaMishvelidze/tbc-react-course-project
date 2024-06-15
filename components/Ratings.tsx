@@ -26,7 +26,7 @@ const Ratings = ({ owner_id, product_id }: any) => {
         .fill(null)
         .map((_, i) => {
           return (
-            <button className="rating-btn">
+            <button className="rating-btn" key={i}>
               <IoStar
                 key={i}
                 className={`rating-star ${i + 1 <= rating && "active"}`}

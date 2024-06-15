@@ -123,6 +123,23 @@ export const editProduct = async (product: any) => {
   WHERE id = ${product.id};`;
 };
 
+export const editProductReview = async (
+  review_id: number,
+  newReview: string
+) => {
+  const review =
+    await sql`UPDATE reviews SET review = ${newReview} WHERE id = ${review_id} RETURNING *;`;
+  return review.rows[0];
+};
+
+export const deleteProduct = async (id: number) => {
+  await sql`DELETE FROM products WHERE id = ${id};`;
+};
+
+export const deleteReview = async (id: number) => {
+  await sql`DELETE FROM reviews WHERE id = ${id};`;
+};
+
 export const deleteImage = async (url: string) => {
   console.log("deleted");
   await del(url).catch((e) => console.error(e));

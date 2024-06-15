@@ -1,9 +1,14 @@
 "use client";
-import { voteOnReview } from "@/utils/actions/products_actions";
+import {
+  deleteReview,
+  editProductReview,
+  voteOnReview,
+} from "@/utils/actions/products_actions";
 import { useState } from "react";
 
-const Review = ({ review: r }: any) => {
+const Review = ({ review: r, handleReviewDelete }: any) => {
   const [review, setReview] = useState<any>(r);
+  const [editing, setEditing] = useState<boolean>(false);
 
   const handleUpvote = () => {
     if (review.user_vote_type === "upvote") {
@@ -61,7 +66,43 @@ const Review = ({ review: r }: any) => {
           downvote
         </button>
       </div>
-      <p className="review-text">{review.review}</p>
+      {editing ? (
+        <input
+          value={review.review}
+          onChange={(e) => setReview({ ...review, review: e.target.value })}
+        />
+      ) : (
+        <p className="review-text">{review.review}</p>
+      )}
+      <div className="review-btn-container">
+        {editing ? (
+          <button
+            type="button"
+            onClick={() => {
+              editProductReview(review.id, review.review).then((res) => {
+                setReview({ ...review, review: res.review });
+                setEditing(false);
+              });
+            }}
+          >
+            save
+          </button>
+        ) : (
+          <button type="button" onClick={() => setEditing(true)}>
+            edit
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={() => {
+            deleteReview(review.id).then(() => {
+              handleReviewDelete(review.id);
+            });
+          }}
+        >
+          delete
+        </button>
+      </div>
     </div>
   );
 };
