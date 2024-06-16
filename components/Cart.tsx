@@ -10,7 +10,6 @@ import {
   updateCartQuantity,
 } from "@/utils/actions/cart_actions";
 import { loadStripe } from "@stripe/stripe-js";
-import { useEffect, useState } from "react";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
@@ -18,31 +17,24 @@ const stripePromise = loadStripe(
 
 const Cart = async ({ data }: any) => {
   const { user, error, isLoading } = useUser();
-  const [sessionId, setSessionId] = useState("");
   const totalPrice = data.reduce((acc: number, item: any) => {
     return acc + parseFloat(item.price) * item.quantity;
   }, 0);
 
-  useEffect(() => {
-    const createCheckoutSession = async () => {
-      const response = await fetch("/api/stripe", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          id: JSON.stringify(user?.sub),
-        },
-        body: JSON.stringify(data),
-      });
-      const cartData = await response.json();
-      setSessionId(cartData.id);
-    };
-
-    createCheckoutSession();
-  }, [data]);
-
   const handleClick = async () => {
+    const response = await fetch("/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        id: JSON.stringify(user?.sub),
+      },
+      body: JSON.stringify(data),
+    });
+    const cartData = await response.json();
     const stripe = await stripePromise;
-    const { error } = await stripe!.redirectToCheckout({ sessionId });
+    const { error } = await stripe!.redirectToCheckout({
+      sessionId: cartData.id,
+    });
     if (error) {
       console.error("Error redirecting to checkout:", error);
     }
@@ -55,11 +47,7 @@ const Cart = async ({ data }: any) => {
     <main>
       <div className="cart-total">
         <h3>Total Price: {totalPrice.toFixed(2)}$</h3>
-        <button
-          className="cart-total-btn"
-          onClick={handleClick}
-          disabled={!sessionId}
-        >
+        <button className="cart-total-btn" onClick={handleClick}>
           Pay Now
         </button>
       </div>
