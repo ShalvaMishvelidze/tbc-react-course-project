@@ -9,12 +9,44 @@ import {
   setCartTotalCookie,
   updateCartQuantity,
 } from "@/utils/actions/cart_actions";
+import { loadStripe } from "@stripe/stripe-js";
+import { useEffect, useState } from "react";
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+);
 
 const Cart = async ({ data }: any) => {
   const { user, error, isLoading } = useUser();
-  const totalPrice = data.data.reduce((acc: number, item: any) => {
+  const [sessionId, setSessionId] = useState("");
+  const totalPrice = data.reduce((acc: number, item: any) => {
     return acc + parseFloat(item.price) * item.quantity;
   }, 0);
+
+  useEffect(() => {
+    const createCheckoutSession = async () => {
+      const response = await fetch("/api/stripe", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          id: JSON.stringify(user?.sub),
+        },
+        body: JSON.stringify(data),
+      });
+      const cartData = await response.json();
+      setSessionId(cartData.id);
+    };
+
+    createCheckoutSession();
+  }, [data]);
+
+  const handleClick = async () => {
+    const stripe = await stripePromise;
+    const { error } = await stripe!.redirectToCheckout({ sessionId });
+    if (error) {
+      console.error("Error redirecting to checkout:", error);
+    }
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
@@ -23,9 +55,16 @@ const Cart = async ({ data }: any) => {
     <main>
       <div className="cart-total">
         <h3>Total Price: {totalPrice.toFixed(2)}$</h3>
+        <button
+          className="cart-total-btn"
+          onClick={handleClick}
+          disabled={!sessionId}
+        >
+          Pay Now
+        </button>
       </div>
       <section className="cart">
-        {data.data.map((item: any) => {
+        {data.map((item: any) => {
           return (
             <article key={item.id} className="cart-item">
               <div className="card-item-info">
@@ -88,7 +127,7 @@ const Cart = async ({ data }: any) => {
             </article>
           );
         })}
-        {data.data.length === 0 ? (
+        {data.length === 0 ? (
           <p>Card Is Empty</p>
         ) : (
           <button

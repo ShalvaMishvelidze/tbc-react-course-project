@@ -1,3 +1,5 @@
+import { UUID } from "crypto";
+
 export interface Post {
   id: number;
   title: string;
@@ -87,4 +89,11 @@ export interface User {
   email: string;
   age: number | null;
   role: string;
+}
+
+export interface Order {
+  order_id: UUID;
+  title: string;
+  price: number;
+  created_at: Date;
 }

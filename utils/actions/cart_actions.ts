@@ -5,7 +5,8 @@ import { cookies } from "next/headers";
 
 export const getCart = async (owner_id: string) => {
   try {
-    const productsData = await sql`SELECT
+    const productsData = await sql`SELECT 
+    products.id AS product_id, 
     products.name,
     products.description,
     products.price,
@@ -128,4 +129,13 @@ export const setCartTotalCookie = async (total: number) => {
 export const getCartTotalCookie = async () => {
   const cookieStore = cookies();
   return cookieStore.get("cart_total");
+};
+
+export const getOrders = async (user_id: string) => {
+  const orders = await sql`SELECT order_id, title, price, created_at
+  FROM orders
+  WHERE user_id = ${user_id} 
+  ORDER BY created_at DESC; 
+  `;
+  return orders.rows;
 };

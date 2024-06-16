@@ -7,6 +7,7 @@ const UserDropdown = () => {
       <Link href="/gallery">gallery</Link>
       <Link href="/my-products">my products</Link>
       <Link href="/my-posts">my posts</Link>
+      <Link href="/orders">orders</Link>
       <a href="/api/auth/logout">Logout</a>
     </div>
   );

@@ -9,21 +9,25 @@ export default function middleware(request: NextRequest) {
     request.nextUrl.pathname === "/api/auth/logout" ||
     request.nextUrl.pathname === "/api/auth/callback" ||
     request.nextUrl.pathname === "/api/auth/me" ||
-    request.nextUrl.pathname === "/api/oldauth/register" ||
-    request.nextUrl.pathname === "/api/oldauth/login" ||
-    request.nextUrl.pathname === "/api/oldauth/users" ||
+    request.nextUrl.pathname === "/api/old-auth/register" ||
+    request.nextUrl.pathname === "/api/old-auth/login" ||
+    request.nextUrl.pathname === "/api/old-auth/users" ||
+    request.nextUrl.pathname === "/api/old-auth/logout" ||
     request.nextUrl.pathname === "/api/avatar/upload" ||
     request.nextUrl.pathname === "/api/image/upload" ||
     request.nextUrl.pathname === "/api/product/upload" ||
     request.nextUrl.pathname === "/api/user/updateProfile" ||
     request.nextUrl.pathname === "/api/cart" ||
+    request.nextUrl.pathname === "/api/webhook" ||
+    request.nextUrl.pathname === "/api/refund" ||
+    request.nextUrl.pathname === "/api/save-transaction" ||
     request.nextUrl.pathname === "/api/products" ||
     request.nextUrl.pathname === "/api/user/getUser" ||
     request.nextUrl.pathname === "/api/product"
   ) {
     return NextResponse.next();
   }
-  if (request.nextUrl.pathname === "/api/oldauth/logout") {
+  if (request.nextUrl.pathname === "/api/old-auth/logout") {
     const response = NextResponse.next();
     response.cookies.delete("token");
     return response;
