@@ -7,7 +7,7 @@ import { useDebounce } from "use-debounce";
 export function Search({ pageText }: { pageText: string }) {
   const router = useRouter();
   const [text, setText] = useState("");
-  const [query] = useDebounce(text, 3000);
+  const [query] = useDebounce(text, 300);
 
   useEffect(() => {
     if (!query) {

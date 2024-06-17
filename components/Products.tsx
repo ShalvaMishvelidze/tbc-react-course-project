@@ -28,6 +28,7 @@ const Products = ({
 
   useEffect(() => {
     if (searchString) {
+      setCurrentPage(1);
       setSearch(searchString);
     }
   }, [searchString]);
