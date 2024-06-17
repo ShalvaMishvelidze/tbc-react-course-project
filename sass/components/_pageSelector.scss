@@ -1,0 +1,26 @@
+.pages {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  button {
+    background-color: $clr-violet;
+    height: 2.5rem;
+    padding: 0 0.7rem;
+    border-radius: 0.5rem;
+    font-size: $fs-big;
+    font-weight: $fw-bold;
+
+    &.active {
+      background-color: $clr-purple;
+    }
+
+    &:hover {
+      background-color: $clr-purple;
+    }
+  }
+
+  .space {
+    width: 1rem;
+  }
+}

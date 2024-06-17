@@ -64,7 +64,7 @@ const products_en = {
   heading: "products",
   sort: {
     heading: "sort",
-    options: ["a-z", "z-a", "price high", "price low"],
+    options: ["a-z", "z-a", "price asc", "price dec"],
   },
   addToCart: "add to cart",
 };

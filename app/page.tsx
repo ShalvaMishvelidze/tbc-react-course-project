@@ -11,7 +11,7 @@ const page = async () =>
   // { searchParams }: { searchParams: { search: string } }
   {
     const { language }: { language: string } = await getSystemPreferences();
-    const products: any = await getProducts();
+    const products: any = await getProducts("", "", "", 1);
     // searchParams.search
     const pageText: Type = libraries[language].main.products;
 
