@@ -214,7 +214,16 @@ const ProductEditModal = ({
           {text.discountpercentage}:
         </label>
         <input
-          onChange={handleChange}
+          onChange={(e) => {
+            if (e.target.value.length > 2) {
+              setProduct({
+                ...product,
+                discountpercentage: 99,
+              });
+            } else {
+              handleChange(e);
+            }
+          }}
           className="edit-product-input"
           type="number"
           data-type="discountpercentage"
