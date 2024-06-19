@@ -1,21 +1,10 @@
-import { getAllPosts } from "@/utils/actions/blog_actions";
-import { Blog } from "../../../components/Blog";
-import { Post } from "@/utils/interfaces";
+import Blogs from "@/components/Blogs";
 import { getSession } from "@auth0/nextjs-auth0";
 
-const Blogs = async () => {
+const page = async () => {
   const session = await getSession();
-  const posts: Post[] = (await getAllPosts(
-    session?.user.sub as string
-  )) as Post[];
 
-  return (
-    <section className="blogs">
-      {posts.map((post) => {
-        return <Blog key={post.id} post={post} user={session?.user} />;
-      })}
-    </section>
-  );
+  return <Blogs user={session?.user} />;
 };
 
-export default Blogs;
+export default page;

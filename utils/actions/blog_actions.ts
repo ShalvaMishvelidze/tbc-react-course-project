@@ -1,6 +1,11 @@
 "use server";
 import { sql } from "@vercel/postgres";
 
+export async function getBlogPageCount() {
+  const count = await sql`SELECT COUNT(*) FROM posts;`;
+  return Math.ceil(count.rows[0].count / 12);
+}
+
 export const addNewPost = async (
   title: string,
   body: string,
@@ -17,14 +22,23 @@ export const addNewPost = async (
   }
 };
 
-export const getAllPosts = async (current_user_id: string) => {
+export const getAllPosts = async (
+  current_user_id: string,
+  search: string,
+  page: number
+) => {
   try {
     const posts = await sql`SELECT p.*,
        COALESCE(SUM(CASE WHEN pl.vote_type = 'like' THEN 1 ELSE 0 END), 0) AS total_likes,
        COALESCE(SUM(CASE WHEN pl.vote_type = 'dislike' THEN 1 ELSE 0 END), 0) AS total_dislikes,
        COALESCE(current_user_vote.vote_type, 'none') AS user_vote_type,
        COALESCE(v.view_count, 0) AS views
-FROM posts p
+FROM (
+    SELECT *
+    FROM posts
+    WHERE title ILIKE ${"%" + search + "%"}
+    LIMIT 12 OFFSET ${(page - 1) * 12}
+) p
 LEFT JOIN post_likes pl ON p.id = pl.post_id
 LEFT JOIN post_likes current_user_vote 
     ON p.id = current_user_vote.post_id AND current_user_vote.owner_id = ${current_user_id}
@@ -32,9 +46,9 @@ LEFT JOIN (
     SELECT post_id, COUNT(*) AS view_count
     FROM post_views
     GROUP BY post_id
-) v ON p.id = v.post_id
- GROUP BY p.id, current_user_vote.vote_type, v.view_count;
-;
+) v ON p.id = v.post_id 
+GROUP BY p.id, p.title, p.body, p.tags, p.owner_id, 
+p.created_at, p.updated_at, current_user_vote.vote_type, v.view_count;
 `;
     return posts.rows;
   } catch (error) {
@@ -42,6 +56,7 @@ LEFT JOIN (
     return [];
   }
 };
+
 export const getMyPosts = async (current_user_id: string) => {
   try {
     const posts = await sql`SELECT p.*,

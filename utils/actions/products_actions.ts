@@ -22,8 +22,7 @@ export async function getProducts(
         FROM ratings
         GROUP BY product_id
     ) avg_rating ON p.id = avg_rating.product_id
-    LIMIT 12 OFFSET ${(page - 1) * 12};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   } else if (search && !sort && !order) {
     const products =
@@ -35,8 +34,7 @@ export async function getProducts(
         GROUP BY product_id
     ) avg_rating ON p.id = avg_rating.product_id
     WHERE p.name ilike ${"%" + search + "%"}
-    LIMIT 12 OFFSET ${page - 1};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   } else if (!search && sort === "name" && order === "asc") {
     const products =
@@ -48,8 +46,7 @@ export async function getProducts(
         GROUP BY product_id
     ) avg_rating ON p.id = avg_rating.product_id
     ORDER BY p.name ASC
-    LIMIT 12 OFFSET ${page - 1};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   } else if (!search && sort === "name" && order === "desc") {
     const products =
@@ -61,8 +58,7 @@ export async function getProducts(
         GROUP BY product_id
     ) avg_rating ON p.id = avg_rating.product_id
     ORDER BY p.name DESC
-    LIMIT 12 OFFSET ${page - 1};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   } else if (!search && sort === "price" && order === "asc") {
     const products =
@@ -74,8 +70,7 @@ export async function getProducts(
         GROUP BY product_id
     ) avg_rating ON p.id = avg_rating.product_id
     ORDER BY p.price ASC
-    LIMIT 12 OFFSET ${page - 1};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   } else if (!search && sort === "price" && order === "desc") {
     const products =
@@ -87,8 +82,7 @@ export async function getProducts(
         GROUP BY product_id
     ) avg_rating ON p.id = avg_rating.product_id
     ORDER BY p.price DESC
-    LIMIT 12 OFFSET ${page - 1};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   } else if (search && sort === "name" && order === "asc") {
     const products =
@@ -101,8 +95,7 @@ export async function getProducts(
     ) avg_rating ON p.id = avg_rating.product_id
     WHERE p.name ilike ${"%" + search + "%"}
     ORDER BY p.name ASC
-    LIMIT 12 OFFSET ${page - 1};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   } else if (search && sort === "name" && order === "desc") {
     const products =
@@ -115,8 +108,7 @@ export async function getProducts(
     ) avg_rating ON p.id = avg_rating.product_id
     WHERE p.name ilike ${"%" + search + "%"}
     ORDER BY p.name DESC
-    LIMIT 12 OFFSET ${page - 1};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   } else if (search && sort === "price" && order === "asc") {
     const products =
@@ -129,8 +121,7 @@ export async function getProducts(
     ) avg_rating ON p.id = avg_rating.product_id
     WHERE p.name ilike ${"%" + search + "%"}
     ORDER BY p.price ASC
-    LIMIT 12 OFFSET ${page - 1};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   } else if (search && sort === "price" && order === "desc") {
     const products =
@@ -143,8 +134,7 @@ export async function getProducts(
     ) avg_rating ON p.id = avg_rating.product_id
     WHERE p.name ilike ${"%" + search + "%"}
     ORDER BY p.price DESC
-    LIMIT 12 OFFSET ${page - 1};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   } else {
     const products =
@@ -155,8 +145,7 @@ export async function getProducts(
         FROM ratings
         GROUP BY product_id
     ) avg_rating ON p.id = avg_rating.product_id
-    LIMIT 12 OFFSET ${(page - 1) * 12};
-    `;
+LIMIT 12 OFFSET ${(page - 1) * 12};    `;
     return products.rows;
   }
 }

@@ -2,7 +2,7 @@ import { Post } from "@/utils/interfaces";
 import Link from "next/link";
 import ReactionsContainer from "./ReactionsContainer";
 
-export function Blog({ post, user }: { post: Post; user: any }) {
+export function SingleBlog({ post, user }: { post: Post; user: any }) {
   return (
     <article className="blog">
       <h4 className="blog-title">{post.title}</h4>
