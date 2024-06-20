@@ -1,12 +1,12 @@
-import Logout from "./Logout";
-import { NavLink } from "./NavLink";
 import LanguageSelector from "./LanguageSelector";
 import ChangeTheme from "./ChangeTheme";
+import { getCartTotalCookie } from "@/utils/actions/cart_actions";
 import CartBtn from "./CartBtn";
-import { cookies } from "next/headers";
+import { getSession } from "@auth0/nextjs-auth0";
+import User from "./User";
+import Link from "next/link";
 
-const Nav = ({
-  nav,
+const Nav = async ({
   lang,
   systemPreferences,
 }: {
@@ -14,25 +14,36 @@ const Nav = ({
   lang: string[];
   systemPreferences: { language: string; theme: string };
 }) => {
-  const cookieStore = cookies();
-  const cart_total: any = cookieStore.get("cart_total");
-
+  const total = await getCartTotalCookie();
+  const session = await getSession();
   return (
     <nav className="navigation">
       <div className="navigation-left">
-        {nav.map((link) => {
-          return <NavLink key={link.text} text={link.text} href={link.href} />;
-        })}
+        <Link className="nav-link" href={"/"}>
+          Home
+        </Link>
+        <Link className="nav-link" href={"/store"}>
+          Store
+        </Link>
+        <Link className="nav-link" href={"/blog"}>
+          Blog
+        </Link>
+        <Link className="nav-link" href={"/premium"}>
+          Premium
+        </Link>
+        <Link className="nav-link" href={"/contact"}>
+          Contact
+        </Link>
       </div>
       <div className="navigation-right">
-        <CartBtn cart_total={cart_total} />
+        <CartBtn cart_total={total} />
         <LanguageSelector
           reload={false}
           lang={lang}
           systemPreferences={systemPreferences}
         />
         <ChangeTheme />
-        <Logout />
+        {session?.user ? <User /> : <a href="/api/auth/login">login</a>}
       </div>
     </nav>
   );

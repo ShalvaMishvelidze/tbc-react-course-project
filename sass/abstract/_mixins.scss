@@ -10,6 +10,25 @@
   animation: loading 2s ease-in-out infinite;
 }
 
+@mixin userLoadAnimation {
+  background: linear-gradient(
+    to right,
+    $clr-red-4 35%,
+    $clr-red-7 50%,
+    $clr-red-4 65%
+  );
+  background-size: 300% 100%;
+  animation-timing-function: linear;
+  animation: loading 1.6s ease infinite;
+}
+
+@mixin centerHW {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @mixin centerHW {
   position: absolute;
   top: 50%;

@@ -11,9 +11,9 @@ export function Search({ pageText }: { pageText: string }) {
 
   useEffect(() => {
     if (!query) {
-      router.push("/");
+      router.push("/store");
     } else {
-      router.push(`/?search=${query}`);
+      router.push(`/store?search=${query}`);
     }
   }, [query, router]);
 

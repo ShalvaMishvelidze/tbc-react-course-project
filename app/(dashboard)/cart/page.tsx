@@ -1,22 +1,15 @@
 import Cart from "@/components/Cart";
-import { cookies } from "next/headers";
+import { getCart } from "@/utils/actions/cart_actions";
+import { getSession } from "@auth0/nextjs-auth0";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-const page = async () => {
-  const token: any = cookies().get("token");
+export default withPageAuthRequired(
+  async () => {
+    const session = await getSession();
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL as string}api/cart`, {
-    method: "GET",
-    headers: {
-      Authorization: `${token.value}`,
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
+    const data = await getCart(session?.user.sub);
 
-  return (
-    <>
-      <Cart data={data} />
-    </>
-  );
-};
-export default page;
+    return <Cart data={data} />;
+  },
+  { returnTo: "/cart" }
+);

@@ -1,6 +1,6 @@
 import { libraries } from "../utils/constants";
-import { NavLink } from "../components/NavLink";
 import { getSystemPreferences } from "../utils/actions";
+import Link from "next/link";
 
 const Footer = async () => {
   const systemPreferences = await getSystemPreferences();
@@ -21,11 +21,21 @@ const Footer = async () => {
           </a>
         </div>
         <div className="footer-left-bottom">
-          {footer.nav.map((link) => {
-            return (
-              <NavLink key={link.text} text={link.text} href={link.href} />
-            );
-          })}
+          <Link className="nav-link" href={"/"}>
+            Home
+          </Link>
+          <Link className="nav-link" href={"/store"}>
+            Store
+          </Link>
+          <Link className="nav-link" href={"/blog"}>
+            Blog
+          </Link>
+          <Link className="nav-link" href={"/premium"}>
+            Premium
+          </Link>
+          <Link className="nav-link" href={"/contact"}>
+            Contact
+          </Link>
         </div>
       </div>
       <div className="footer-right">

@@ -1,0 +1,33 @@
+"use client";
+const AdminOrder = ({ order, setDel }: any) => {
+  const userOffsetMinutes = order.created_at.getTimezoneOffset();
+
+  const userOffsetMillis = userOffsetMinutes * 60 * 1000;
+  const localDateObj = new Date(order.created_at.getTime() - userOffsetMillis);
+
+  const formattedLocalDate = localDateObj.toLocaleString();
+  return (
+    <div className="admin-order">
+      <div className="admin-order-container">
+        <h2 className="admin-order-name">{order.name} </h2>
+        <p className="admin-order-email">{order.email}</p>
+      </div>
+      <h3 className="admin-order-title">{order.title}</h3>
+      <p className="admin-order-date">{formattedLocalDate}</p>
+      <h2 className="admin-order-price">{order.price}$</h2>
+      <button
+        className="admin-order-btn"
+        onClick={async () => {
+          await fetch("/api/refund", {
+            method: "POST",
+            body: JSON.stringify({ order_id: order.order_id }),
+          });
+          setDel(true);
+        }}
+      >
+        refund
+      </button>
+    </div>
+  );
+};
+export default AdminOrder;

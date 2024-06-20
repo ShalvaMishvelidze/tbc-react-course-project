@@ -1,157 +1,501 @@
 .admin {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  @include normalizeForAll;
-
-  @media (max-width: $breakpoint-xl) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (max-width: $breakpoint-lg) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: $breakpoint-md) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  @media (max-width: $breakpoint-sm) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  &-add-btn {
-    background-color: $clr-bcg-secondary-dark;
-    border-radius: 0.5rem;
-    font-size: $fs-giant;
-    text-transform: uppercase;
-    font-weight: $fw-bold;
-    color: $clr-violet;
+  &-nav {
     display: flex;
-    justify-content: center;
     align-items: center;
-    @media (max-width: 768px) {
-      height: 100px;
-    }
+    gap: 2rem;
+    margin-bottom: 2rem;
 
-    &:hover {
-      background-color: $clr-bcg-primary-dark;
-      color: $clr-violet-dark;
+    button {
+      background-color: $clr-violet;
+      font-size: $fs-bigger;
+      padding: 0.5rem 1rem;
+      border-radius: 0.8rem;
+
+      &:hover {
+        background-color: $clr-purple;
+      }
+
+      &.active {
+        background-color: $clr-purple;
+      }
     }
   }
 
-  .user {
-    border: 1px solid $clr-gray;
-    border-radius: 0.5rem;
-    padding: 1rem 2rem;
+  &-container {
+    width: 100%;
+  }
+
+  &-users {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  &-user {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    gap: 2rem;
+    padding: 3rem;
+    background-color: $clr-bcg-primary;
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem $clr-bcg-secondary-dark;
+
+    &-left {
+      height: 12rem;
+      width: 12rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem;
+      }
+    }
+
+    &-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      h4 {
+        font-size: $fs-bigger;
+      }
+
+      p {
+        font-size: $fs-regular;
+        font-weight: $fw-bold;
+      }
+
+      h5 {
+        font-size: $fs-big;
+      }
+    }
+
+    &-bottom {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 2rem;
+
+      button {
+        background-color: $clr-violet;
+        font-size: $fs-big;
+        padding: 0.4rem 1rem;
+        border-radius: 0.5rem;
+
+        &:hover {
+          background-color: $clr-purple;
+        }
+      }
+    }
+  }
+
+  &-posts {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
+
+  &-post {
+    background-color: $clr-bcg-primary;
+    padding: 2rem 4rem;
+    border-radius: 1rem;
+    border: 2px solid $clr-bcg-primary-light;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 0 4rem $clr-bcg-secondary-dark;
+
+    &-tags {
+      display: flex;
+      gap: 1rem;
+      padding: 2rem 0;
+
+      span {
+        background-color: $clr-bcg-secondary-light;
+        padding: 0.4rem 1rem;
+        border-radius: 0.5rem;
+      }
+    }
+
+    &-btns {
+      display: flex;
+      gap: 1rem;
+
+      button {
+        background-color: $clr-violet;
+        font-size: $fs-big;
+        padding: 0.4rem 1rem;
+        border-radius: 0.5rem;
+
+        &:hover {
+          background-color: $clr-purple;
+        }
+      }
+    }
+
+    &-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $clr-bcg-primary-dark-transparent;
+
+      h2 {
+        font-size: $fs-bigger;
+        margin-bottom: 2rem;
+      }
+
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $clr-bcg-primary-light;
+        padding: 5rem;
+        border-radius: 3rem;
+
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+
+          input {
+            width: calc(100% - 2.4rem);
+            padding: 0.5rem 1rem;
+            font-size: $fs-regular;
+          }
+
+          textarea {
+            height: 16rem;
+            color: $clr-bcg-primary;
+            padding: 0.5rem 1rem;
+            width: 60rem;
+            font-size: $fs-regular;
+          }
+
+          .tags {
+            display: flex;
+            gap: 1rem;
+
+            .tag {
+              background-color: $clr-bcg-secondary-light;
+              padding: 0.4rem 1rem;
+              font-size: $fs-big;
+              font-weight: $fw-bold;
+              border-radius: 1rem;
+              position: relative;
+
+              button {
+                position: absolute;
+                right: -1rem;
+                top: -1rem;
+                font-size: $fs-big;
+                background-color: $clr-purple;
+                width: 2.5rem;
+                height: 2.5rem;
+                font-weight: $fw-bold;
+                border-radius: 50%;
+              }
+            }
+          }
+          .tag-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+
+            input {
+              width: 30%;
+              border-radius: 0.5rem;
+            }
+
+            button {
+              background-color: $clr-violet;
+              font-size: $fs-big;
+              padding: 0.3rem 1rem;
+              border-radius: 0.5rem;
+              text-transform: uppercase;
+
+              &:hover {
+                background-color: $clr-purple;
+              }
+            }
+          }
+        }
+
+        &-btns {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 2rem;
+
+          button {
+            background-color: $clr-violet;
+            font-size: $fs-big;
+            padding: 0.4rem 1rem;
+            border-radius: 0.5rem;
+
+            &:hover {
+              background-color: $clr-purple;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-products {
+    &-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $clr-bcg-primary-dark-transparent;
+
+      &-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $clr-bcg-primary-light;
+        padding: 3rem 5rem;
+        border-radius: 2rem;
+
+        .input-container {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          row-gap: 1rem;
+          column-gap: 2rem;
+
+          & > :nth-child(1),
+          & > :nth-child(2),
+          & > :nth-child(3) {
+            grid-row: 1;
+            grid-column: span 2;
+          }
+
+          & > :nth-child(4),
+          & > :nth-child(5) {
+            grid-row: 2;
+            grid-column: span 3;
+          }
+
+          & > :nth-child(6) {
+            grid-column: 1 / -1;
+          }
+
+          div {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            label {
+              text-transform: capitalize;
+            }
+
+            input {
+              font-size: $fs-regular;
+              padding: 0.2rem 0.5rem;
+            }
+
+            textarea {
+              font-size: $fs-regular;
+              padding: 0.2rem 0.5rem;
+              color: $clr-bcg-primary;
+              height: 15rem;
+            }
+          }
+        }
+      }
+
+      &-images {
+        display: flex;
+        gap: 3rem;
+        margin-top: 2rem;
+
+        label {
+          text-transform: capitalize;
+          background-color: $clr-violet;
+          padding: 0.5rem 0rem;
+          width: fit-content;
+          border-radius: 0.5rem;
+          width: 13rem;
+          text-align: center;
+          font-size: $fs-regular;
+          display: block;
+        }
+
+        input {
+          display: none;
+        }
+
+        img {
+          width: 13rem;
+          height: 13rem;
+        }
+
+        .image-container {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          width: fit-content;
+          align-items: center;
+        }
+
+        .images-container {
+          display: flex;
+          gap: 2rem;
+
+          &-images {
+            display: flex;
+            justify-content: flex-start;
+            gap: 2rem;
+
+            .container {
+              width: 13rem;
+              position: relative;
+              z-index: 1;
+
+              button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: $clr-violet;
+                width: 3rem;
+                height: 3rem;
+                z-index: 10;
+                font-size: $fs-big;
+                font-weight: $fw-bold;
+              }
+            }
+          }
+        }
+      }
+
+      &-btn-container {
+        display: flex;
+        margin-top: 3rem;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+
+        button {
+          padding: 0.5rem 1rem;
+          font-size: $fs-big;
+          background-color: $clr-violet;
+          border-radius: 0.5rem;
+        }
+      }
+    }
+  }
+
+  &-product {
+    background-color: $clr-bcg-primary;
+    outline: 4px solid $clr-bcg-primary-light;
+    padding: 2rem 3rem;
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 1rem;
+    box-shadow: 0 0 4rem $clr-bcg-secondary-dark;
 
-    &-info-container {
+    img {
+      width: 100%;
+      height: 20rem;
+      border-radius: 1rem;
+      object-fit: fill;
+    }
+
+    &-info {
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    &-name {
-      color: $clr-purple;
-    }
-
-    &-email {
-      color: $clr-purple;
-    }
-
-    &-role {
-      color: $clr-purple;
-
-      &.special {
-        color: $clr-violet;
-      }
-    }
-
-    &-btn-container {
-      display: flex;
-      gap: 1rem;
+      justify-content: space-between;
       align-items: center;
+      gap: 1rem;
+      text-transform: capitalize;
+    }
+
+    &-btns {
+      display: flex;
+      gap: 1rem;
 
       button {
-        width: 50%;
-        padding: 0.5rem 0;
+        background-color: $clr-violet;
+        font-size: $fs-big;
+        padding: 0.4rem 1rem;
         border-radius: 0.5rem;
 
-        &:first-child {
-          background-color: $clr-violet;
-
-          &:hover {
-            background-color: $clr-violet-dark;
-          }
-        }
-        &:last-child {
+        &:hover {
           background-color: $clr-purple;
-
-          &:hover {
-            background-color: $clr-purple-dark;
-          }
         }
       }
+    }
+
+    &-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4rem;
+      margin-top: 3rem;
     }
   }
 
-  .modal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.473);
+  &-orders {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  &-order {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: $clr-bcg-primary-light;
+    border: 2px solid $clr-bcg-secondary-light;
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 4rem $clr-bcg-secondary-dark;
 
-    form {
-      width: 30%;
+    &-container {
       display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      background-color: $clr-bcg-secondary-dark;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 1px 2px 2rem $clr-bcg-primary-light;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
 
-      input {
-        padding: 0.3rem;
-      }
+    &-title {
+      font-size: $fs-regular;
+    }
 
-      .radio-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
+    &-name,
+    &-email {
+      font-size: $fs-big;
+    }
 
-        label {
-          height: 2rem;
-          line-height: 1.7rem;
-          text-transform: capitalize;
-        }
-      }
+    &-date {
+      font-size: $fs-regular;
+      font-weight: $fw-bold;
+      color: $clr-bcg-secondary-light;
+    }
 
-      button {
-        padding: 1rem 0;
-        background-color: $clr-violet;
-        width: 50%;
-        margin: 0 auto;
-        border-radius: 1rem;
-        font-size: $fs-big;
-        font-weight: $fw-bold;
-        letter-spacing: 0.1rem;
+    &-btn {
+      background-color: $clr-violet;
+      padding: 1rem;
+      font-size: $fs-bigger;
+      border-radius: 0.5rem;
+      text-transform: uppercase;
+      font-weight: $fw-bold;
 
-        &:hover {
-          background-color: $clr-violet-dark;
-        }
+      &:hover {
+        background-color: $clr-purple;
       }
     }
   }
