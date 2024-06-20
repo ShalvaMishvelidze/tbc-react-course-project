@@ -55,7 +55,13 @@ const AdminProducts = () => {
   }, [get]);
 
   useEffect(() => {
-    getProductsPageCount().then((count) => {
+    getProductsPageCount(search).then((count) => {
+      setTotalPages(count);
+    });
+  }, [search]);
+
+  useEffect(() => {
+    getProductsPageCount("").then((count) => {
       setTotalPages(count);
     });
   }, []);
@@ -76,7 +82,7 @@ const AdminProducts = () => {
           setEdit={setEdit}
         />
       )}
-      <AdminSearch pageText="search products" />
+      <AdminSearch pageText="search products" page="products" />
       <div className="admin-product-container">
         {products.map((product: any) => {
           return (

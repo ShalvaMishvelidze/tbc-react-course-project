@@ -56,7 +56,12 @@ const AdminPosts = () => {
   };
 
   useEffect(() => {
-    getPostPageCount().then((count) => {
+    getPostPageCount(search).then((count) => {
+      setTotalPages(count);
+    });
+  }, [search]);
+  useEffect(() => {
+    getPostPageCount("").then((count) => {
       setTotalPages(count);
     });
   }, []);
@@ -88,7 +93,7 @@ const AdminPosts = () => {
           post={post}
         />
       )}
-      <AdminSearch pageText="search Posts" />
+      <AdminSearch pageText="search Posts" page="posts" />
       <div className="admin-posts">
         {posts.map((post: any) => {
           return (

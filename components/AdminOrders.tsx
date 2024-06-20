@@ -1,12 +1,12 @@
-import { getUserPageCount, getUsers } from "@/utils/actions/admin_actions";
+import { getOrdersPageCount, getOrders } from "@/utils/actions/admin_actions";
 import { useEffect, useState } from "react";
-import AdminUser from "./AdminUser";
+import AdminOrder from "./AdminOrder";
 import { AdminSearch } from "./AdminSearch";
 import { useSearchParams } from "next/navigation";
 import PageSelector from "./PageSelector";
 
-const AdminUsers = () => {
-  const [users, setUsers] = useState<any>([]);
+const AdminOrders = () => {
+  const [orders, setOrders] = useState<any>([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -23,8 +23,8 @@ const AdminUsers = () => {
   }, [searchString]);
 
   useEffect(() => {
-    getUsers(search, page).then((res) => {
-      setUsers(res);
+    getOrders(search, page).then((res) => {
+      setOrders(res);
     });
   }, [search, page]);
 
@@ -33,26 +33,27 @@ const AdminUsers = () => {
   };
 
   useEffect(() => {
-    getUserPageCount(search).then((count) => {
+    getOrdersPageCount(search).then((count) => {
       setTotalPages(count);
     });
   }, [search]);
+
   useEffect(() => {
-    getUserPageCount("").then((count) => {
+    getOrdersPageCount("").then((count) => {
       setTotalPages(count);
     });
   }, []);
 
   useEffect(() => {
-    getUsers(search, page).then((res) => {
-      setUsers(res);
+    getOrders(search, page).then((res) => {
+      setOrders(res);
     });
   }, []);
 
   useEffect(() => {
     if (del) {
-      getUsers(search, 1).then((res) => {
-        setUsers(res);
+      getOrders(search, 1).then((res) => {
+        setOrders(res);
         setDel(false);
         setPage(1);
       });
@@ -61,10 +62,10 @@ const AdminUsers = () => {
 
   return (
     <>
-      <AdminSearch pageText="search users" page="users" />
-      <div className="admin-users">
-        {users.map((user: any) => {
-          return <AdminUser user={user} key={user.id} setDel={setDel} />;
+      <AdminSearch pageText="search orders" page="orders" />
+      <div className="admin-orders">
+        {orders.map((order: any) => {
+          return <AdminOrder order={order} key={order.id} setDel={setDel} />;
         })}
       </div>
       {totalPages > 1 && (
@@ -77,4 +78,4 @@ const AdminUsers = () => {
     </>
   );
 };
-export default AdminUsers;
+export default AdminOrders;

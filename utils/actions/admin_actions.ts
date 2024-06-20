@@ -12,9 +12,11 @@ export const getUsers = async (search: string, page: number) => {
   return users.rows;
 };
 
-export const getUserPageCount = async () => {
+export const getUserPageCount = async (search: string) => {
   const count = await sql`
-        SELECT COUNT(*) FROM users;
+        SELECT COUNT(*) FROM users 
+        WHERE lower(concat(name, ' ', lastname, ' ', email)) 
+        ILIKE lower(${"%" + search + "%"});
         `;
   return Math.ceil(count.rows[0].count / 12);
 };
@@ -27,9 +29,10 @@ export const getProducts = async (search: string, page: number) => {
   return products.rows;
 };
 
-export const getProductsPageCount = async () => {
+export const getProductsPageCount = async (search: string) => {
   const count = await sql`
-        SELECT COUNT(*) FROM products;
+        SELECT COUNT(*) FROM products 
+        WHERE name ILIKE ${"%" + search + "%"};
         `;
   return Math.ceil(count.rows[0].count / 12);
 };
@@ -42,9 +45,10 @@ export const getPosts = async (search: string, page: number) => {
   return posts.rows;
 };
 
-export const getPostPageCount = async () => {
+export const getPostPageCount = async (search: string) => {
   const count = await sql`
-            SELECT COUNT(*) FROM posts;
+            SELECT COUNT(*) FROM posts 
+            WHERE title ILIKE ${"%" + search + "%"};
             `;
   return Math.ceil(count.rows[0].count / 12);
 };
@@ -100,4 +104,26 @@ export const deleteProduct = async (id: number) => {
   await sql`
         DELETE FROM products
         WHERE id = ${id};`;
+};
+
+export const getOrders = async (search: string, page: number) => {
+  const orders = await sql`
+    SELECT orders.*, users.name, users.email 
+    FROM orders 
+    INNER JOIN users ON orders.user_id = users.id
+    WHERE orders.title ILIKE ${"%" + search + "%"} 
+    OR users.name ILIKE ${"%" + search + "%"} 
+    OR users.email ILIKE ${"%" + search + "%"} 
+    LIMIT 12 OFFSET ${(page - 1) * 12};`;
+  return orders.rows;
+};
+
+export const getOrdersPageCount = async (search: string) => {
+  const count = await sql`
+        SELECT COUNT(*) FROM orders 
+        INNER JOIN users ON orders.user_id = users.id
+        WHERE orders.title ILIKE ${"%" + search + "%"} 
+        OR users.name ILIKE ${"%" + search + "%"} 
+        OR users.email ILIKE ${"%" + search + "%"};`;
+  return Math.ceil(count.rows[0].count / 12);
 };
