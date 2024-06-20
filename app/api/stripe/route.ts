@@ -1,3 +1,4 @@
+import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { v4 as uuidv4 } from "uuid";
@@ -6,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-04-10", // Use the latest API version
 });
 
-export async function POST(req: NextRequest) {
+export const POST = withApiAuthRequired(async (req: NextRequest) => {
   const cart = await req.json();
   const id = req.headers.get("id");
 
@@ -59,4 +60,4 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ error: err }, { status: 500 });
   }
-}
+});

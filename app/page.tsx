@@ -1,22 +1,14 @@
-import { getSystemPreferences } from "../utils/actions";
-import Products from "../components/Products";
 import Content from "../layout/Content";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
-import { libraries } from "../utils/constants";
-import { Products as Type } from "@/utils/interfaces";
-import { getProducts } from "@/utils/actions/products_actions";
+import Home from "@/components/Home";
 
 const page = async () => {
-  const { language }: { language: string } = await getSystemPreferences();
-  const products: any = await getProducts("", "", "", 1);
-  const pageText: Type = libraries[language].main.products;
-
   return (
     <>
       <Header />
       <Content>
-        <Products pageText={pageText} products={products} />
+        <Home />
       </Content>
       <Footer />
     </>

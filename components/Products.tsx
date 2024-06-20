@@ -111,7 +111,7 @@ const Products = ({
       <div className="products-container">
         {sortedProducts.map((product) => {
           return (
-            <Link href={`/${product.id}`} key={product.id}>
+            <Link href={`/store/${product.id}`} key={product.id}>
               <Product
                 product={product}
                 addToCart={pageText.addToCart as string}

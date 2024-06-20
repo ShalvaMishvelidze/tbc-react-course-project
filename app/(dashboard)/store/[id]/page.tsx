@@ -1,5 +1,5 @@
-import { getSystemPreferences } from "../../../utils/actions";
-import ImageContainer from "../../../components/ImageContainer";
+import { getSystemPreferences } from "../../../../utils/actions";
+import ImageContainer from "../../../../components/ImageContainer";
 import AddToCart from "@/components/AddToCart";
 import { libraries } from "@/utils/constants";
 import { getSingleProduct } from "@/utils/actions/products_actions";

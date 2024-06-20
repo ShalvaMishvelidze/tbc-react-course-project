@@ -6,8 +6,9 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 // 4242424242424242
+import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 
-export async function POST(req: NextRequest) {
+export const POST = withApiAuthRequired(async (req: NextRequest) => {
   const payload = await req.text();
   const sig = req.headers.get("Stripe-Signature")!;
 
@@ -50,4 +51,4 @@ export async function POST(req: NextRequest) {
     console.log("Error: ", error);
     return NextResponse.json({ status: 400, error: error });
   }
-}
+});

@@ -1,7 +1,8 @@
 import { sql } from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
+import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 
-export const POST = async (request: NextRequest) => {
+export const POST = withApiAuthRequired(async (request: NextRequest) => {
   const id = request.headers.get("id");
   const {
     name,
@@ -30,4 +31,4 @@ export const POST = async (request: NextRequest) => {
       { status: 200 }
     );
   }
-};
+});
