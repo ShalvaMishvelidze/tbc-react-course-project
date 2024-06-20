@@ -1,13 +1,12 @@
 import { cookies } from "next/headers";
 import CartBtn from "./CartBtn";
-import { NavLink } from "./NavLink";
 import LanguageSelector from "./LanguageSelector";
 import ChangeTheme from "./ChangeTheme";
 import Logout from "./Logout";
 import SidebarBtn from "./SidebarBtn";
+import Link from "next/link";
 
 const Sidebar = ({
-  nav,
   lang,
   systemPreferences,
 }: {
@@ -23,11 +22,21 @@ const Sidebar = ({
       <SidebarBtn />
       <aside className="sidebar">
         <div className="sidebar-nav">
-          {nav.map((link) => {
-            return (
-              <NavLink key={link.text} text={link.text} href={link.href} />
-            );
-          })}
+          <Link className="nav-link" href={"/"}>
+            Home
+          </Link>
+          <Link className="nav-link" href={"/store"}>
+            Store
+          </Link>
+          <Link className="nav-link" href={"/blog"}>
+            Blog
+          </Link>
+          <Link className="nav-link" href={"/premium"}>
+            Premium
+          </Link>
+          <Link className="nav-link" href={"/contact"}>
+            Contact
+          </Link>
         </div>
         <div className="sidebar-controls">
           <LanguageSelector

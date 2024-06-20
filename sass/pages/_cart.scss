@@ -3,8 +3,6 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 
-  @include normalizeForAll;
-
   @media (max-width: $breakpoint-xl) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -20,6 +18,19 @@
   @media (max-width: $breakpoint-sm) {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  &-total {
+    display: flex;
+    gap: 3rem;
+
+    &-btn {
+      font-size: $fs-bigger;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      background-color: $clr-violet;
+      border-radius: 0.5rem;
+    }
   }
 
   &-clear {

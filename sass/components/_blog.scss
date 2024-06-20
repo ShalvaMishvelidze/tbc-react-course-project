@@ -62,4 +62,21 @@
       text-decoration: underline;
     }
   }
+
+  &-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 2rem;
+
+    & button {
+      background-color: $clr-violet;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-size: $fs-big;
+      text-transform: uppercase;
+      font-weight: $fw-bold;
+    }
+  }
 }

@@ -1,0 +1,40 @@
+.new-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  background-color: $clr-bcg-primary;
+  padding: 5rem;
+  font-size: $fs-bigger;
+  text-transform: capitalize;
+  margin: 0 auto;
+  gap: 1rem;
+
+  textarea {
+    color: $clr-black;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: $fs-regular;
+  }
+
+  input {
+    height: 3rem;
+    width: 100%;
+    font-size: $fs-big;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .tag-form {
+    width: 100%;
+    display: flex;
+  }
+
+  button {
+    padding: 1rem 3rem;
+    background-color: $clr-violet;
+    border-radius: 0.5rem;
+  }
+}

@@ -1,0 +1,13 @@
+.rating {
+  margin: 2rem 0 1rem;
+  display: flex;
+  gap: 1rem;
+  &-btn {
+    color: $clr-white;
+    font-size: $fs-big;
+
+    & .active {
+      color: $clr-violet;
+    }
+  }
+}

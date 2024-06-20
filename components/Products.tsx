@@ -1,10 +1,13 @@
 "use client";
 import Product from "./Product";
 import { Search } from "./Search";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Sort from "./Sort";
 import Link from "next/link";
-import { Product as P, Products as Type } from "../utils/constants";
+import { Product as P, Products as Type } from "@/utils/interfaces";
+import PageSelector from "./PageSelector";
+import { getPageCount, getProducts } from "@/utils/actions/products_actions";
+import { useSearchParams } from "next/navigation";
 
 const Products = ({
   products,
@@ -13,43 +16,73 @@ const Products = ({
   products: P[];
   pageText: Type;
 }) => {
+  const [search, setSearch] = useState("");
   const [sortedProducts, setSortedProducts] = useState<P[] | undefined>(
     undefined
   );
-  const [sort, setSort] = useState("a-z");
-  const [sortStatus, setSortStatus] = useState("cleared"); // cleared || updated || sorted
+  const [sortStatus, setSortStatus] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const searchParams = useSearchParams();
+  const searchString = searchParams.get("search");
 
-  const sortProducts = () => {
-    if (sortStatus === "sorted") {
-      setSortedProducts([...products]);
-      setSortStatus("cleared");
+  useEffect(() => {
+    if (searchString) {
+      setCurrentPage(1);
+      setSearch(searchString);
+    }
+  }, [searchString]);
+
+  useEffect(() => {
+    getProducts(search, "", "", currentPage).then((products) => {
+      setSortedProducts(products as P[]);
+    });
+  }, [search, currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const sortProducts = (sort: string) => {
+    if (sortStatus === sort) {
+      setSortStatus("");
+      getProducts(search, "", "", currentPage).then((products) => {
+        setSortedProducts(products as P[]);
+      });
       return;
     }
 
-    setSortedProducts((_) => {
-      setSortStatus("sorted");
-      if (sort === "a-z") {
-        return [...products].sort((a, b) => a.title.localeCompare(b.title));
-      }
-      if (sort === "z-a") {
-        return [...products].sort((a, b) => b.title.localeCompare(a.title));
-      }
-      if (sort === "price-ascending") {
-        return [...products].sort((a, b) => a.price - b.price);
-      }
-      if (sort === "price-descending") {
-        return [...products].sort((a, b) => b.price - a.price);
-      }
-      return _;
-    });
+    if (sort === "a-z") {
+      setSortStatus("a-z");
+      getProducts(search, "name", "asc", currentPage).then((products) => {
+        setSortedProducts(products as P[]);
+      });
+    }
+    if (sort === "z-a") {
+      setSortStatus("z-a");
+      getProducts(search, "name", "desc", currentPage).then((products) => {
+        setSortedProducts(products as P[]);
+      });
+    }
+    if (sort === "price-ascending") {
+      setSortStatus("price-ascending");
+      getProducts(search, "price", "asc", currentPage).then((products) => {
+        setSortedProducts(products as P[]);
+      });
+    }
+    if (sort === "price-descending") {
+      setSortStatus("price-descending");
+      getProducts(search, "price", "desc", currentPage).then((products) => {
+        setSortedProducts(products as P[]);
+      });
+    }
   };
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSort((_) => {
-      setSortStatus("updated");
-      return e.target.value;
+  useEffect(() => {
+    getPageCount().then((count) => {
+      setTotalPages(count);
     });
-  };
+  }, []);
 
   useEffect(() => {
     setSortedProducts([...products]);
@@ -72,16 +105,13 @@ const Products = ({
       <Search pageText={pageText.search} />
       <div className="products-header">
         <h2 className="products-header-title">{pageText.heading as string}</h2>
-        <Sort
-          pageText={pageText.sort}
-          handleChange={handleChange}
-          sortProducts={sortProducts}
-        />
+        <Link href="/add-new-product">add new product</Link>
+        <Sort pageText={pageText.sort} sortProducts={sortProducts} />
       </div>
       <div className="products-container">
         {sortedProducts.map((product) => {
           return (
-            <Link href={`/${product.id}`} key={product.id}>
+            <Link href={`/store/${product.id}`} key={product.id}>
               <Product
                 product={product}
                 addToCart={pageText.addToCart as string}
@@ -89,6 +119,13 @@ const Products = ({
             </Link>
           );
         })}
+        {totalPages > 1 && (
+          <PageSelector
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        )}
       </div>
     </section>
   );

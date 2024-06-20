@@ -1,18 +1,19 @@
 import Admin from "@/components/Admin";
-import { getUsers } from "../../../utils/actions";
-import { cookies } from "next/headers";
+import { getUserRole } from "@/utils/actions/user_actions";
+import { getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-const page = async () => {
-  const cookieStore = cookies();
-  const roleCookie = cookieStore.get("role");
+export default withPageAuthRequired(
+  async () => {
+    const session = await getSession();
+    const role = await getUserRole(session?.user.sub);
 
-  if (roleCookie?.value !== "admin") {
-    redirect("/");
-  }
+    if (role !== "admin") {
+      return redirect("/");
+    }
 
-  const users = await getUsers();
-
-  return <Admin users={users} />;
-};
-export default page;
+    return <Admin />;
+  },
+  { returnTo: "/admin" }
+);
