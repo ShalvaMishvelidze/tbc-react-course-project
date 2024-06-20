@@ -1,4 +1,3 @@
-import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 import { sql } from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -7,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-04-10", // Use the latest API version
 });
 
-export const POST = withApiAuthRequired(async (req: NextRequest) => {
+export const POST = async (req: NextRequest) => {
   const { order_id } = await req.json();
 
   const dbRes = await sql`SELECT * FROM orders WHERE order_id=${order_id}`;
@@ -20,4 +19,4 @@ export const POST = withApiAuthRequired(async (req: NextRequest) => {
   console.log("refunded");
 
   return NextResponse.json({ refund }, { status: 200 });
-});
+};
