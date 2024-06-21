@@ -237,8 +237,8 @@ const addNewProduct_en = {
   category: "category",
   brand: "brand",
   discountpercentage: "discount percentage",
-  image: "image",
-  images: "images",
+  image: "add main image",
+  images: "add other images",
   addProduct: "add new product",
 };
 
@@ -249,8 +249,8 @@ const addNewProduct_ka = {
   category: "კატეგორია",
   brand: "ბრენდი",
   discountpercentage: "ფასდაკლება",
-  image: "სურათი",
-  images: "სურათები",
+  image: "მთავარი სურათის დამატება",
+  images: "სხვა სურათების დამატება",
   addProduct: "ახალი პროდუქტის დამატება",
 };
 
