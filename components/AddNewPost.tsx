@@ -119,13 +119,18 @@ const AddNewPost = ({ language }: { language: string }) => {
         <button
           onClick={async (e) => {
             e.preventDefault();
-            await addNewPost(
-              post.title,
-              post.body,
-              post.tags,
-              user?.sub as string
-            );
-            toast.success("Post added successfully!");
+            try {
+              await addNewPost(
+                post.title,
+                post.body,
+                post.tags,
+                user?.sub as string
+              );
+              toast.success("Post added successfully!");
+            } catch (error) {
+              console.log(error);
+              toast.error("Error adding post");
+            }
           }}
           type="submit"
           className="new-post-btn"

@@ -13,7 +13,7 @@ const User = () => {
     // Function to check if click is outside of ref
     if (typeof window !== undefined) {
       const handleClickOutside = (e: any) => {
-        if (node.current.contains(e.target)) {
+        if (node.current?.contains(e.target)) {
           // Inside click
           return;
         }
