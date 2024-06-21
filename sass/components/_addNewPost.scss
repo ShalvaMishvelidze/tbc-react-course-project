@@ -11,11 +11,18 @@
   margin: 0 auto;
   gap: 1rem;
 
+  &-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
   textarea {
     color: $clr-black;
     width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    height: 30rem;
+    padding: 0.5rem 1rem;
     font-size: $fs-regular;
   }
 
@@ -28,13 +35,47 @@
   }
 
   .tag-form {
-    width: 100%;
     display: flex;
+
+    input {
+      width: 20rem;
+    }
+
+    button {
+      border-radius: 0;
+      padding: 0 3rem;
+    }
   }
 
-  button {
-    padding: 1rem 3rem;
+  .tag {
+    position: relative;
+    padding: 0.5rem 1rem;
+    background-color: $clr-bcg-primary-light;
+    border: 3px solid $clr-bcg-secondary-light;
+    border-radius: 1rem;
+
+    &-btn {
+      position: absolute;
+      right: -0.5rem;
+      top: -0.5rem;
+      font-size: $fs-regular;
+      background-color: $clr-purple;
+      font-weight: $fw-bold;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+    }
+  }
+
+  &-btn {
     background-color: $clr-violet;
-    border-radius: 0.5rem;
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    text-transform: capitalize;
+    font-size: $fs-regular;
+
+    &:hover {
+      background-color: $clr-purple;
+    }
   }
 }

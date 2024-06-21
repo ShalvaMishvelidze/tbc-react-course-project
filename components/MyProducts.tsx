@@ -31,7 +31,7 @@ const MyProducts = ({ products: ps, text }: any) => {
             <div key={p.id} className="product">
               <h2>{p.name}</h2>
               <div className="product-image">
-                <Image src={p.image} alt={p.name} width={200} height={200} />
+                <Image src={p.image} alt={p.name} width={500} height={200} />
               </div>
               <p>{p.description}</p>
               <p>{p.price}$</p>
