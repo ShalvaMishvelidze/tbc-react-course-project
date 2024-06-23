@@ -11,7 +11,7 @@ const AddToCart = ({ text, product }: { text: string; product: any }) => {
 
   return (
     <button
-      className="cart-btn"
+      className="single-product-cart-btn"
       onClick={() => {
         addToCart(user?.sub as string, product.id).then((total) => {
           setCartTotalCookie(total);

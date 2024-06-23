@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export default function middleware(request: NextRequest) {
-  // let token = request.cookies.get("token");
   let language = request.cookies.get("language");
 
   if (
@@ -9,9 +8,9 @@ export default function middleware(request: NextRequest) {
     request.nextUrl.pathname === "/api/auth/logout" ||
     request.nextUrl.pathname === "/api/auth/callback" ||
     request.nextUrl.pathname === "/api/auth/me" ||
-    request.nextUrl.pathname === "/api/old-auth/register" ||
-    request.nextUrl.pathname === "/api/old-auth/login" ||
-    request.nextUrl.pathname === "/api/old-auth/users" ||
+    request.nextUrl.pathname === "/api/product/page-count" ||
+    request.nextUrl.pathname === "/api/product/categories" ||
+    request.nextUrl.pathname === "/api/product/products" ||
     request.nextUrl.pathname === "/api/old-auth/logout" ||
     request.nextUrl.pathname === "/api/avatar/upload" ||
     request.nextUrl.pathname === "/api/image/upload" ||
@@ -27,21 +26,14 @@ export default function middleware(request: NextRequest) {
   ) {
     return NextResponse.next();
   }
+
   if (request.nextUrl.pathname === "/api/old-auth/logout") {
     const response = NextResponse.next();
     response.cookies.delete("token");
     return response;
   }
-  // if (token && request.nextUrl.pathname === "/login") {
-  //   return NextResponse.redirect(new URL("/", request.url));
-  // }
-  // if (!token && request.nextUrl.pathname !== "/login") {
-  //   return NextResponse.redirect(new URL("/login", request.url));
-  // }
-  if (
-    // request.nextUrl.pathname !== "/login" &&
-    !language
-  ) {
+
+  if (!language) {
     const response = NextResponse.next();
     response.cookies.set("language", "en");
     return response;

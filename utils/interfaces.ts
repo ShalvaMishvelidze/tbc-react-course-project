@@ -45,6 +45,14 @@ export interface Products {
     options: string[];
   };
   addToCart: string;
+  seeMore: string;
+  categories: string;
+  addNewReview: string;
+  submit: string;
+  edit: string;
+  delete: string;
+  save: string;
+  cancel: string;
 }
 
 export interface Product {
@@ -58,6 +66,7 @@ export interface Product {
   image: string;
   images: string[];
   owner_id: string;
+  rating: string;
 }
 
 export interface Main {

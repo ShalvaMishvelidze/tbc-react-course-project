@@ -1,23 +1,29 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
-// interface P {
-//   title: string;
-//   price: number;
-//   description: string;
-//   thumbnail: string;
-// }
+interface P {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  image: string;
+}
 
-const Product = (props: { product: any; addToCart: string }) => {
-  const [product, setProduct] = useState<any | undefined>(undefined);
+const Product = (props: { product: P; addToCart: string; seeMore: string }) => {
+  const [product, setProduct] = useState<P | undefined>(undefined);
 
   useEffect(() => {
     let timeout = setTimeout(() => {
       setProduct(props.product);
-    }, 1800);
+    }, 500);
 
     return () => clearTimeout(timeout);
   }, [props.product]);
+
+  const handleClick = () => {
+    console.log("hello");
+  };
 
   if (!product) {
     return (
@@ -32,7 +38,7 @@ const Product = (props: { product: any; addToCart: string }) => {
 
   return (
     <article className="product">
-      <h5 className="product-title">{product.name.substring(0, 20)}</h5>
+      <h3 className="product-title">{product.name.substring(0, 20)}</h3>
       <div className="product-image">
         <Image
           src={product.image}
@@ -42,7 +48,19 @@ const Product = (props: { product: any; addToCart: string }) => {
         />
       </div>
       <p className="product-price">{product.price}$</p>
-      <p className="product-desc">{product.description.substring(0, 45)}</p>
+      <p className="product-desc">
+        {product.description.length > 100
+          ? `${product.description.substring(0, 100)}...`
+          : product.description}
+      </p>
+      <div className="product-container">
+        <button className="product-btn" onClick={handleClick}>
+          {props.addToCart}
+        </button>
+        <Link className="product-link" href={`/store/${product.id}`}>
+          {props.seeMore}
+        </Link>
+      </div>
     </article>
   );
 };

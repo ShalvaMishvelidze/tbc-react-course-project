@@ -6,9 +6,10 @@ import {
 } from "@/utils/actions/products_actions";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Review from "./Review";
-import Ratings from "./Ratings";
+import Toast from "./Toast";
+import { toast } from "react-toastify";
 
-const Reviews = ({ product_id, user }: any) => {
+const Reviews = ({ product_id, user, role, text }: any) => {
   const [review, setReview] = useState<string>("");
   const [reviews, setReviews] = useState<any[]>([]);
 
@@ -19,15 +20,25 @@ const Reviews = ({ product_id, user }: any) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (review.length > 0) {
+      toast.info("Adding review...");
       addProductReview(product_id, user?.sub as string, review).then(
         (newReview) => {
+          if (newReview.conflict) {
+            setReview("");
+            toast.warning(newReview.message);
+            return;
+          }
           setReviews([{ ...newReview, upvotes: 0 }, ...reviews]);
+          setReview("");
+          toast.success("New review added!");
         }
       );
+    } else {
+      toast.warning("You can't write an empty review");
     }
   };
   const handleReviewDelete = (id: number) => {
-    setReviews([reviews.filter((r) => r.id !== id)]);
+    setReviews([...reviews.filter((r) => r.id !== id)]);
   };
 
   useEffect(() => {
@@ -43,29 +54,44 @@ const Reviews = ({ product_id, user }: any) => {
   }, [user]);
 
   return (
-    <div className="reviews">
-      {user && <Ratings product_id={product_id} owner_id={user.sub} />}
-      <h2 className="reviews-add">add new review: </h2>
-      <form className="reviews-form" onSubmit={handleSubmit}>
+    <div className="single-product-reviews">
+      <Toast />
+      <h2 className="single-product-reviews-add">{text.addNewReview}:</h2>
+      <form className="single-product-reviews-form" onSubmit={handleSubmit}>
         <textarea
           style={{ color: "#000" }}
-          className="reviews-textarea"
+          className="single-product-reviews-textarea"
           onChange={handleChange}
           value={review}
           placeholder="Write your review here..."
-          cols={100}
-          rows={10}
+          maxLength={250}
         ></textarea>
-        <button className="reviews-button" onSubmit={handleSubmit}>
-          Submit
-        </button>
+        {review.length > 0 && (
+          <div>
+            <button
+              className="single-product-reviews-btn"
+              onSubmit={handleSubmit}
+            >
+              {text.submit}
+            </button>
+            <button
+              className="single-product-reviews-btn"
+              onClick={() => setReview("")}
+            >
+              {text.cancel}
+            </button>
+          </div>
+        )}
       </form>
-      <div className="reviews-container">
+      <div className="single-product-reviews-container">
         {reviews.length > 0 &&
           reviews.map((review) => {
             return (
               <Review
                 key={review.id}
+                text={text}
+                user={user}
+                role={role}
                 review={review}
                 handleReviewDelete={handleReviewDelete}
               />

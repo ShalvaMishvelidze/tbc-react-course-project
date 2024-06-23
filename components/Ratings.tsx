@@ -3,7 +3,15 @@ import { addNewRating, getUserRating } from "@/utils/actions/products_actions";
 import { useEffect, useState } from "react";
 import { IoStar } from "react-icons/io5";
 
-const Ratings = ({ owner_id, product_id }: any) => {
+const Ratings = ({
+  owner_id,
+  product_id,
+  rating: r,
+}: {
+  owner_id: string;
+  product_id: number;
+  rating: string;
+}) => {
   const [rating, setRating] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -38,6 +46,7 @@ const Ratings = ({ owner_id, product_id }: any) => {
             </button>
           );
         })}
+      <span>({r.substring(0, 3)})</span>
     </div>
   );
 };

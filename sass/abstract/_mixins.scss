@@ -7,7 +7,7 @@
   );
   background-size: 500% 100%;
   animation-timing-function: linear;
-  animation: loading 2s ease-in-out infinite;
+  animation: loading 1s ease-in-out infinite;
 }
 
 @mixin userLoadAnimation {

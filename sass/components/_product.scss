@@ -2,18 +2,21 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 0 1rem;
-  border: 1px solid $clr-gray-light;
-  border-radius: 0.3rem;
+  padding: 1rem 2rem;
+  border: 0.3rem solid $clr-bcg-secondary-light;
+  border-radius: 0.8rem;
   transition: all 0.3s;
-  height: 100%;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 2rem $clr-bcg-primary-dark;
+  background-color: $clr-bcg-primary-light;
 
-  @include normalizeForAll;
+  p {
+    font-size: $fs-regular;
+  }
 
   &.loading {
-    width: 18vw;
-    height: 26.6rem;
     transition: all;
     backface-visibility: hidden;
     border-color: $clr-gray-dark;
@@ -42,7 +45,7 @@
       &-desc {
         @include loadAnimation;
         width: 100%;
-        height: 2.5rem;
+        height: 4rem;
         margin: 1rem 0;
         background-color: $clr-bcg-primary-dark;
       }
@@ -58,35 +61,55 @@
     }
   }
 
-  &-img {
+  &-image {
     position: relative;
     width: 100%;
+    overflow: hidden;
+    margin-bottom: 1rem;
 
     & img {
       width: 100%;
-      height: 14rem;
+      height: 15rem;
+      transition: all 1.1s;
       object-fit: cover;
     }
   }
 
-  .cart-btn {
+  &-container {
     position: absolute;
     left: 50%;
-    bottom: 1.2rem;
+    top: 8rem;
     transform: translateX(-50%);
-    background-color: $clr-purple;
-    text-transform: capitalize;
-    font-weight: $fw-bold;
-    color: $clr-white;
-    font-size: $fs-small;
-    width: 95%;
-    height: 3rem;
-    border-radius: 0.5rem;
     visibility: hidden;
     pointer-events: none;
     opacity: 0;
-    box-shadow: 1px 2px 15px $clr-black;
     transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-btn,
+  &-link {
+    display: block;
+    background-color: $clr-violet;
+    text-transform: capitalize;
+    font-weight: $fw-bold;
+    color: $clr-white;
+    font-size: $fs-bigger;
+    text-align: center;
+    width: 60%;
+    height: 5rem;
+    line-height: 5rem;
+    border-radius: 0.5rem;
+
+    &:hover {
+      background-color: $clr-purple-dark;
+    }
   }
 
   &-price {
@@ -110,28 +133,15 @@
     border-color: $clr-gray;
     box-shadow: 2px 4px 24px $clr-bcg-primary;
 
-    & .cart-btn {
+    & .product-container {
       pointer-events: all;
       visibility: visible;
       opacity: 1;
     }
-  }
-}
 
-.product-image {
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-  margin-bottom: 12px;
-  img {
-    object-fit: cover;
-    width: 100%;
-    border-radius: 10px;
-    transition: all 1.1s;
-    height: 100%;
-  }
-
-  &:hover img {
-    transform: scale(1.2);
+    .product-image img {
+      transform: scale(1.2);
+      opacity: 0.3;
+    }
   }
 }

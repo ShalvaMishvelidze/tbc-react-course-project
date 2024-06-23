@@ -67,6 +67,14 @@ const products_en = {
     options: ["a-z", "z-a", "price asc", "price dec"],
   },
   addToCart: "add to cart",
+  seeMore: "see more",
+  categories: "categories",
+  addNewReview: "add new review",
+  submit: "submit",
+  edit: "edit",
+  delete: "delete",
+  save: "save",
+  cancel: "cancel",
 };
 const products_ka = {
   search: "გთხოვთ შეიყვანოთ რას ეძებთ",
@@ -76,6 +84,14 @@ const products_ka = {
     options: ["ა-ჰ", "ჰ-ა", "ფასის ზრდით", "ფასის კლებით"],
   },
   addToCart: "კალათში დამატება",
+  seeMore: "მეტის ნახვა",
+  categories: "კატეგორიები",
+  addNewReview: "ახალი რევიუს დამატება",
+  submit: "დადასტურება",
+  edit: "რედაქტირება",
+  delete: "წაშლა",
+  save: "შენახვა",
+  cancel: "გაუქმება",
 };
 
 const contact_en = {

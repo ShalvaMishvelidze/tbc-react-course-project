@@ -5,8 +5,7 @@
   @include normalizeForAll;
 
   &-select {
-    padding: 0 0.5rem 0.5rem;
-    font-size: $fs-regular;
+    font-size: $fs-big;
     text-transform: capitalize;
     color: $clr-bcg-primary;
 

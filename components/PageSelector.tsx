@@ -1,7 +1,6 @@
-import React from "react";
+"use client";
 
 const PageSelector = ({ currentPage, totalPages, onPageChange }: any) => {
-  // Function to handle pagination click
   const handleClick = (page: number) => {
     onPageChange(page);
   };
@@ -29,15 +28,13 @@ const PageSelector = ({ currentPage, totalPages, onPageChange }: any) => {
           totalPages < 11 ? totalPages : currentPage > 5 ? currentPage + 5 : 10
         )
         .map((page) => (
-          <>
-            <button
-              key={page}
-              className={currentPage === page ? "active" : ""}
-              onClick={() => handleClick(page)}
-            >
-              {page}
-            </button>
-          </>
+          <button
+            key={page}
+            className={currentPage === page ? "active" : ""}
+            onClick={() => handleClick(page)}
+          >
+            {page}
+          </button>
         ))}
       <div className="space" />
       {currentPage < totalPages - 5 && totalPages > 10 && (

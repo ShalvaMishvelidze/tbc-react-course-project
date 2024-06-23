@@ -7,152 +7,9 @@ export async function getPageCount() {
   return Math.ceil(count.rows[0].count / 12);
 }
 
-export async function getProducts(
-  search: string = "",
-  sort: string,
-  order: string,
-  page: number
-) {
-  if (!search && !sort && !order) {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  } else if (search && !sort && !order) {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-    WHERE p.name ilike ${"%" + search + "%"}
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  } else if (!search && sort === "name" && order === "asc") {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-    ORDER BY p.name ASC
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  } else if (!search && sort === "name" && order === "desc") {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-    ORDER BY p.name DESC
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  } else if (!search && sort === "price" && order === "asc") {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-    ORDER BY p.price ASC
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  } else if (!search && sort === "price" && order === "desc") {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-    ORDER BY p.price DESC
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  } else if (search && sort === "name" && order === "asc") {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-    WHERE p.name ilike ${"%" + search + "%"}
-    ORDER BY p.name ASC
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  } else if (search && sort === "name" && order === "desc") {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-    WHERE p.name ilike ${"%" + search + "%"}
-    ORDER BY p.name DESC
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  } else if (search && sort === "price" && order === "asc") {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-    WHERE p.name ilike ${"%" + search + "%"}
-    ORDER BY p.price ASC
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  } else if (search && sort === "price" && order === "desc") {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-    WHERE p.name ilike ${"%" + search + "%"}
-    ORDER BY p.price DESC
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  } else {
-    const products =
-      await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
-    FROM products p
-    LEFT JOIN (
-        SELECT product_id, AVG(rating) AS avg_rating
-        FROM ratings
-        GROUP BY product_id
-    ) avg_rating ON p.id = avg_rating.product_id
-LIMIT 12 OFFSET ${(page - 1) * 12};    `;
-    return products.rows;
-  }
-}
-
 export async function getSingleProduct(id: string) {
   const product =
-    await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS average_rating
+    await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS rating
     FROM products p
     LEFT JOIN (
         SELECT product_id, AVG(rating) AS avg_rating
@@ -205,7 +62,15 @@ export async function addProductReview(
     DO NOTHING
     RETURNING *;
     `;
-  return addedReview.rows[0];
+  if (addedReview.rows.length === 0) {
+    return {
+      conflict: true,
+      message:
+        "You have already written a review. Users can only review product once...",
+    };
+  } else {
+    return addedReview.rows[0];
+  }
 }
 
 export async function addProductRating(product_id: number, rating: number) {

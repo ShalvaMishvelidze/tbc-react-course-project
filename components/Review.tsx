@@ -5,8 +5,10 @@ import {
   voteOnReview,
 } from "@/utils/actions/products_actions";
 import { useState } from "react";
+import { ImArrowUp, ImArrowDown } from "react-icons/im";
+import { toast } from "react-toastify";
 
-const Review = ({ review: r, handleReviewDelete }: any) => {
+const Review = ({ review: r, handleReviewDelete, user, role, text }: any) => {
   const [review, setReview] = useState<any>(r);
   const [editing, setEditing] = useState<boolean>(false);
 
@@ -32,6 +34,7 @@ const Review = ({ review: r, handleReviewDelete }: any) => {
     });
     voteOnReview(review.id, review.owner_id, "upvote");
   };
+
   const handleDownvote = () => {
     if (review.user_vote_type === "downvote") {
       setReview({ ...review, upvotes: review.upvotes + 1, user_vote_type: "" });
@@ -57,52 +60,67 @@ const Review = ({ review: r, handleReviewDelete }: any) => {
 
   return (
     <div className="review">
-      <div className="vote-container">
+      <div className="review-vote-btns">
         <button type="button" onClick={handleUpvote}>
-          upvote
+          <ImArrowUp />
         </button>
         <span>{review.upvotes}</span>
         <button type="button" onClick={handleDownvote}>
-          downvote
+          <ImArrowDown />
         </button>
       </div>
-      {editing ? (
-        <input
-          value={review.review}
-          onChange={(e) => setReview({ ...review, review: e.target.value })}
-        />
-      ) : (
-        <p className="review-text">{review.review}</p>
-      )}
-      <div className="review-btn-container">
+      <div className="review-container">
         {editing ? (
-          <button
-            type="button"
-            onClick={() => {
-              editProductReview(review.id, review.review).then((res) => {
-                setReview({ ...review, review: res.review });
-                setEditing(false);
-              });
-            }}
-          >
-            save
-          </button>
+          <textarea
+            value={review.review}
+            onChange={(e) => setReview({ ...review, review: e.target.value })}
+            maxLength={250}
+          />
         ) : (
-          <button type="button" onClick={() => setEditing(true)}>
-            edit
-          </button>
+          <p className="review-text">{review.review}</p>
         )}
-        <button
-          type="button"
-          onClick={() => {
-            deleteReview(review.id).then(() => {
-              handleReviewDelete(review.id);
-            });
-          }}
-        >
-          delete
-        </button>
       </div>
+      {(user.sub === review.owner_id || role === "admin") && (
+        <div className="review-btn-container">
+          {editing ? (
+            <button
+              type="button"
+              onClick={() => {
+                toast.info("saving review...");
+                editProductReview(review.id, review.review).then((res) => {
+                  setReview({ ...review, review: res.review });
+                  setEditing(false);
+                  toast.success("review saved!");
+                });
+              }}
+            >
+              {text.save}
+            </button>
+          ) : (
+            <button type="button" onClick={() => setEditing(true)}>
+              {text.edit}
+            </button>
+          )}
+          {editing ? (
+            <button type="button" onClick={() => setEditing(false)}>
+              {text.cancel}
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => {
+                toast.info("trying to delete review...");
+                deleteReview(review.id).then(() => {
+                  handleReviewDelete(review.id);
+                  toast.success("review deleted!");
+                });
+              }}
+            >
+              {text.delete}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
