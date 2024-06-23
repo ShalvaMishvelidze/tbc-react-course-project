@@ -53,6 +53,7 @@ export interface Products {
   delete: string;
   save: string;
   cancel: string;
+  uploadImage: string;
 }
 
 export interface Product {

@@ -53,23 +53,26 @@ export async function addNewRating(
 export async function addProductReview(
   product_id: number,
   owner_id: string,
+  images: string[],
   review: string
 ) {
   const addedReview =
-    await sql`INSERT INTO reviews (product_id, owner_id, review)
-    VALUES (${product_id}, ${owner_id}, ${review})
+    await sql`INSERT INTO reviews (product_id, owner_id, review, images)
+    VALUES (${product_id}, ${owner_id}, ${review}, ${JSON.stringify(images)})
     ON CONFLICT (product_id, owner_id)
     DO NOTHING
     RETURNING *;
     `;
-  if (addedReview.rows.length === 0) {
-    return {
-      conflict: true,
-      message:
-        "You have already written a review. Users can only review product once...",
-    };
+  return addedReview.rows[0];
+}
+
+export async function reviewConflict(product_id: number, owner_id: string) {
+  const review =
+    await sql`SELECT * FROM reviews WHERE product_id = ${product_id} AND owner_id = ${owner_id};`;
+  if (review.rows.length > 0) {
+    return true;
   } else {
-    return addedReview.rows[0];
+    return false;
   }
 }
 
@@ -125,10 +128,18 @@ export const editProduct = async (product: any) => {
 
 export const editProductReview = async (
   review_id: number,
-  newReview: string
+  newReview: string,
+  newImages: string[]
 ) => {
-  const review =
-    await sql`UPDATE reviews SET review = ${newReview} WHERE id = ${review_id} RETURNING *;`;
+  const review = await sql`
+  UPDATE reviews 
+  SET 
+    review = ${newReview},
+    images = ${JSON.stringify(newImages)} 
+  WHERE 
+    id = ${review_id} 
+  RETURNING *;
+`;
   return review.rows[0];
 };
 

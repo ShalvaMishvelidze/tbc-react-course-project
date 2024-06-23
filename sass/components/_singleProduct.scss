@@ -54,10 +54,37 @@
         height: 12rem;
       }
 
-      div {
+      .images {
+        margin-top: 1rem;
+        display: flex;
+        gap: 2rem;
+      }
+
+      .buttons {
         display: flex;
         gap: 2rem;
         margin-top: 1rem;
+
+        input {
+          display: none;
+        }
+
+        label {
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: $clr-violet;
+          padding: 0.2rem 0.5rem;
+          font-size: $fs-regular;
+          text-transform: uppercase;
+          border-radius: 0.5rem;
+          width: max-content;
+
+          &:hover {
+            background-color: $clr-purple;
+          }
+        }
       }
     }
 
@@ -172,6 +199,25 @@
         padding: 0.5rem;
         background-color: $clr-bcg-primary;
       }
+
+      &-images {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        margin-top: 3rem;
+
+        div {
+          position: relative;
+
+          button {
+            position: absolute;
+            top: -1.5rem;
+            right: -1.5rem;
+            font-size: $fs-bigger;
+            color: $clr-red-2;
+          }
+        }
+      }
     }
 
     &-btn-container {
@@ -187,6 +233,31 @@
 
         &:hover {
           background-color: $clr-purple;
+        }
+      }
+
+      div {
+        background-color: $clr-bcg-primary;
+
+        input {
+          display: none;
+        }
+
+        label {
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: $clr-violet;
+          padding: 0.2rem 0.5rem;
+          font-size: $fs-regular;
+          text-transform: uppercase;
+          border-radius: 0.5rem;
+          width: max-content;
+
+          &:hover {
+            background-color: $clr-purple;
+          }
         }
       }
     }

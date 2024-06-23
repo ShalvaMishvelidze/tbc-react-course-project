@@ -75,6 +75,7 @@ const products_en = {
   delete: "delete",
   save: "save",
   cancel: "cancel",
+  uploadImage: "upload image",
 };
 const products_ka = {
   search: "გთხოვთ შეიყვანოთ რას ეძებთ",
@@ -92,6 +93,7 @@ const products_ka = {
   delete: "წაშლა",
   save: "შენახვა",
   cancel: "გაუქმება",
+  uploadImage: "სურათის ატვირთვა",
 };
 
 const contact_en = {
