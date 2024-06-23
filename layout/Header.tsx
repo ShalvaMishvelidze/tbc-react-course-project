@@ -5,7 +5,7 @@ import { libraries } from "../utils/constants";
 
 const Header = async () => {
   const systemPreferences = await getSystemPreferences();
-  const nav: { [key: string]: string }[] =
+  const nav: { [key: string]: string } =
     libraries[systemPreferences.language].header.nav;
   const lang = libraries[systemPreferences.language].header.lang;
 

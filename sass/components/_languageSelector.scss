@@ -3,13 +3,18 @@
   height: 3rem;
   border-radius: 0.5rem;
   color: $clr-violet;
-  margin-right: 0.2rem;
-  margin-bottom: 0.2rem;
   font-size: $fs-big;
   text-transform: uppercase;
+  border-color: $clr-violet;
+
+  &:focus {
+    outline: none;
+  }
 
   & option {
     color: $clr-violet;
     background-color: $clr-bcg-primary;
+    font-size: $fs-big;
+    text-align: center;
   }
 }

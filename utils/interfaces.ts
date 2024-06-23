@@ -27,12 +27,12 @@ export interface Premium {
 }
 
 export interface Header {
-  nav: { [key: string]: string }[];
+  nav: { [key: string]: string };
   lang: string[];
 }
 
 export interface Footer {
-  nav: { [key: string]: string }[];
+  nav: { [key: string]: string };
   copy: string;
   terms: string;
   privacy: string;

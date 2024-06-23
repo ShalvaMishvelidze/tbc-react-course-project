@@ -34,7 +34,7 @@ const User = () => {
 
   if (isLoading)
     return (
-      <div className="user-loading">
+      <div className="user loading">
         <div></div>
       </div>
     );

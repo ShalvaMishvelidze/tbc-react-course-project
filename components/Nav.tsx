@@ -7,10 +7,11 @@ import User from "./User";
 import Link from "next/link";
 
 const Nav = async ({
+  nav,
   lang,
   systemPreferences,
 }: {
-  nav: { [key: string]: string }[];
+  nav: { [key: string]: string };
   lang: string[];
   systemPreferences: { language: string; theme: string };
 }) => {
@@ -20,28 +21,28 @@ const Nav = async ({
     <nav className="navigation">
       <div className="navigation-left">
         <Link className="nav-link" href={"/"}>
-          Home
+          {nav.home}
         </Link>
         <Link className="nav-link" href={"/store"}>
-          Store
+          {nav.store}
         </Link>
         <Link className="nav-link" href={"/blog"}>
-          Blog
+          {nav.blog}
         </Link>
         <Link className="nav-link" href={"/premium"}>
-          Premium
+          {nav.tours}
         </Link>
         <Link className="nav-link" href={"/contact"}>
-          Contact
+          {nav.contact}
         </Link>
       </div>
       <div className="navigation-right">
-        <CartBtn cart_total={total} />
         <LanguageSelector
           reload={false}
           lang={lang}
           systemPreferences={systemPreferences}
         />
+        <CartBtn cart_total={total} />
         <ChangeTheme />
         {session?.user ? <User /> : <a href="/api/auth/login">login</a>}
       </div>

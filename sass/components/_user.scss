@@ -1,31 +1,33 @@
 .user {
   position: relative;
   height: 100%;
-  width: 3rem;
+  margin-right: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  &-loading {
+  &.loading {
     & div {
-      width: 4rem;
-      height: 4rem;
+      width: 3.6rem;
+      height: 3.6rem;
       border-radius: 50%;
-      transform: translateY(-0.3rem);
-      @include userLoadAnimation;
+      @include loadAnimation;
     }
   }
 
   &-icon {
-    font-size: $fs-bigger;
+    font-size: $fs-giant;
     color: $clr-violet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &-dropdown {
     position: absolute;
     top: 4.5rem;
     width: 10rem;
-    right: -4rem;
+    left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;

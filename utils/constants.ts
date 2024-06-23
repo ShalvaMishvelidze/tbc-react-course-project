@@ -35,25 +35,23 @@ const auth_ka = {
 };
 
 const header_en = {
-  nav: [
-    { text: "home", href: "/" },
-    { text: "blog", href: "/blog" },
-    { text: "contact", href: "/contact" },
-    { text: "premium", href: "/premium" },
-    { text: "profile", href: "/profile" },
-    { text: "admin", href: "/admin" },
-  ],
+  nav: {
+    home: "home",
+    store: "store",
+    blog: "blog",
+    tours: "tours",
+    contact: "contact",
+  },
   lang: ["en", "ka"],
 };
 const header_ka = {
-  nav: [
-    { text: "მთავარი", href: "/" },
-    { text: "ბლოგი", href: "/blog" },
-    { text: "კონტაქტი", href: "/contact" },
-    { text: "პრემიუმი", href: "/premium" },
-    { text: "პროფილი", href: "/profile" },
-    { text: "ადმინისტრატორი", href: "/admin" },
-  ],
+  nav: {
+    home: "მთავარი",
+    store: "მაღაზია",
+    blog: "ბლოგი",
+    tours: "ტურები",
+    contact: "კონტაქტი",
+  },
   lang: ["en", "ka"],
 };
 
@@ -217,14 +215,13 @@ const footer_en = {
   copy: "all rights reserved",
   terms: "terms and conditions",
   privacy: "privacy policy",
-  nav: [
-    { text: "home", href: "/" },
-    { text: "blog", href: "/blog" },
-    { text: "blog", href: "/blog" },
-    { text: "contact", href: "/contact" },
-    { text: "premium", href: "/premium" },
-    { text: "profile", href: "/profile" },
-  ],
+  nav: {
+    home: "home",
+    store: "store",
+    blog: "blog",
+    tours: "tours",
+    contact: "contact",
+  },
   newsletter: "subscribe to our newsletter",
   subscribe: "subscribe",
 };
@@ -233,14 +230,13 @@ const footer_ka = {
   copy: "ყველა უფლება დაცულია",
   terms: "წესები და პირობები",
   privacy: "კონფიდენციალუბა",
-  nav: [
-    { text: "მთავარი", href: "/" },
-    { text: "ჩვენს შესახებ", href: "/blog" },
-    { text: "ბლოგი", href: "/blog" },
-    { text: "კონტაქტი", href: "/contact" },
-    { text: "პრემიუმი", href: "/premium" },
-    { text: "პროფილი", href: "/profile" },
-  ],
+  nav: {
+    home: "მთავარი",
+    store: "მაღაზია",
+    blog: "ბლოგი",
+    tours: "ტურები",
+    contact: "კონტაქტი",
+  },
   newsletter: "ნიუზლეთერის გამოწერა",
   subscribe: "გამოწერა",
 };

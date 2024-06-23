@@ -75,14 +75,14 @@ const ChangeTheme = () => {
           themePreference === "dark" ? "active" : "inactive"
         }`}
       >
-        <GrSun size={24} />
+        <GrSun />
       </div>
       <div
         className={`change-theme-icon ${
           themePreference !== "dark" ? "active" : "inactive"
         }`}
       >
-        <BsMoonStars size={21} />
+        <BsMoonStars />
       </div>
     </button>
   );

@@ -22,19 +22,19 @@ const Footer = async () => {
         </div>
         <div className="footer-left-bottom">
           <Link className="nav-link" href={"/"}>
-            Home
+            {footer.nav.home}
           </Link>
           <Link className="nav-link" href={"/store"}>
-            Store
+            {footer.nav.store}
           </Link>
           <Link className="nav-link" href={"/blog"}>
-            Blog
+            {footer.nav.blog}
           </Link>
           <Link className="nav-link" href={"/premium"}>
-            Premium
+            {footer.nav.tours}
           </Link>
           <Link className="nav-link" href={"/contact"}>
-            Contact
+            {footer.nav.contact}
           </Link>
         </div>
       </div>

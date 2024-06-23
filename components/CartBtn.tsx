@@ -23,12 +23,10 @@ const CartBtn = ({ cart_total }: any) => {
   if (error) return <div>{error.message}</div>;
 
   return (
-    <div className="cart-btn">
-      <Link href={"/cart"} className="cart-btn">
-        <BsCartCheck />
-        <span>{cart_total ? cart_total.value : 0}</span>
-      </Link>
-    </div>
+    <Link href={"/cart"} className="cart-btn">
+      <BsCartCheck />
+      <span>{cart_total ? cart_total.value : 0}</span>
+    </Link>
   );
 };
 export default CartBtn;

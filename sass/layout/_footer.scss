@@ -49,25 +49,32 @@
     justify-content: flex-end;
 
     & input {
-      height: 3rem;
-      width: 20rem;
+      height: 4rem;
+      width: 30rem;
+      outline: none;
+      border: none;
+      padding-left: 0.5rem;
+      font-size: $fs-regular;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
 
       @include respond(tab-portrait) {
-        width: 30rem;
-        height: 3.5rem;
+        width: 40rem;
       }
       @include respond(phone) {
         width: 50rem;
-        height: 4.8rem;
       }
     }
 
     & button {
-      background-color: $clr-purple;
+      font-size: $fs-regular;
+      background-color: $clr-violet;
       font-weight: $fw-bold;
-      padding: 0.7rem 1.5rem;
-      border-radius: 0.3rem;
+      padding: 0 1.5rem;
+      height: 4rem;
       text-transform: uppercase;
+      border-top-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
     }
   }
 }
