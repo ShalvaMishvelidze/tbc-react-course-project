@@ -69,11 +69,11 @@ const Review = ({ review: r, handleReviewDelete, user, role, text }: any) => {
   return (
     <div className="review">
       <div className="review-vote-btns">
-        <button type="button" onClick={handleUpvote}>
+        <button type="button" onClick={handleUpvote} disabled={!user}>
           <ImArrowUp />
         </button>
         <span>{review.upvotes}</span>
-        <button type="button" onClick={handleDownvote}>
+        <button type="button" onClick={handleDownvote} disabled={!user}>
           <ImArrowDown />
         </button>
       </div>

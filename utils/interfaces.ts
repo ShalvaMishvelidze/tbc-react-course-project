@@ -72,7 +72,7 @@ export interface Product {
 
 export interface Main {
   products: Products;
-  about: {
+  blog: {
     [key: string]: string;
   };
   contact: {

@@ -140,6 +140,16 @@ RETURNING *;
   return comment.rows[0];
 };
 
+export const commentConflict = async (post_id: number, owner_id: string) => {
+  const comment = await sql`SELECT * FROM comments 
+WHERE post_id = ${post_id} AND owner_id = ${owner_id};`;
+  if (comment.rows.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const addNewCommentLike = async (
   comment_id: number,
   owner_id: string,

@@ -1,82 +1,66 @@
 .blog {
   border: 1px solid $clr-bcg-primary-dark;
   background-color: $clr-bcg-primary;
-  border-radius: 1rem;
-  padding: 1.5rem;
+  border-radius: 2rem;
+  padding: 2rem 3rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-
-  @include normalizeForAll;
-
-  @include respond(tab-landscape) {
-    padding: 1rem;
-  }
-
-  @include respond(tab-portrait) {
-    padding: 3rem;
-  }
+  gap: 2rem;
 
   &-title {
     text-align: center;
-    height: 8rem;
-    display: flex;
-    align-items: center;
-
-    @include respond(tab-landscape) {
-      margin-bottom: 1.5rem;
-      font-size: $fs-big;
-    }
-
-    @include respond(tab-portrait) {
-      font-size: $fs-big;
-    }
-
-    @include respond(phone) {
-      font-size: $fs-giant;
-      margin-bottom: 3rem;
-    }
-  }
-
-  &-image {
-    object-fit: cover;
-    width: 100%;
+    font-size: $fs-big;
   }
 
   &-desc {
-    height: 7rem;
     font-size: $fs-regular;
-
-    @include respond(tab-portrait) {
-      font-size: $fs-big;
-      margin-bottom: 1rem;
-    }
-
-    @include respond(phone) {
-      font-size: $fs-bigger;
-    }
 
     & a {
       color: $clr-violet;
       text-decoration: underline;
+      transition: color 0.2s;
+
+      &:hover {
+        color: $clr-violet-dark;
+      }
     }
   }
 
-  &-btn-container {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &-views {
+    text-align: center;
+    font-size: $fs-big;
+  }
+
+  &-reactions {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
-    gap: 2rem;
+    gap: 5rem;
 
-    & button {
-      background-color: $clr-violet;
-      padding: 1rem 2rem;
-      border-radius: 0.5rem;
-      font-size: $fs-big;
-      text-transform: uppercase;
-      font-weight: $fw-bold;
+    &-btn {
+      font-size: $fs-bigger;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      svg {
+        color: $clr-bcg-secondary-light;
+      }
+
+      &.active {
+        svg {
+          color: $clr-violet;
+        }
+      }
     }
   }
 }

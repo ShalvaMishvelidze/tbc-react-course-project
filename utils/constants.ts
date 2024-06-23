@@ -37,7 +37,6 @@ const auth_ka = {
 const header_en = {
   nav: [
     { text: "home", href: "/" },
-    { text: "about", href: "/about" },
     { text: "blog", href: "/blog" },
     { text: "contact", href: "/contact" },
     { text: "premium", href: "/premium" },
@@ -49,7 +48,6 @@ const header_en = {
 const header_ka = {
   nav: [
     { text: "მთავარი", href: "/" },
-    { text: "ჩვენს შესახებ", href: "/about" },
     { text: "ბლოგი", href: "/blog" },
     { text: "კონტაქტი", href: "/contact" },
     { text: "პრემიუმი", href: "/premium" },
@@ -215,7 +213,7 @@ const footer_en = {
   privacy: "privacy policy",
   nav: [
     { text: "home", href: "/" },
-    { text: "about", href: "/about" },
+    { text: "blog", href: "/blog" },
     { text: "blog", href: "/blog" },
     { text: "contact", href: "/contact" },
     { text: "premium", href: "/premium" },
@@ -231,7 +229,7 @@ const footer_ka = {
   privacy: "კონფიდენციალუბა",
   nav: [
     { text: "მთავარი", href: "/" },
-    { text: "ჩვენს შესახებ", href: "/about" },
+    { text: "ჩვენს შესახებ", href: "/blog" },
     { text: "ბლოგი", href: "/blog" },
     { text: "კონტაქტი", href: "/contact" },
     { text: "პრემიუმი", href: "/premium" },
@@ -241,11 +239,31 @@ const footer_ka = {
   subscribe: "გამოწერა",
 };
 
-const about_en = {
-  heading: "about us",
+const blog_en = {
+  placeholder: "type here...",
+  readMore: "read more",
+  views: "views",
+  tags: "tags",
+  addNewComment: "add new comment",
+  commentPlaceholder: "write your comment here...",
+  submit: "submit",
+  cancel: "cancel",
+  edit: "edit",
+  delete: "delete",
+  save: "save",
 };
-const about_ka = {
-  heading: "ჩვენს შესახებ",
+const blog_ka = {
+  placeholder: "დაწერეთ აქ...",
+  readMore: "მეტის ნახვა",
+  views: "ნახვები",
+  tags: "ტეგები",
+  addNewComment: "ახალი კომენტარის დამატება",
+  commentPlaceholder: "დაწერეთ თქვენი კომენტარი აქ...",
+  submit: "დადასტურება",
+  cancel: "გაუქმება",
+  edit: "რედაქტირება",
+  delete: "წაშლა",
+  save: "შენახვა",
 };
 
 const addNewProduct_en = {
@@ -278,7 +296,7 @@ export const libraries: Libraries = {
     header: header_en,
     main: {
       products: products_en,
-      about: about_en,
+      blog: blog_en,
       contact: contact_en,
       premium: premium_en,
       profile: profile_en,
@@ -293,7 +311,7 @@ export const libraries: Libraries = {
     header: header_ka,
     main: {
       products: products_ka,
-      about: about_ka,
+      blog: blog_ka,
       contact: contact_ka,
       premium: premium_ka,
       profile: profile_ka,

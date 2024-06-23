@@ -1,6 +1,7 @@
 "use client";
 import { addNewPostLike } from "@/utils/actions/blog_actions";
 import { useState } from "react";
+import { AiFillLike, AiFillDislike } from "react-icons/ai";
 
 const ReactionsContainer = ({
   id,
@@ -14,8 +15,11 @@ const ReactionsContainer = ({
   const [vote, setVote] = useState(user_vote_type);
 
   return (
-    <div className="single-blog-reactions">
+    <div className="blog-reactions">
       <button
+        className={`${
+          vote === "like" ? "blog-reactions-btn active" : "blog-reactions-btn"
+        }`}
         onClick={() => {
           if (vote === "like") {
             setVote("none");
@@ -34,9 +38,14 @@ const ReactionsContainer = ({
         }}
         disabled={!user}
       >
-        like 👍 {likes}
+        <AiFillLike /> {likes}
       </button>
       <button
+        className={`${
+          vote === "dislike"
+            ? "blog-reactions-btn active"
+            : "blog-reactions-btn"
+        }`}
         onClick={() => {
           if (vote === "dislike") {
             setVote("none");
@@ -55,7 +64,7 @@ const ReactionsContainer = ({
         }}
         disabled={!user}
       >
-        dislike 👎 {dislikes}
+        <AiFillDislike /> {dislikes}
       </button>
     </div>
   );

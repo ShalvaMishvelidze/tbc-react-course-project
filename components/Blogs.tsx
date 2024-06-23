@@ -7,7 +7,15 @@ import { BlogSearch } from "./BlogSearch";
 import { useSearchParams } from "next/navigation";
 import PageSelector from "./PageSelector";
 
-const Blogs = ({ user }: { user: any }) => {
+const Blogs = ({
+  text,
+  user,
+}: {
+  text: {
+    [key: string]: string;
+  };
+  user: any;
+}) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -32,9 +40,7 @@ const Blogs = ({ user }: { user: any }) => {
     if (searchString) {
       setSearch(searchString);
     } else {
-      getAllPosts(user?.sub as string, "", 1).then((posts) => {
-        setPosts(posts as Post[]);
-      });
+      setSearch("");
     }
   }, [searchString]);
 
@@ -50,10 +56,14 @@ const Blogs = ({ user }: { user: any }) => {
 
   return (
     <>
-      <BlogSearch pageText="type here..." />
+      <BlogSearch pageText={text.placeholder} />
+      <br />
+      <br />
       <section className="blogs">
         {posts.map((post) => {
-          return <SingleBlog key={post.id} post={post} user={user} />;
+          return (
+            <SingleBlog key={post.id} post={post} user={user} text={text} />
+          );
         })}
       </section>
       {totalPages > 1 && (

@@ -5,8 +5,16 @@ import {
   editComment,
 } from "@/utils/actions/blog_actions";
 import { useState } from "react";
+import { AiFillLike, AiFillDislike } from "react-icons/ai";
+import { toast } from "react-toastify";
 
-const Comment = ({ comment: r, user, handleCommentDelete }: any) => {
+const Comment = ({
+  comment: r,
+  user,
+  handleCommentDelete,
+  text,
+  role,
+}: any) => {
   const [comment, setComment] = useState<any>(r);
   const [likes, setLikes] = useState<number>(Number(comment.total_likes));
   const [dislikes, setDislikes] = useState<number>(
@@ -50,52 +58,87 @@ const Comment = ({ comment: r, user, handleCommentDelete }: any) => {
 
   return (
     <div className="comment">
-      <div className="vote-container">
-        <button type="button" onClick={handleLike}>
-          like 👍 {likes}
-        </button>
-        <span>{comment.upvotes}</span>
-        <button type="button" onClick={handleDislike}>
-          dislike 👎 {dislikes}
-        </button>
-      </div>
       {editing ? (
-        <input
+        <textarea
+          className="comment-text"
           value={comment.content}
           onChange={(e) => setComment({ ...comment, content: e.target.value })}
+          maxLength={250}
         />
       ) : (
         <p className="comment-text">{comment.content}</p>
       )}
-      <div className="comment-btn-container">
-        {editing ? (
-          <button
-            type="button"
-            onClick={() => {
-              editComment(comment.id, comment.content).then((res) => {
-                setComment({ ...comment, content: res.content });
-                setEditing(false);
-              });
-            }}
-          >
-            save
-          </button>
-        ) : (
-          <button type="button" onClick={() => setEditing(true)}>
-            edit
-          </button>
-        )}
+      <div className="comment-vote-container">
         <button
           type="button"
-          onClick={() => {
-            deleteComment(comment.id).then(() => {
-              handleCommentDelete(comment.id);
-            });
-          }}
+          onClick={handleLike}
+          disabled={!user}
+          className={`${
+            vote === "like"
+              ? "comment-reaction-btn active"
+              : "comment-reaction-btn"
+          }`}
         >
-          delete
+          <AiFillLike /> {likes}
+        </button>
+        <span>{comment.upvotes}</span>
+        <button
+          type="button"
+          onClick={handleDislike}
+          disabled={!user}
+          className={`${
+            vote === "dislike"
+              ? "comment-reaction-btn active"
+              : "comment-reaction-btn"
+          }`}
+        >
+          <AiFillDislike /> {dislikes}
         </button>
       </div>
+      {(role === "admin" || comment.owner_id === user.sub) && (
+        <div className="comment-btn-container">
+          {editing ? (
+            <button
+              type="button"
+              onClick={() => {
+                toast.info("trying to edit comment");
+                editComment(comment.id, comment.content).then((res) => {
+                  setComment({ ...comment, content: res.content });
+                  setEditing(false);
+                  toast.success("comment edited successfully");
+                });
+              }}
+            >
+              {text.save}
+            </button>
+          ) : (
+            <button type="button" onClick={() => setEditing(true)}>
+              {text.edit}
+            </button>
+          )}
+          {editing ? (
+            <button
+              type="button"
+              onClick={() => {
+                setEditing(false);
+              }}
+            >
+              {text.cancel}
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => {
+                deleteComment(comment.id).then(() => {
+                  handleCommentDelete(comment.id);
+                });
+              }}
+            >
+              {text.delete}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

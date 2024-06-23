@@ -1,16 +1,22 @@
 import Comments from "@/components/Comments";
 import ReactionsContainer from "@/components/ReactionsContainer";
 import ViewsContainer from "@/components/ViewsContainer";
+import { getSystemPreferences } from "@/utils/actions";
 import { getPost } from "@/utils/actions/blog_actions";
+import { getUserRole } from "@/utils/actions/user_actions";
+import { libraries } from "@/utils/constants";
 import { Post } from "@/utils/interfaces";
 import { getSession } from "@auth0/nextjs-auth0";
 
 const SingleBlog = async ({ params: { id } }: { params: { id: string } }) => {
+  const { language } = await getSystemPreferences();
   const session = await getSession();
   const post: Post = (await getPost(
     id as string,
     session?.user.sub as string
   )) as Post;
+  const role = await getUserRole(session?.user.sub as string);
+  const text = libraries[language].main.blog;
 
   return (
     <section className="single-blog">
@@ -20,9 +26,10 @@ const SingleBlog = async ({ params: { id } }: { params: { id: string } }) => {
         views={post.views}
         id={post.id}
         user_id={session?.user.sub}
+        text={text.views}
       />
       <div className="single-blog-tag-container">
-        <span>Tags: </span>
+        <span>{text.tags}: </span>
         {post.tags.map((tag, index) => {
           return (
             <span key={index} className="single-blog-tag">
@@ -38,7 +45,7 @@ const SingleBlog = async ({ params: { id } }: { params: { id: string } }) => {
         user={session?.user}
         user_vote_type={post.user_vote_type}
       />
-      <Comments post_id={id} user={session?.user} />
+      <Comments post_id={id} user={session?.user} text={text} role={role} />
     </section>
   );
 };
