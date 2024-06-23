@@ -114,50 +114,58 @@ const contact_ka = {
 
 const premium_en = {
   monthly: {
-    heading: "monthly",
+    title: "Explore our premium plans",
+    heading: "Explorer Monthly",
     benefits: [
-      { name: "first benefit", available: true },
-      { name: "second benefit", available: true },
-      { name: "third benefit", available: true },
-      { name: "fourth benefit", available: true },
-      { name: "fifth benefit", available: false },
-      { name: "sixth benefit", available: false },
+      "Up to 20% off on select tours and activities",
+      "Early access to new tours and popular destinations",
+      "One-on-one support for planning and booking",
+      "Tailored travel plans based on preferences",
+      "Complimentary basic travel insurance for each trip",
     ],
+    book: "book now",
+    only: "only",
   },
   yearly: {
-    heading: "yearly",
+    title: "Explore our premium plans",
+    heading: "Adventurer Annual",
     benefits: [
-      { name: "first benefit", available: true },
-      { name: "second benefit", available: true },
-      { name: "third benefit", available: true },
-      { name: "fourth benefit", available: true },
-      { name: "fifth benefit", available: true },
-      { name: "sixth benefit", available: true },
+      "Up to 30% off on select tours and activities",
+      "Early access to new tours and destinations throughout the year",
+      "Dedicated travel consultant with 24/7 support",
+      "Custom itineraries with added luxury experiences and exclusive access",
+      "Extended coverage including trip cancellations, medical emergencies, and lost luggage",
     ],
+    book: "book now",
+    only: "only",
   },
 };
 const premium_ka = {
   monthly: {
-    heading: "ყოველთვიური",
+    title: "შეარჩიე შენზე მორგებული პრემიუმ გეგმა",
+    heading: "მკვლევარი ყოველთვიურად",
     benefits: [
-      { name: "პირველი შეთავაზება", available: true },
-      { name: "მეორე შეთავაზება", available: true },
-      { name: "მესამე შეთავაზება", available: true },
-      { name: "მეოთხე შეთავაზება", available: true },
-      { name: "მეხუთე შეთავაზება", available: false },
-      { name: "მეექვსე შეთავაზება", available: false },
+      "არჩეული ტურებისა და აქტივობების მიხედვით 20%-ით ფასდაკლება",
+      "ახალი ტურების და პოპულარული დესტინაციების წინასწარი წვდომა",
+      "ერთი ერთზე დახმარება დაგეგმვის და დაჯავშნისთვის",
+      "მორგებული მგზავრობის გეგმები პრეფერენციების მიხედვით",
+      "ყველა მოგზაურობისთვის უფასო სტანდარტული მგზავრობის დაზღვევა",
     ],
+    book: "დაჯავშნა",
+    only: "მხოლოდ",
   },
   yearly: {
-    heading: "ყოველწლიური",
+    title: "შეარჩიე შენზე მორგებული პრემიუმ გეგმა",
+    heading: "მოგზაური წლიურად",
     benefits: [
-      { name: "პირველი შეთავაზება", available: true },
-      { name: "მეორე შეთავაზება", available: true },
-      { name: "მესამე შეთავაზება", available: true },
-      { name: "მეოთხე შეთავაზება", available: true },
-      { name: "მეხუთე შეთავაზება", available: true },
-      { name: "მეექვსე შეთავაზება", available: true },
+      "არჩეული ტურებისა და აქტივობების მიხედვით 30%-ით ფასდაკლება",
+      "წვდომა ახალი ტურებისა და დესტინაციების წინასწარი წვდომა მთელი წლის განმავლობაში",
+      "პირადი კონსულტანტი 24/7 დახმარებით",
+      "უნიკალური შეთავაზებები და ექსკლუზიური წვდომა",
+      "მგზავრობის გაუქმების, სამედიცინო გადაუდებელი დახმარების და დაკარგული ბარგის დაზღვევა",
     ],
+    book: "დაჯავშნა",
+    only: "მხოლოდ",
   },
 };
 
@@ -166,8 +174,7 @@ const profile_en = {
   name: "Name",
   lastName: "Last name",
   email: "Email",
-  password: "New Password",
-  confirmPassword: "Confirm Password",
+  changeImage: "change image",
   save: "save changes",
 };
 
@@ -176,8 +183,7 @@ const profile_ka = {
   name: "სახელი",
   lastName: "გვარი",
   email: "იმეილი",
-  password: "ახალი პაროლი",
-  confirmPassword: "გაიმეორეთ პაროლი",
+  changeImage: "სურათის შეცვლა",
   save: "ცვლილებების შენახვა",
 };
 

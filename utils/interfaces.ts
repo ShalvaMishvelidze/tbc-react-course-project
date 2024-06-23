@@ -18,8 +18,11 @@ export interface Post {
 
 export interface Premium {
   [key: string]: {
+    title: string;
     heading: string;
-    benefits: { name: string; available: boolean }[];
+    benefits: string[];
+    book: string;
+    only: string;
   };
 }
 
