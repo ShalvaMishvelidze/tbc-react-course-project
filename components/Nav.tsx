@@ -42,9 +42,15 @@ const Nav = async ({
           lang={lang}
           systemPreferences={systemPreferences}
         />
-        <CartBtn cart_total={total} />
+        <CartBtn user={session?.user} cart_total={total} />
         <ChangeTheme />
-        {session?.user ? <User /> : <a href="/api/auth/login">login</a>}
+        {session?.user ? (
+          <User nav={nav} />
+        ) : (
+          <a className="user-login" href="/api/auth/login">
+            {nav.login}
+          </a>
+        )}
       </div>
     </nav>
   );

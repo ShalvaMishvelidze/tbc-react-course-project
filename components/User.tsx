@@ -1,11 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import UserDropdown from "./UserDropdown";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import UserIcon from "./UserIcon";
 
-const User = () => {
-  const { user, error, isLoading } = useUser();
+const User = ({ nav }: { nav: { [key: string]: string } }) => {
   const [dropdown, setDropdown] = useState(false);
   const node: any = useRef();
 
@@ -32,22 +30,10 @@ const User = () => {
     return;
   }, []);
 
-  if (isLoading)
-    return (
-      <div className="user loading">
-        <div></div>
-      </div>
-    );
-  if (error) return <div>{error.message}</div>;
-
   return (
     <div className="user" ref={node}>
-      {user ? (
-        <UserIcon dropdown={dropdown} setDropdown={setDropdown} />
-      ) : (
-        <a href="/api/auth/login">Login</a>
-      )}
-      {dropdown && <UserDropdown />}
+      <UserIcon dropdown={dropdown} setDropdown={setDropdown} />
+      {dropdown && <UserDropdown nav={nav} />}
     </div>
   );
 };

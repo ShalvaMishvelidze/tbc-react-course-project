@@ -1,7 +1,7 @@
 .user {
   position: relative;
   height: 100%;
-  margin-right: 3rem;
+  margin-right: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,6 +15,18 @@
     }
   }
 
+  &-login {
+    padding: 0.5rem 1rem;
+    font-size: $fs-regular;
+    text-transform: uppercase;
+    background-color: $clr-violet;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $clr-purple;
+    }
+  }
+
   &-icon {
     font-size: $fs-giant;
     color: $clr-violet;
@@ -24,9 +36,10 @@
   }
 
   &-dropdown {
+    z-index: 1000;
     position: absolute;
-    top: 4.5rem;
-    width: 10rem;
+    top: 5.5rem;
+    width: 15rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -35,9 +48,10 @@
     align-items: center;
     background-color: $clr-charcoal-2;
     color: $clr-white-1;
+    box-shadow: 0rem 0.5rem 1rem $clr-bcg-primary-dark-transparent;
 
     & > * {
-      padding: 0.5rem 0;
+      padding: 1rem 0;
       width: 100%;
       text-align: center;
       font-size: $fs-regular;
