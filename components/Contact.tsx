@@ -44,35 +44,35 @@ const Contact = ({ contact }: any) => {
       <div className="contact-form">
         <h3 className="contact-form-header">{contact.formHeading}</h3>
         <form ref={form} onSubmit={sendEmail}>
-          <label htmlFor="user_name">name:</label>
+          <label htmlFor="user_name">{contact.name}:</label>
           <input
             id="user_name"
             type="text"
             name="user_name"
-            placeholder="Full Name"
+            placeholder={contact.name}
             required
             maxLength={50}
           />
-          <label htmlFor="user_email">email:</label>
+          <label htmlFor="user_email">{contact.email}:</label>
           <input
             id="user_email"
             type="email"
             name="user_email"
-            placeholder="Your Email"
+            placeholder={contact.email}
             required
             maxLength={50}
           />
-          <label htmlFor="user_message">message:</label>
+          <label htmlFor="user_message">{contact.message}:</label>
           <textarea
             id="user_message"
             name="user_message"
             rows={7}
-            placeholder="Leave a Message"
+            placeholder={contact.message}
             required
             maxLength={500}
           ></textarea>
           <button className="main-btn" type="submit" disabled={pending}>
-            Send Message
+            {contact.submit}
           </button>
         </form>
       </div>

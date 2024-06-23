@@ -27,18 +27,20 @@ export const POST = async (req: NextRequest) => {
       const user_id = session.metadata!.user_id;
       const paymentIntent = session.payment_intent as string;
 
-      await sql`
+      if (user_id) {
+        await sql`
         INSERT INTO orders
         (order_id, payment_intent, title, user_id, price)
         VALUES
         (${orderId}, ${paymentIntent}, ${names}, ${user_id?.replace(
-        /"/g,
-        ""
-      )}, ${price})
+          /"/g,
+          ""
+        )}, ${price})
       `;
 
-      await clearCart(user_id?.replace(/"/g, ""));
-      cookies().set("cart_total", "0");
+        await clearCart(user_id?.replace(/"/g, ""));
+        cookies().set("cart_total", "0");
+      }
     }
 
     if (event.type === "refund.created") {

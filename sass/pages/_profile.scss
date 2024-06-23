@@ -3,43 +3,65 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 2rem;
   height: 100%;
   padding: 5rem;
 
-  & div {
-    width: 60rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
+  .img-input {
+    display: none;
+  }
 
-    & label {
-      text-transform: capitalize;
-      font-size: $fs-bigger;
+  .img-label {
+    background-color: $clr-violet;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+
+    &:hover {
+      background-color: $clr-purple;
+      cursor: pointer;
+    }
+  }
+
+  img {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    outline: 0.5rem solid $clr-violet;
+    outline-offset: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    label {
+      font-size: $fs-big;
+      font-weight: $fw-bold;
     }
 
-    & input {
+    input {
       padding: 0.5rem;
       font-size: $fs-regular;
-      width: 30rem;
-      background-color: $clr-bcg-secondary-light;
+      width: 50rem;
     }
   }
 
   & button {
-    padding: 1rem 2rem;
-    background-color: $clr-purple;
-    border-radius: 1rem;
-    margin-top: 3rem;
+    padding: 1rem;
+    background-color: $clr-violet;
+    border-radius: 0.5rem;
     text-transform: uppercase;
-    font-size: $fs-bigger;
+    font-size: $fs-big;
+    font-weight: $fw-bold;
     color: $clr-white;
     transition: all 0.2s;
 
     &:hover {
-      background-color: $clr-purple-dark;
-      color: $clr-gray-light;
+      background-color: $clr-purple;
       box-shadow: 2px 4px 24px $clr-bcg-primary;
     }
   }
