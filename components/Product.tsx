@@ -1,6 +1,9 @@
+import { addToCart, setCartTotalCookie } from "@/utils/actions/cart_actions";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Toast from "./Toast";
+import { toast } from "react-toastify";
 
 interface P {
   id: number;
@@ -10,7 +13,12 @@ interface P {
   image: string;
 }
 
-const Product = (props: { product: P; addToCart: string; seeMore: string }) => {
+const Product = (props: {
+  product: P;
+  addToCart: string;
+  seeMore: string;
+  user: { sub: string };
+}) => {
   const [product, setProduct] = useState<P | undefined>(undefined);
 
   useEffect(() => {
@@ -22,7 +30,13 @@ const Product = (props: { product: P; addToCart: string; seeMore: string }) => {
   }, [props.product]);
 
   const handleClick = () => {
-    console.log("hello");
+    if (props.user) {
+      addToCart(props.user?.sub as string, props.product.id).then((total) => {
+        setCartTotalCookie(total);
+      });
+    } else {
+      toast.error("You need to be logged in to add to cart");
+    }
   };
 
   if (!product) {
@@ -38,6 +52,7 @@ const Product = (props: { product: P; addToCart: string; seeMore: string }) => {
 
   return (
     <article className="product">
+      <Toast />
       <h3 className="product-title">{product.name.substring(0, 20)}</h3>
       <div className="product-image">
         <Image

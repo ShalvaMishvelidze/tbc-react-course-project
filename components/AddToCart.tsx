@@ -1,21 +1,28 @@
 "use client";
 
 import { addToCart, setCartTotalCookie } from "@/utils/actions/cart_actions";
-import { useUser } from "@auth0/nextjs-auth0/client";
+import { toast } from "react-toastify";
 
-const AddToCart = ({ text, product }: { text: string; product: any }) => {
-  const { user, error, isLoading } = useUser();
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
-
+const AddToCart = ({
+  text,
+  product,
+  user,
+}: {
+  text: string;
+  product: any;
+  user: { sub: string };
+}) => {
   return (
     <button
       className="single-product-cart-btn"
       onClick={() => {
-        addToCart(user?.sub as string, product.id).then((total) => {
-          setCartTotalCookie(total);
-        });
+        if (user) {
+          addToCart(user?.sub as string, product.id).then((total) => {
+            setCartTotalCookie(total);
+          });
+        } else {
+          toast.error("You need to be logged in to add to cart");
+        }
       }}
     >
       {text}

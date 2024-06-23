@@ -36,6 +36,7 @@ const SingleProduct = async ({
         <AddToCart
           text={libraries[language].main.products.addToCart}
           product={product}
+          user={session?.user as { sub: string }}
         />
       </div>
       <Reviews

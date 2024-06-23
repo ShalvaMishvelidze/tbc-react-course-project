@@ -12,9 +12,13 @@ export const revalidate = 0;
 const Products = ({
   products: p,
   pageText,
+  user,
 }: {
   products: P[];
   pageText: Type;
+  user: {
+    sub: string;
+  };
 }) => {
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState<P[] | undefined>(undefined);
@@ -207,6 +211,7 @@ const Products = ({
               product={product}
               addToCart={pageText.addToCart as string}
               seeMore={pageText.seeMore as string}
+              user={user}
             />
           );
         })}
