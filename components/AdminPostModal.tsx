@@ -3,23 +3,32 @@
 import { editPost } from "@/utils/actions/admin_actions";
 import { useState } from "react";
 
-const AdminPostModal = ({ post, setPost, setEdit, setCancel, setGet }: any) => {
+const AdminPostModal = ({
+  post,
+  setPost,
+  setEdit,
+  setCancel,
+  setGet,
+  text,
+}: any) => {
   const [newTag, setNewTag] = useState("");
 
   return (
     <div className="admin-post-modal">
       <div className="container">
-        <h2>Edit Post</h2>
         <form onSubmit={(e) => e.preventDefault()}>
+          <label>{text.title}:</label>
           <input
             type="text"
             value={post.title}
             onChange={(e) => setPost({ ...post, title: e.target.value })}
           />
+          <label>{text.body}:</label>
           <textarea
             value={post.body}
             onChange={(e) => setPost({ ...post, body: e.target.value })}
           />
+          <label>{text.tags}:</label>
           <div className="tags">
             {post.tags.map((tag: string, index: number) => {
               return (
@@ -56,7 +65,7 @@ const AdminPostModal = ({ post, setPost, setEdit, setCancel, setGet }: any) => {
                 }
               }}
             >
-              add tag
+              {text.addTag}
             </button>
           </div>
           <div className="container-btns">
@@ -70,10 +79,10 @@ const AdminPostModal = ({ post, setPost, setEdit, setCancel, setGet }: any) => {
                 });
               }}
             >
-              Save
+              {text.save}
             </button>
             <button onClick={() => setCancel(true)} type="button">
-              Cancel
+              {text.cancel}
             </button>
           </div>
         </form>

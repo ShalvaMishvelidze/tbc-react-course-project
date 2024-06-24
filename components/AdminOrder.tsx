@@ -1,5 +1,5 @@
 "use client";
-const AdminOrder = ({ order, setDel }: any) => {
+const AdminOrder = ({ order, setDel, text }: any) => {
   const userOffsetMinutes = order.created_at.getTimezoneOffset();
 
   const userOffsetMillis = userOffsetMinutes * 60 * 1000;
@@ -25,7 +25,7 @@ const AdminOrder = ({ order, setDel }: any) => {
           setDel(true);
         }}
       >
-        refund
+        {text}
       </button>
     </div>
   );

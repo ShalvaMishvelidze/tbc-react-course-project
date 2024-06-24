@@ -11,7 +11,7 @@ import { ImArrowUp, ImArrowDown } from "react-icons/im";
 import { toast } from "react-toastify";
 import { MdCancel } from "react-icons/md";
 
-const Review = ({ review: r, handleReviewDelete, user, role, text }: any) => {
+const Review = ({ review: r, handleReviewDelete, id, role, text }: any) => {
   const [review, setReview] = useState<any>(r);
   const [editing, setEditing] = useState<boolean>(false);
   const [displayImages, setDisplayImages] = useState<string[]>(
@@ -71,11 +71,11 @@ const Review = ({ review: r, handleReviewDelete, user, role, text }: any) => {
   return (
     <div className="review">
       <div className="review-vote-btns">
-        <button type="button" onClick={handleUpvote} disabled={!user}>
+        <button type="button" onClick={handleUpvote} disabled={!id}>
           <ImArrowUp />
         </button>
         <span>{review.upvotes}</span>
-        <button type="button" onClick={handleDownvote} disabled={!user}>
+        <button type="button" onClick={handleDownvote} disabled={!id}>
           <ImArrowDown />
         </button>
       </div>
@@ -123,7 +123,7 @@ const Review = ({ review: r, handleReviewDelete, user, role, text }: any) => {
           </div>
         )}
       </div>
-      {(user.sub === review.owner_id || role === "admin") && (
+      {(id === review.owner_id || role === "admin") && (
         <div className="review-btn-container">
           {editing ? (
             <button

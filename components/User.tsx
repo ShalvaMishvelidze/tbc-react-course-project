@@ -2,8 +2,11 @@
 import { useState, useEffect, useRef } from "react";
 import UserDropdown from "./UserDropdown";
 import UserIcon from "./UserIcon";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import LoadingSpinner from "./LoadingSpinner";
 
 const User = ({ nav }: { nav: { [key: string]: string } }) => {
+  const { user, error, isLoading } = useUser();
   const [dropdown, setDropdown] = useState(false);
   const node: any = useRef();
 
@@ -30,11 +33,23 @@ const User = ({ nav }: { nav: { [key: string]: string } }) => {
     return;
   }, []);
 
+  if (error || isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
-    <div className="user" ref={node}>
-      <UserIcon dropdown={dropdown} setDropdown={setDropdown} />
-      {dropdown && <UserDropdown nav={nav} />}
-    </div>
+    <>
+      {user ? (
+        <div className="user" ref={node}>
+          <UserIcon dropdown={dropdown} setDropdown={setDropdown} />
+          {dropdown && <UserDropdown nav={nav} />}
+        </div>
+      ) : (
+        <a className="user-login" href="/api/auth/login">
+          {nav.login}
+        </a>
+      )}
+    </>
   );
 };
 

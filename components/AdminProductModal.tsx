@@ -4,8 +4,15 @@ import { deleteImage } from "@/utils/actions/products_actions";
 import { Product } from "@/utils/interfaces";
 import Image from "next/image";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
-const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
+const AdminProductModal = ({
+  product: p,
+  setEdit,
+  setGet,
+  setCancel,
+  text,
+}: any) => {
   const mainImage = p.image;
   const inputImageRef = useRef<HTMLInputElement>(null);
   const inputImagesRef = useRef<HTMLInputElement>(null);
@@ -18,6 +25,8 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    toast.info("saving product...");
 
     if (image.name) {
       await deleteImage(mainImage);
@@ -58,6 +67,7 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
     }
 
     await editProduct(product);
+    toast.success("product saved");
     setGet(true);
     setEdit(false);
   };
@@ -72,6 +82,14 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files![0].size > 1024 * 1024) {
+      inputImageRef.current!.value = "";
+      inputImagesRef.current!.value = "";
+      toast.error(
+        "Image size is too big! You can only upload images up to 1MB."
+      );
+      return;
+    }
     if (e.target && e.target.dataset.type === "image") {
       const files = e.target.files;
       if (files !== null) {
@@ -125,7 +143,7 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
       <div className="admin-products-modal-container">
         <div className="input-container">
           <div>
-            <label className="admin-products-modal-label">name:</label>
+            <label className="admin-products-modal-label">{text.name}:</label>
             <input
               onChange={handleChange}
               className="admin-products-modal-input"
@@ -138,7 +156,7 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
           </div>
 
           <div>
-            <label className="admin-products-modal-label">price:</label>
+            <label className="admin-products-modal-label">{text.price}:</label>
             <input
               onChange={(e) => {
                 if (e.target.value.length > 6) {
@@ -161,7 +179,7 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
 
           <div>
             <label className="admin-products-modal-label">
-              discount percentage:
+              {text.discountpercentage}:
             </label>
             <input
               onChange={(e) => {
@@ -183,7 +201,9 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
             />
           </div>
           <div>
-            <label className="admin-products-modal-label">category:</label>
+            <label className="admin-products-modal-label">
+              {text.category}:
+            </label>
             <input
               onChange={handleChange}
               className="admin-products-modal-input"
@@ -196,7 +216,7 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
           </div>
 
           <div>
-            <label className="admin-products-modal-label">brand:</label>
+            <label className="admin-products-modal-label">{text.brand}:</label>
             <input
               onChange={handleChange}
               className="admin-products-modal-input"
@@ -208,7 +228,9 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
             />
           </div>
           <div>
-            <label className="admin-products-modal-label">description:</label>
+            <label className="admin-products-modal-label">
+              {text.description}:
+            </label>
             <textarea
               onChange={handleChange}
               className="admin-products-modal-textarea"
@@ -233,7 +255,7 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
               />
             )}
             <label className="admin-products-modal-label" htmlFor="image">
-              change image
+              {text.changeImage}
             </label>
             <input
               onChange={handleImageChange}
@@ -250,7 +272,7 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
           <div className="images-container">
             <div className="images-container-input">
               <label className="admin-products-modal-label" htmlFor="images">
-                add new image
+                {text.images}
               </label>
               <input
                 onChange={handleImageChange}
@@ -295,8 +317,8 @@ const AdminProductModal = ({ product: p, setCancel, setEdit, setGet }: any) => {
         </div>
 
         <div className="admin-products-modal-btn-container">
-          <button onClick={handleSubmit}>save</button>
-          <button onClick={() => setCancel(true)}>cancel</button>
+          <button onClick={handleSubmit}>{text.save}</button>
+          <button onClick={() => setCancel(true)}>{text.cancel}</button>
         </div>
       </div>
     </div>

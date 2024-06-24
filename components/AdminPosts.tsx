@@ -6,7 +6,7 @@ import PageSelector from "./PageSelector";
 import AdminPost from "./AdminPost";
 import AdminPostModal from "./AdminPostModal";
 
-const AdminPosts = () => {
+const AdminPosts = ({ text }: any) => {
   const [post, setPost] = useState<any>({});
   const [posts, setPosts] = useState<any>([]);
   const [search, setSearch] = useState("");
@@ -91,9 +91,10 @@ const AdminPosts = () => {
           setCancel={setCancel}
           setGet={setGet}
           post={post}
+          text={text}
         />
       )}
-      <AdminSearch pageText="search Posts" page="posts" />
+      <AdminSearch pageText={text.placeholder} page="posts" />
       <div className="admin-posts">
         {posts.map((post: any) => {
           return (
@@ -103,6 +104,7 @@ const AdminPosts = () => {
               setEdit={setEdit}
               key={post.id}
               setDel={setDel}
+              text={text}
             />
           );
         })}

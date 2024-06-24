@@ -1,10 +1,15 @@
 import { libraries } from "@/utils/constants";
 import { getSystemPreferences } from "../../../utils/actions";
 import { Premium as Type } from "@/utils/interfaces";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const Premium = async () => {
   const { language }: { language: string } = await getSystemPreferences();
   const { monthly, yearly }: Type = libraries[language].main.premium;
+
+  if (!monthly || !yearly) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <section className="premium">

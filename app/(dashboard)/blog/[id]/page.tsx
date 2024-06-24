@@ -1,4 +1,5 @@
 import Comments from "@/components/Comments";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import ReactionsContainer from "@/components/ReactionsContainer";
 import ViewsContainer from "@/components/ViewsContainer";
 import { getSystemPreferences } from "@/utils/actions";
@@ -18,16 +19,15 @@ const SingleBlog = async ({ params: { id } }: { params: { id: string } }) => {
   const role = await getUserRole(session?.user.sub as string);
   const text = libraries[language].main.blog;
 
+  if (!post || !role || !text) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <section className="single-blog">
       <h1 className="single-blog-title">{post.title}</h1>
       <p className="single-blog-content">{post.body}</p>
-      <ViewsContainer
-        views={post.views}
-        id={post.id}
-        user_id={session?.user.sub}
-        text={text.views}
-      />
+      <ViewsContainer views={post.views} id={post.id} text={text.views} />
       <div className="single-blog-tag-container">
         <span>{text.tags}: </span>
         {post.tags.map((tag, index) => {
@@ -42,10 +42,9 @@ const SingleBlog = async ({ params: { id } }: { params: { id: string } }) => {
         id={post.id}
         total_likes={post.total_likes}
         total_dislikes={post.total_dislikes}
-        user={session?.user}
         user_vote_type={post.user_vote_type}
       />
-      <Comments post_id={id} user={session?.user} text={text} role={role} />
+      <Comments post_id={id} text={text} role={role} />
     </section>
   );
 };

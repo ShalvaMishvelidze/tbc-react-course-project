@@ -1,14 +1,17 @@
 import Blogs from "@/components/Blogs";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { getSystemPreferences } from "@/utils/actions";
 import { libraries } from "@/utils/constants";
-import { getSession } from "@auth0/nextjs-auth0";
 
 const page = async () => {
   const { language } = await getSystemPreferences();
   const text = libraries[language].main.blog;
-  const session = await getSession();
 
-  return <Blogs text={text} user={session?.user} />;
+  if (!text) {
+    return <LoadingSpinner />;
+  }
+
+  return <Blogs text={text} />;
 };
 
 export default page;

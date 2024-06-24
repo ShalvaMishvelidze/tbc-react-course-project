@@ -2,11 +2,6 @@
 import { del } from "@vercel/blob";
 import { sql } from "@vercel/postgres";
 
-export async function getPageCount() {
-  const count = await sql`SELECT COUNT(*) FROM products;`;
-  return Math.ceil(count.rows[0].count / 12);
-}
-
 export async function getSingleProduct(id: string) {
   const product =
     await sql`SELECT p.*, COALESCE(avg_rating.avg_rating, 0) AS rating

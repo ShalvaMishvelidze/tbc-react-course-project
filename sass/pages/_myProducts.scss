@@ -1,0 +1,36 @@
+.my-products-btn-container {
+  display: flex;
+  gap: 2rem;
+
+  button {
+    background-color: $clr-violet;
+    color: $clr-white-1;
+    font-size: $fs-big;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $clr-purple;
+    }
+  }
+}
+
+.admin-products-modal {
+  z-index: 100;
+}
+
+.products-add-new {
+  background-color: $clr-violet;
+  color: $clr-white-1;
+  font-size: $fs-bigger;
+  font-weight: $fw-bold;
+  text-align: center;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $clr-purple;
+  }
+}

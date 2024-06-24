@@ -2,10 +2,15 @@ import { Product, Products as Type } from "@/utils/interfaces";
 import { getSystemPreferences } from "@/utils/actions";
 import { libraries } from "@/utils/constants";
 import Products from "@/components/Products";
-import { getSession } from "@auth0/nextjs-auth0";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const page = async () => {
   const { language }: { language: string } = await getSystemPreferences();
+
+  if (!language) {
+    return <LoadingSpinner />;
+  }
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_URL}api/product/products`,
     {
@@ -21,17 +26,17 @@ const page = async () => {
   );
   const products: Product[] = await response.json();
 
+  if (!products) {
+    return <LoadingSpinner />;
+  }
+
   const pageText: Type = libraries[language].main.products;
 
-  const session = await getSession();
+  if (!pageText) {
+    return <LoadingSpinner />;
+  }
 
-  return (
-    <Products
-      pageText={pageText}
-      products={products}
-      user={session?.user as { sub: string }}
-    />
-  );
+  return <Products pageText={pageText} products={products} />;
 };
 
 export default page;

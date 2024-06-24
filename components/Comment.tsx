@@ -27,32 +27,32 @@ const Comment = ({
     if (vote === "like") {
       setVote("none");
       setLikes(likes - 1);
-      addNewCommentLike(comment.id, user.sub, "none");
+      addNewCommentLike(comment.id, user?.sub, "none");
     } else if (vote === "dislike") {
       setVote("like");
       setLikes(likes + 1);
       setDislikes(dislikes - 1);
-      addNewCommentLike(comment.id, user.sub, "like");
+      addNewCommentLike(comment.id, user?.sub, "like");
     } else {
       setVote("like");
       setLikes(likes + 1);
-      addNewCommentLike(comment.id, user.sub, "like");
+      addNewCommentLike(comment.id, user?.sub, "like");
     }
   };
   const handleDislike = () => {
     if (vote === "dislike") {
       setVote("none");
       setDislikes(dislikes - 1);
-      addNewCommentLike(comment.id, user.sub, "none");
+      addNewCommentLike(comment.id, user?.sub, "none");
     } else if (vote === "like") {
       setVote("dislike");
       setDislikes(dislikes + 1);
       setLikes(likes - 1);
-      addNewCommentLike(comment.id, user.sub, "dislike");
+      addNewCommentLike(comment.id, user?.sub, "dislike");
     } else {
       setVote("dislike");
       setDislikes(dislikes + 1);
-      addNewCommentLike(comment.id, user.sub, "dislike");
+      addNewCommentLike(comment.id, user?.sub, "dislike");
     }
   };
 
@@ -95,7 +95,7 @@ const Comment = ({
           <AiFillDislike /> {dislikes}
         </button>
       </div>
-      {(role === "admin" || comment.owner_id === user.sub) && (
+      {(role === "admin" || comment.owner_id === user?.sub) && (
         <div className="comment-btn-container">
           {editing ? (
             <button

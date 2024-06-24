@@ -5,7 +5,7 @@ import { AdminSearch } from "./AdminSearch";
 import { useSearchParams } from "next/navigation";
 import PageSelector from "./PageSelector";
 
-const AdminOrders = () => {
+const AdminOrders = ({ text }: any) => {
   const [orders, setOrders] = useState<any>([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -62,10 +62,17 @@ const AdminOrders = () => {
 
   return (
     <>
-      <AdminSearch pageText="search orders" page="orders" />
+      <AdminSearch pageText={text.placeholder} page="orders" />
       <div className="admin-orders">
         {orders.map((order: any) => {
-          return <AdminOrder order={order} key={order.id} setDel={setDel} />;
+          return (
+            <AdminOrder
+              order={order}
+              key={order.id}
+              setDel={setDel}
+              text={text.refund}
+            />
+          );
         })}
       </div>
       {totalPages > 1 && (

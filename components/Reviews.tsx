@@ -10,8 +10,13 @@ import Review from "./Review";
 import Toast from "./Toast";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import LoadingSpinner from "./LoadingSpinner";
+import { getUserRole } from "@/utils/actions/user_actions";
 
-const Reviews = ({ product_id, user, role, text }: any) => {
+const Reviews = ({ product_id, text }: any) => {
+  const { user, error, isLoading } = useUser();
+  const [role, setRole] = useState<string>("");
   const [review, setReview] = useState<string>("");
   const [reviews, setReviews] = useState<any[]>([]);
   const [i, setI] = useState<any[]>([]);
@@ -111,6 +116,16 @@ const Reviews = ({ product_id, user, role, text }: any) => {
     }
   }, [user]);
 
+  useEffect(() => {
+    getUserRole(user?.sub as string).then((role) => {
+      setRole(role);
+    });
+  }, []);
+
+  if (error || isLoading || !role) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <div className="single-product-reviews">
       <Toast />
@@ -172,7 +187,7 @@ const Reviews = ({ product_id, user, role, text }: any) => {
               <Review
                 key={review.id}
                 text={text}
-                user={user}
+                id={user?.sub}
                 role={role}
                 review={review}
                 handleReviewDelete={handleReviewDelete}

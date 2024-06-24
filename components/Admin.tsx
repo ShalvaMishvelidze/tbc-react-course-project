@@ -7,7 +7,7 @@ import AdminUsers from "./AdminUsers";
 import AdminOrders from "./AdminOrders";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const Admin = () => {
+const Admin = ({ products, text }: any) => {
   const router = useRouter();
   const [page, setPage] = useState<"products" | "posts" | "users" | "orders">(
     "products"
@@ -16,6 +16,8 @@ const Admin = () => {
   const pageString = pageParams.get("page");
 
   useEffect(() => {
+    console.log("effect fire");
+
     if (pageString) {
       setPage(pageString as "products" | "posts" | "users" | "orders");
     } else {
@@ -33,7 +35,7 @@ const Admin = () => {
             router.push("/admin?page=products");
           }}
         >
-          products
+          {text.products}
         </button>
         <button
           className={page === "posts" ? "active" : ""}
@@ -42,7 +44,7 @@ const Admin = () => {
             router.push("/admin?page=posts");
           }}
         >
-          posts
+          {text.posts}
         </button>
         <button
           className={page === "users" ? "active" : ""}
@@ -51,7 +53,7 @@ const Admin = () => {
             router.push("/admin?page=users");
           }}
         >
-          users
+          {text.users}
         </button>
         <button
           className={page === "orders" ? "active" : ""}
@@ -60,14 +62,16 @@ const Admin = () => {
             router.push("/admin?page=orders");
           }}
         >
-          orders
+          {text.orders}
         </button>
       </div>
       <div className="admin-container">
-        {page === "products" && <AdminProducts />}
-        {page === "posts" && <AdminPosts />}
-        {page === "users" && <AdminUsers />}
-        {page === "orders" && <AdminOrders />}
+        {page === "products" && (
+          <AdminProducts products={products} text={text} />
+        )}
+        {page === "posts" && <AdminPosts text={text} />}
+        {page === "users" && <AdminUsers text={text} />}
+        {page === "orders" && <AdminOrders text={text} />}
       </div>
     </section>
   );

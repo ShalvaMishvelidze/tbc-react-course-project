@@ -4,9 +4,11 @@ import { Order } from "@/utils/interfaces";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { UUID } from "crypto";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
-const Orders = () => {
+const Orders = ({ language }: { language: string }) => {
   const { user, error, isLoading } = useUser();
+
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Orders = () => {
   };
 
   if (error || isLoading) {
-    return <div className="loading">loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -44,10 +46,10 @@ const Orders = () => {
         return (
           <div className="order" key={order.order_id}>
             <p>{order.title}</p>
-            <p>{order.price}</p>
+            <p>{order.price}$</p>
             <p>{formattedLocalDate}</p>
             <button type="button" onClick={() => handleClick(order.order_id)}>
-              cancel
+              {language === "en" ? "cancel" : "გაუქმება"}
             </button>
           </div>
         );

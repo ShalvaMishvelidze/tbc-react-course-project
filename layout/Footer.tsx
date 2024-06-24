@@ -1,10 +1,15 @@
 import { libraries } from "../utils/constants";
 import { getSystemPreferences } from "../utils/actions";
 import Link from "next/link";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const Footer = async () => {
   const systemPreferences = await getSystemPreferences();
   const footer = libraries[systemPreferences.language].footer;
+
+  if (!footer) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <footer className="footer">

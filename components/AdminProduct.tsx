@@ -1,7 +1,7 @@
 import { deleteProduct } from "@/utils/actions/admin_actions";
 import Image from "next/image";
 
-const AdminProduct = ({ product, setProduct, setEdit, setDel }: any) => {
+const AdminProduct = ({ product, setProduct, setEdit, setDel, text }: any) => {
   return (
     <div className="admin-product">
       <div className="admin-product-header">
@@ -14,14 +14,14 @@ const AdminProduct = ({ product, setProduct, setEdit, setDel }: any) => {
         <h3>{product.name}</h3>
 
         <div className="admin-product-info">
-          <h4>category: {product.category}</h4>
-          <p>brand: {product.brand}</p>
           <h4>
-            price:{" "}
-            {Math.ceil(
-              product.price - (product.price * product.discountpercentage) / 100
-            )}
-            $
+            {text.category}: {product.category}
+          </h4>
+          <p>
+            {text.brand}: {product.brand}
+          </p>
+          <h4>
+            {text.price}: {product.price}$
           </h4>
         </div>
       </div>
@@ -38,13 +38,13 @@ const AdminProduct = ({ product, setProduct, setEdit, setDel }: any) => {
             setEdit(true);
           }}
         >
-          edit
+          {text.edit}
         </button>
         <button
           type="button"
           onClick={() => deleteProduct(product.id).then(() => setDel(true))}
         >
-          delete
+          {text.delete}
         </button>
       </div>
     </div>

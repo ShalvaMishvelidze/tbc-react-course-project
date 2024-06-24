@@ -99,6 +99,9 @@ export interface Main {
   addNewProduct: {
     [key: string]: string;
   };
+  myProducts: {
+    [key: string]: string;
+  };
 }
 
 export interface User {

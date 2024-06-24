@@ -8,8 +8,11 @@ import {
 } from "@/utils/actions/blog_actions";
 import Toast from "./Toast";
 import { toast } from "react-toastify";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import LoadingSpinner from "./LoadingSpinner";
 
-const Comments = ({ post_id, user, text, role }: any) => {
+const Comments = ({ post_id, text, role }: any) => {
+  const { user, error, isLoading } = useUser();
   const [comment, setComment] = useState<string>("");
   const [comments, setComments] = useState<any[]>([]);
 
@@ -56,11 +59,15 @@ const Comments = ({ post_id, user, text, role }: any) => {
         setComments(comments);
       });
     } else {
-      getComments(post_id, user?.sub as string).then((comments) => {
+      getComments(post_id, "").then((comments) => {
         setComments(comments);
       });
     }
   }, [user]);
+
+  if (error || isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="comments">

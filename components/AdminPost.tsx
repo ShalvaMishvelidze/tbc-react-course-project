@@ -2,7 +2,7 @@
 
 import { deletePost } from "@/utils/actions/admin_actions";
 
-const AdminPost = ({ post, setDel, setPost, setEdit }: any) => {
+const AdminPost = ({ post, setDel, setPost, setEdit, text }: any) => {
   return (
     <div className="admin-post">
       <h3>{post.title}</h3>
@@ -19,7 +19,7 @@ const AdminPost = ({ post, setDel, setPost, setEdit }: any) => {
             setEdit(true);
           }}
         >
-          edit
+          {text.edit}
         </button>
         <button
           onClick={() => {
@@ -28,7 +28,7 @@ const AdminPost = ({ post, setDel, setPost, setEdit }: any) => {
             });
           }}
         >
-          Delete
+          {text.delete}
         </button>
       </div>
     </div>

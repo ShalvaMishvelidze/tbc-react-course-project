@@ -4,17 +4,13 @@ import ReactionsContainer from "./ReactionsContainer";
 
 export function SingleBlog({
   post,
-  user,
   text,
 }: {
   post: Post;
-  user: any;
   text: {
     [key: string]: string;
   };
 }) {
-  console.log(text);
-
   return (
     <article className="blog">
       <h4 className="blog-title">{post.title}</h4>
@@ -30,7 +26,6 @@ export function SingleBlog({
           id={post.id}
           total_likes={post.total_likes}
           total_dislikes={post.total_dislikes}
-          user={user}
           user_vote_type={post.user_vote_type}
         />
       </div>

@@ -4,7 +4,7 @@ import { PutBlobResult } from "@vercel/blob";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-const AdminUser = ({ user: u, setDel }: any) => {
+const AdminUser = ({ text, user: u, setDel }: any) => {
   const [user, setUser] = useState(u);
   const [edit, setEdit] = useState(false);
   const imageRef = useRef<HTMLInputElement>(null);
@@ -87,13 +87,14 @@ const AdminUser = ({ user: u, setDel }: any) => {
               required
               onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
-            <input
-              type="text"
-              placeholder="role"
+            <select
               required
               value={user.role}
               onChange={(e) => setUser({ ...user, role: e.target.value })}
-            />
+            >
+              <option value="user">user</option>
+              <option value="admin">admin</option>
+            </select>
           </div>
         </>
       ) : (
@@ -111,13 +112,13 @@ const AdminUser = ({ user: u, setDel }: any) => {
       )}
       {edit ? (
         <div className="admin-user-bottom">
-          <button onClick={() => editHandler(user)}>save</button>
-          <button onClick={() => cancelHandler()}>cancel</button>
+          <button onClick={() => editHandler(user)}>{text.save}</button>
+          <button onClick={() => cancelHandler()}>{text.cancel}</button>
         </div>
       ) : (
         <div className="admin-user-bottom">
-          <button onClick={() => setEdit(true)}>edit</button>
-          <button onClick={() => deleteHandler(user.id)}>delete</button>
+          <button onClick={() => setEdit(true)}>{text.edit}</button>
+          <button onClick={() => deleteHandler(user.id)}>{text.delete}</button>
         </div>
       )}
     </div>

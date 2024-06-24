@@ -17,9 +17,10 @@ const Product = (props: {
   product: P;
   addToCart: string;
   seeMore: string;
-  user: { sub: string };
+  user: any;
 }) => {
   const [product, setProduct] = useState<P | undefined>(undefined);
+  const [dis, setDis] = useState(false);
 
   useEffect(() => {
     let timeout = setTimeout(() => {
@@ -30,12 +31,17 @@ const Product = (props: {
   }, [props.product]);
 
   const handleClick = () => {
-    if (props.user) {
+    setDis(true);
+    if (props.user?.sub) {
       addToCart(props.user?.sub as string, props.product.id).then((total) => {
         setCartTotalCookie(total);
+        setDis(false);
       });
+      return;
     } else {
       toast.error("You need to be logged in to add to cart");
+      setDis(false);
+      return;
     }
   };
 
@@ -69,7 +75,7 @@ const Product = (props: {
           : product.description}
       </p>
       <div className="product-container">
-        <button className="product-btn" onClick={handleClick}>
+        <button className="product-btn" onClick={handleClick} disabled={dis}>
           {props.addToCart}
         </button>
         <Link className="product-link" href={`/store/${product.id}`}>

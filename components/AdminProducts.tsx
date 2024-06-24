@@ -9,8 +9,8 @@ import { AdminSearch } from "./AdminSearch";
 import AdminProduct from "./AdminProduct";
 import AdminProductModal from "./AdminProductModal";
 
-const AdminProducts = () => {
-  const [products, setProducts] = useState<any>([]);
+const AdminProducts = ({ products: p, text }: any) => {
+  const [products, setProducts] = useState<any>(p);
   const [product, setProduct] = useState<any>({});
   const [search, setSearch] = useState<string>("");
   const [page, setPage] = useState<number>(1);
@@ -76,13 +76,14 @@ const AdminProducts = () => {
     <>
       {edit && (
         <AdminProductModal
+          text={text}
           product={product}
           setCancel={setCancel}
           setGet={setGet}
           setEdit={setEdit}
         />
       )}
-      <AdminSearch pageText="search products" page="products" />
+      <AdminSearch pageText={text.placeholder} page="products" />
       <div className="admin-product-container">
         {products.map((product: any) => {
           return (
@@ -92,6 +93,7 @@ const AdminProducts = () => {
               setProduct={setProduct}
               setEdit={setEdit}
               setDel={setDel}
+              text={text}
             />
           );
         })}

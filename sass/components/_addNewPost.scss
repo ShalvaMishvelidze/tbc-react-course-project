@@ -75,6 +75,28 @@
     font-size: $fs-regular;
     color: $clr-white-1;
     font-weight: $fw-bold;
+    transition: background-color 0.3s;
+    float: right;
+
+    &:hover {
+      background-color: $clr-purple;
+    }
+  }
+}
+
+.blog-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+
+  button {
+    background-color: $clr-violet;
+    color: $clr-white-1;
+    font-size: $fs-big;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
 
     &:hover {
       background-color: $clr-purple;

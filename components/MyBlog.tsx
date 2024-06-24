@@ -10,21 +10,25 @@ export function MyBlog({
   setModal,
   setPost,
   setPosts,
+  text,
 }: {
   post: Post;
   user: any;
   setModal: any;
   setPost: any;
   setPosts: any;
+  text: { [key: string]: string };
 }) {
   return (
     <article className="blog">
       <h4 className="blog-title">{post.title}</h4>
       <p className="blog-desc">
         {post.body.substring(0, 50)}...{" "}
-        <Link href={`/blog/${post.id}`}>read more</Link>
+        <Link href={`/blog/${post.id}`}>{text.readMore}</Link>
       </p>
-      <h4>Views: {post.views}</h4>
+      <h4>
+        {text.views}: {post.views}
+      </h4>
       <ReactionsContainer
         id={post.id}
         total_likes={post.total_likes}
@@ -40,7 +44,7 @@ export function MyBlog({
             setModal(true);
           }}
         >
-          edit
+          {text.edit}
         </button>
         <button
           type="button"
@@ -52,7 +56,7 @@ export function MyBlog({
             });
           }}
         >
-          delete
+          {text.delete}
         </button>
       </div>
     </article>

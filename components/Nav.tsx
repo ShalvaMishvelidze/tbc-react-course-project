@@ -2,7 +2,6 @@ import LanguageSelector from "./LanguageSelector";
 import ChangeTheme from "./ChangeTheme";
 import { getCartTotalCookie } from "@/utils/actions/cart_actions";
 import CartBtn from "./CartBtn";
-import { getSession } from "@auth0/nextjs-auth0";
 import User from "./User";
 import Link from "next/link";
 
@@ -16,7 +15,7 @@ const Nav = async ({
   systemPreferences: { language: string; theme: string };
 }) => {
   const total = await getCartTotalCookie();
-  const session = await getSession();
+
   return (
     <nav className="navigation">
       <div className="navigation-left">
@@ -42,15 +41,9 @@ const Nav = async ({
           lang={lang}
           systemPreferences={systemPreferences}
         />
-        <CartBtn user={session?.user} cart_total={total} />
+        <CartBtn cart_total={total} />
         <ChangeTheme />
-        {session?.user ? (
-          <User nav={nav} />
-        ) : (
-          <a className="user-login" href="/api/auth/login">
-            {nav.login}
-          </a>
-        )}
+        <User nav={nav} />
       </div>
     </nav>
   );

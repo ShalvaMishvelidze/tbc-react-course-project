@@ -1,28 +1,51 @@
 "use client";
 import { Product } from "@/utils/interfaces";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Toast from "./Toast";
+import { getUserProducts } from "@/utils/actions/products_actions";
+import Link from "next/link";
 import ProductEditModal from "./ProductEditModal";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import LoadingSpinner from "./LoadingSpinner";
 
-const MyProducts = ({ products: ps, text }: any) => {
+const MyProducts = ({ products: ps, text, adminText }: any) => {
+  const { user, error, isLoading } = useUser();
   const [products, setProducts] = useState<Product[]>(ps);
   const [product, setProduct] = useState<Product>({} as Product);
   const [modal, setModal] = useState<boolean>(false);
+  const [get, setGet] = useState<boolean>(false);
 
   const handleEdit = (p: Product) => {
     setProduct(p);
     setModal(true);
   };
 
+  useEffect(() => {
+    if (get) {
+      getUserProducts(user?.sub as string).then((data) => {
+        setProducts(data as Product[]);
+        setGet(false);
+      });
+    }
+  }, [get]);
+
+  if (error || isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <div className="products">
+      <Link href="/add-new-product" className="products-add-new">
+        {text.add}
+      </Link>
+      <Toast />
       {modal && (
         <ProductEditModal
+          text={adminText}
           product={product}
-          setProducts={setProducts}
-          setModal={setModal}
-          setProduct={setProduct}
-          text={text}
+          setEdit={setModal}
+          setGet={setGet}
         />
       )}
       <div className="products-container">
@@ -35,9 +58,9 @@ const MyProducts = ({ products: ps, text }: any) => {
               </div>
               <p>{p.description}</p>
               <p>{p.price}$</p>
-              <div className="btn-container">
-                <button onClick={() => handleEdit(p)}>Edit</button>
-                <button>Delete</button>
+              <div className="my-products-btn-container">
+                <button onClick={() => handleEdit(p)}>{text.edit}</button>
+                <button>{text.delete}</button>
               </div>
             </div>
           );

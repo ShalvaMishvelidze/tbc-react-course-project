@@ -12,7 +12,7 @@ export const getUserRole = async (id: string) => {
     FROM users
     WHERE id = ${id};
     `;
-  return role.rows[0]?.role;
+  return role.rows[0]?.role ? role.rows[0].role : "user";
 };
 
 export const updateUser = async (user: any, url: string) => {

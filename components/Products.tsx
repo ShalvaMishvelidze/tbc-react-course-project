@@ -6,20 +6,18 @@ import Sort from "./Sort";
 import { Product as P, Products as Type } from "@/utils/interfaces";
 import PageSelector from "./PageSelector";
 import { useSearchParams } from "next/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export const revalidate = 0;
 
 const Products = ({
   products: p,
   pageText,
-  user,
 }: {
   products: P[];
   pageText: Type;
-  user: {
-    sub: string;
-  };
 }) => {
+  const { user, error, isLoading } = useUser();
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState<P[] | undefined>(undefined);
   const [sortStatus, setSortStatus] = useState("");
@@ -166,7 +164,7 @@ const Products = ({
     }
   };
 
-  if (!products) {
+  if (!products || isLoading || error) {
     return (
       <div className="products loading">
         <div className="search" />
