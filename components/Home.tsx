@@ -4,75 +4,54 @@ import { IoCompassOutline } from "react-icons/io5";
 import { IoSubwaySharp } from "react-icons/io5";
 import { MdHealthAndSafety } from "react-icons/md";
 
-const Home = () => {
+const Home = ({ text }: any) => {
   return (
     <>
       <section className="home-header">
         <div className="home-header-container">
           <div className="home-header-title">
-            <span>outdoors</span>
-            <span>is where life happens</span>
+            <span>{text.head.title}</span>
+            <span>{text.head.sub}</span>
           </div>
           <Link href="/premium" className="home-header-btn">
-            Discover our travel plans
+            {text.head.btn}
           </Link>
         </div>
       </section>
-      <h1 className="home-heading">EXCITING TOURS FOR ADVENTUROUS PEOPLE</h1>
+      <h1 className="home-heading">{text.head.heading}</h1>
       <section className="home-features">
         <div className="feature">
           <div className="icon">
             <TbWorld />
           </div>
-          <h3 className="feature-heading">Explore the world</h3>
-          <p className="feature-text">
-            Explore the world with our curated travel guides, uncover hidden
-            gems, and embark on unforgettable adventures. Whether you seek
-            serene landscapes, vibrant cityscapes, or cultural experiences, our
-            resources will inspire your next journey. Let us help you create
-            lasting memories and discover the beauty that awaits.
-          </p>
+          <h3 className="feature-heading">{text.world.title}</h3>
+          <p className="feature-text">{text.world.desc}</p>
         </div>
         <div className="feature">
           <div className="icon">
             <IoCompassOutline />
           </div>
-          <h3 className="feature-heading">Meet nature</h3>
-          <p className="feature-text">
-            Meet nature and reconnect with the great outdoors. Discover
-            breathtaking landscapes, serene forests, and diverse wildlife. Our
-            guides and tips will help you explore and appreciate the natural
-            world, fostering a deeper connection with the environment. Embrace
-            the beauty and tranquility that nature offers.
-          </p>
+          <h3 className="feature-heading">{text.nature.title}</h3>
+          <p className="feature-text">{text.nature.desc}</p>
         </div>
         <div className="feature">
           <div className="icon">
             <IoSubwaySharp />
           </div>
-          <h3 className="feature-heading">Find your way</h3>
-          <p className="feature-text">
-            Find your way and navigate life's journey with confidence. Our
-            resources and guides offer insights, tips, and inspiration to help
-            you achieve your goals and dreams. Whether you're seeking direction
-            in your career, personal growth, or travel adventures, let us be
-            your trusted companion on the path to success.
-          </p>
+          <h3 className="feature-heading">{text.way.title}</h3>
+          <p className="feature-text">{text.way.desc}</p>
         </div>
         <div className="feature">
           <div className="icon">
             <MdHealthAndSafety />
           </div>
-          <h3 className="feature-heading">live healthier life</h3>
-          <p className="feature-text">
-            Live a healthier life with our expert advice and practical tips.
-            Discover nutritious recipes, effective workout routines, and
-            wellness strategies to enhance your physical and mental well-being.
-            Embrace a balanced lifestyle and make positive changes that lead to
-            a happier, healthier you. Start your journey to better health today.
-          </p>
+          <h3 className="feature-heading">{text.life.title}</h3>
+          <p className="feature-text">{text.life.desc}</p>
         </div>
       </section>
+      <Link href="/products" className="home-btn">
+        {text.head.link}
+      </Link>
     </>
   );
 };

@@ -11,6 +11,58 @@ interface Libraries {
   };
 }
 
+const home_en = {
+  head: {
+    title: "outdoors",
+    sub: "is where life happens",
+    btn: "discover our travel plans",
+    link: "get everything you need for your next trip from our store",
+    heading: "exciting tours for adventurous people",
+  },
+  world: {
+    title: "explore the world",
+    desc: "Explore the world with our curated travel guides, uncover hidden gems, and embark on unforgettable adventures. Whether you seek serene landscapes, vibrant cityscapes, or cultural experiences, our resources will inspire your next journey. Let us help you create lasting memories and discover the beauty that awaits.",
+  },
+  nature: {
+    title: "meet nature",
+    desc: "Meet nature and reconnect with the great outdoors. Discover breathtaking landscapes, serene forests, and diverse wildlife. Our guides and tips will help you explore and appreciate the natural world, fostering a deeper connection with the environment. Embrace the beauty and tranquility that nature offers.",
+  },
+  way: {
+    title: "find your way",
+    desc: "Find your way and navigate life's journey with confidence. Our resources and guides offer insights, tips, and inspiration to help you achieve your goals and dreams. Whether you're seeking direction in your career, personal growth, or travel adventures, let us be your trusted companion on the path to success.",
+  },
+  life: {
+    title: "live healthier life",
+    desc: "Live a healthier life with our expert advice and practical tips. Discover nutritious recipes, effective workout routines, and wellness strategies to enhance your physical and mental well-being. Embrace a balanced lifestyle and make positive changes that lead to a happier, healthier you. Start your journey to better health today.",
+  },
+};
+
+const home_ka = {
+  head: {
+    title: "გარემო",
+    sub: "არის სადაც ცხოვრება ხდება",
+    btn: "აღმოაჩინე ჩვენი სამოგზაურო გეგმები",
+    link: "აღმოაჩინე ყველაფერი რაც გჭირდება შენი მომავალი მოგზაურობისთვის ჩვენს მაღაზიაში",
+    heading: "სახალისო ტურები თავგადასავლების მოყვარულთათვის",
+  },
+  world: {
+    title: "გამოიკვლიე სამყარო",
+    desc: "გამოიკვლიეთ სამყარო ჩვენი კურირებული სამოგზაურო მეგზებით, აღმოაჩინეთ ფარული ძვირფასი ქვები და დაიწყეთ დაუვიწყარი თავგადასავლები. მიუხედავად იმისა, ეძებთ მშვიდ პეიზაჟებს, ენერგიულ ქალაქურ პეიზაჟებს თუ კულტურულ გამოცდილებას, ჩვენი რესურსები შთააგონებს თქვენს მომავალ მოგზაურობას. მოდით დაგეხმაროთ, შექმნათ ხანგრძლივი მოგონებები და აღმოაჩინოთ სილამაზე, რომელიც გელით.",
+  },
+  nature: {
+    title: "შეხვდი ბუნებას",
+    desc: "შეხვდით ბუნებას და ხელახლა დაუკავშირდით მშვენიერ გარემოს. აღმოაჩინეთ თვალწარმტაცი პეიზაჟები, მშვიდი ტყეები და მრავალფეროვანი ველური ბუნება. ჩვენი გიდები და რჩევები დაგეხმარებათ შეისწავლოთ და დააფასოთ ბუნებრივი სამყარო, რაც ხელს შეუწყობს უფრო ღრმა კავშირს გარემოსთან. გაითავისეთ სილამაზე და სიმშვიდე, რომელსაც ბუნება გვთავაზობს.",
+  },
+  way: {
+    title: "იპოვე შენი გზა",
+    desc: "იპოვეთ თქვენი გზა და იარეთ ცხოვრების გზაზე თავდაჯერებულად. ჩვენი რესურსები და სახელმძღვანელოები გთავაზობთ შეხედულებებს, რჩევებსა და შთაგონებას, რათა დაგეხმაროთ თქვენი მიზნებისა და ოცნებების მიღწევაში. მიუხედავად იმისა, ეძებთ მიმართულებას თქვენს კარიერაში, პიროვნულ ზრდაში თუ სამოგზაურო თავგადასავალში, მოდით ვიყოთ თქვენი სანდო კომპანიონი წარმატების გზაზე.",
+  },
+  life: {
+    title: "იცხოვრე უფრო ჯანსაღად",
+    desc: "იცხოვრეთ ჯანსაღი ცხოვრებით ჩვენი ექსპერტების რჩევებითა და პრაქტიკული რჩევებით. აღმოაჩინეთ მკვებავი რეცეპტები, ეფექტური ვარჯიშის რუტინები და ველნესი სტრატეგიები თქვენი ფიზიკური და გონებრივი კეთილდღეობის გასაუმჯობესებლად. დაიცავით დაბალანსებული ცხოვრების წესი და განახორციელეთ პოზიტიური ცვლილებები, რაც გამოიწვევს უფრო ბედნიერ, ჯანმრთელს. დაიწყეთ თქვენი მოგზაურობა უკეთესი ჯანმრთელობისკენ დღესვე.",
+  },
+};
+
 const auth_en = {
   username: "username",
   email: "email",
@@ -311,6 +363,7 @@ export const libraries: Libraries = {
     auth: auth_en,
     header: header_en,
     main: {
+      home: home_en,
       products: products_en,
       blog: blog_en,
       contact: contact_en,
@@ -326,6 +379,7 @@ export const libraries: Libraries = {
     auth: auth_ka,
     header: header_ka,
     main: {
+      home: home_ka,
       products: products_ka,
       blog: blog_ka,
       contact: contact_ka,

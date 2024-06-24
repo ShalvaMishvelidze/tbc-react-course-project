@@ -73,7 +73,12 @@ export interface Product {
   rating: string;
 }
 
+export interface Home {
+  [key: string]: { [key: string]: string };
+}
+
 export interface Main {
+  home: Home;
   products: Products;
   blog: {
     [key: string]: string;
