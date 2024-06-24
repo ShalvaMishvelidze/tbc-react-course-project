@@ -15,6 +15,7 @@
     background-color: $clr-violet;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
+    color: $clr-white-1;
 
     &:hover {
       background-color: $clr-purple;
@@ -57,7 +58,7 @@
     text-transform: uppercase;
     font-size: $fs-big;
     font-weight: $fw-bold;
-    color: $clr-white;
+    color: $clr-white-1;
     transition: all 0.2s;
 
     &:hover {

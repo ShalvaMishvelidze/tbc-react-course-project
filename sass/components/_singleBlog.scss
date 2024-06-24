@@ -75,6 +75,7 @@
         font-size: $fs-bigger;
         font-weight: $fw-bold;
         text-transform: capitalize;
+        color: $clr-white-1;
       }
     }
 
@@ -138,6 +139,7 @@
           font-size: $fs-regular;
           text-transform: uppercase;
           border-radius: 0.5rem;
+          color: $clr-white-1;
 
           &:hover {
             background-color: $clr-purple;

@@ -22,10 +22,14 @@
     flex-wrap: wrap;
     flex-direction: column;
     gap: 1.6rem;
+    color: $clr-white-1;
 
-    & a:hover {
-      text-decoration: underline;
-      opacity: 0.75;
+    & a {
+      color: $clr-white-1;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     &-top {
@@ -67,6 +71,7 @@
     }
 
     & button {
+      color: $clr-white-1;
       font-size: $fs-regular;
       background-color: $clr-violet;
       font-weight: $fw-bold;

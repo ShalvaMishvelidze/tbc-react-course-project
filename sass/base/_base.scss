@@ -186,20 +186,60 @@ html {
 .light {
   --clr-white: #000;
   --clr-black: #fff;
-  --clr-bcg-primary: #d1cfc8;
-  --clr-bcg-primary-dark: #d1cfc8;
-  --clr-bcg-primary-light: #deddd8;
-  --clr-bcg-secondary: #dad9d3;
-  --clr-bcg-secondary-dark: #bfbdb2;
-  --clr-bcg-secondary-light: #e5e5e0;
-  --clr-gray: #7f7f7f;
-  --clr-gray-light: #2c2c2c;
-  --clr-gray-dark: #949494;
-  --clr-purple: #36aa00;
-  --clr-purple-light: #2e9200;
-  --clr-purple-dark: #54b925;
-  --clr-violet: #86861d;
-  --clr-violet-dark: #646416;
+  // --clr-bcg-primary: #d1cfc8;
+  // --clr-bcg-primary-dark: #d1cfc8;
+  // --clr-bcg-primary-light: #deddd8;
+  // --clr-bcg-secondary: #dad9d3;
+  // --clr-bcg-secondary-dark: #bfbdb2;
+  // --clr-bcg-secondary-light: #e5e5e0;
+  // --clr-gray: #7f7f7f;
+  // --clr-gray-light: #2c2c2c;
+  // --clr-gray-dark: #949494;
+  // --clr-purple: #36aa00;
+  // --clr-purple-light: #2e9200;
+  // --clr-purple-dark: #54b925;
+  // --clr-violet: #86861d;
+  // --clr-violet-dark: #646416;
+  // --clr-white: #ffffff; /* Pure white */
+  // --clr-black: #000000; /* Pure black */
+  --clr-bcg-primary-dark-transparent: rgba(
+    217,
+    217,
+    217,
+    0.85
+  ); /* Transparent darker background */
+  --clr-bcg-primary: #f98866; /* Light background */
+  --clr-bcg-primary-light: #fff5ee; /* White for lighter background */
+  --clr-bcg-primary-dark: #f8afad; /* Slightly darker background */
+  --clr-bcg-secondary: #fffff0; /* Light secondary background */
+  --clr-bcg-secondary-light: #dab6b6; /* Very light secondary background */
+  --clr-bcg-secondary-dark: #fcc5b2; /* Darker secondary background */
+  --clr-gray: #808080; /* Standard gray */
+  --clr-gray-light: #bfbfbf; /* Light gray */
+  --clr-gray-dark: #595959; /* Darker gray */
+  --clr-purple: #962e2a; /* Bright purple */
+  --clr-purple-light: #e3867d;
+  --clr-purple-dark: #990011;
+  --clr-violet: #cb0000; /* Light violet */
+  --clr-violet-dark: #7a2048; /* Dark violet */
+  --clr-pink-1: #fdf6f6;
+  --clr-pink-2: #fbeaeb;
+  --clr-pink-3: #f7c5cc;
+  --clr-pink-4: #f98866;
+  --clr-pink-5: #ea738d;
+  --clr-pink-6: #fa6775;
+  --clr-pink-7: #7a2048;
+
+  --clr-red-1: #f96167;
+  --clr-red-2: #cc313d;
+  --clr-red-3: #e3867d;
+  --clr-red-4: #fb6542;
+  --clr-red-5: #b85042;
+  --clr-red-6: #962e2a;
+  --clr-red-7: #f52549;
+  --clr-red-8: #cb0000;
+  --clr-red-9: #c5001a;
+  --clr-red-10: #990011;
 }
 
 body {

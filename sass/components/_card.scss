@@ -18,7 +18,7 @@
     overflow: hidden;
 
     &--front {
-      background-color: $clr-bcg-primary;
+      background-color: $clr-bcg-primary-dark;
     }
 
     &--back {
@@ -101,7 +101,7 @@
     font-weight: 300;
     text-transform: uppercase;
     text-align: right;
-    color: $clr-white;
+    color: $clr-white-1;
     position: absolute;
     top: 12rem;
     right: 2rem;
@@ -156,7 +156,7 @@
         font-size: $fs-regular;
         font-weight: $fw-bold;
         padding: 1.5rem;
-        color: $clr-bcg-secondary-light;
+        color: $clr-charcoal-2;
 
         &:not(:last-child) {
           border-bottom: 2px solid $clr-bcg-primary-light;
@@ -173,7 +173,7 @@
 
   &__price-box {
     margin-bottom: 8rem;
-    color: $clr-white;
+    color: $clr-white-1;
   }
 
   &__price-only {
@@ -240,10 +240,10 @@
 }
 
 .btn {
-  background-color: $clr-white;
+  background-color: $clr-white-1;
   padding: 1rem 2rem;
   font-size: $fs-big;
   border-radius: 3rem;
-  color: $clr-violet;
+  color: $clr-charcoal-2;
   font-weight: $fw-bold;
 }

@@ -73,6 +73,8 @@
     border-radius: 1rem;
     text-transform: capitalize;
     font-size: $fs-regular;
+    color: $clr-white-1;
+    font-weight: $fw-bold;
 
     &:hover {
       background-color: $clr-purple;

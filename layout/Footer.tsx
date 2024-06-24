@@ -40,7 +40,12 @@ const Footer = async () => {
       </div>
       <div className="footer-right">
         <form className="newsletter">
-          <input type="email" placeholder={footer.newsletter + "!"} />
+          <input
+            type="email"
+            placeholder={footer.newsletter + "!"}
+            name="from_name"
+            id="from_name"
+          />
           <button type="submit">{footer.subscribe}</button>
         </form>
       </div>

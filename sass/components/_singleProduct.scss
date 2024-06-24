@@ -78,8 +78,10 @@
           padding: 0.2rem 0.5rem;
           font-size: $fs-regular;
           text-transform: uppercase;
-          border-radius: 0.5rem;
+          border-radius: 1rem;
           width: max-content;
+          color: $clr-white-1;
+          font-weight: $fw-bold;
 
           &:hover {
             background-color: $clr-purple;
@@ -90,6 +92,7 @@
 
     &-btn {
       background-color: $clr-violet;
+      color: $clr-white-1;
       padding: 0.5rem 1rem;
       font-size: $fs-big;
       text-transform: uppercase;
@@ -129,7 +132,7 @@
     background-color: $clr-violet;
     text-transform: capitalize;
     font-weight: $fw-bold;
-    color: $clr-white;
+    color: $clr-white-1;
     font-size: $fs-bigger;
     border-radius: 0.5rem;
     margin-top: 2rem;
@@ -230,6 +233,7 @@
         font-size: $fs-regular;
         text-transform: uppercase;
         border-radius: 0.5rem;
+        color: $clr-white-1;
 
         &:hover {
           background-color: $clr-purple;
@@ -254,6 +258,7 @@
           text-transform: uppercase;
           border-radius: 0.5rem;
           width: max-content;
+          color: $clr-white-1;
 
           &:hover {
             background-color: $clr-purple;

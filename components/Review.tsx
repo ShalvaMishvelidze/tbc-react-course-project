@@ -14,7 +14,9 @@ import { MdCancel } from "react-icons/md";
 const Review = ({ review: r, handleReviewDelete, user, role, text }: any) => {
   const [review, setReview] = useState<any>(r);
   const [editing, setEditing] = useState<boolean>(false);
-  const [displayImages, setDisplayImages] = useState<string[]>(r.images);
+  const [displayImages, setDisplayImages] = useState<string[]>(
+    r.images ? r.images : []
+  );
   const [delImages, setDelImages] = useState<string[]>([]);
   const [newImages, setNewImages] = useState<any[]>([]);
 

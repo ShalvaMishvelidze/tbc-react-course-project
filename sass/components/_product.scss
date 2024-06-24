@@ -9,7 +9,7 @@
   overflow: hidden;
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 2rem $clr-bcg-primary-dark;
+  box-shadow: 0 0 1rem $clr-bcg-primary-dark;
   background-color: $clr-bcg-primary-light;
 
   p {
@@ -99,7 +99,7 @@
     background-color: $clr-violet;
     text-transform: capitalize;
     font-weight: $fw-bold;
-    color: $clr-white;
+    color: $clr-white-1;
     font-size: $fs-bigger;
     text-align: center;
     width: 60%;
@@ -130,8 +130,8 @@
 
   &:hover {
     background-color: $clr-bcg-secondary-dark;
-    border-color: $clr-gray;
-    box-shadow: 2px 4px 24px $clr-bcg-primary;
+    border-color: $clr-bcg-secondary-light;
+    box-shadow: 0 0 2.5rem $clr-bcg-primary-dark;
 
     & .product-container {
       pointer-events: all;

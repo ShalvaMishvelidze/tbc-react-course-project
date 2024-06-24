@@ -46,7 +46,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: $clr-charcoal-2;
+    background-color: $clr-violet;
     color: $clr-white-1;
     box-shadow: 0rem 0.5rem 1rem $clr-bcg-primary-dark-transparent;
 
@@ -56,6 +56,7 @@
       text-align: center;
       font-size: $fs-regular;
       text-transform: capitalize;
+      font-weight: $fw-bold;
 
       &:hover {
         background-color: $clr-charcoal-3;
