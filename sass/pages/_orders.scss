@@ -3,6 +3,23 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 3rem;
 
+  @include respond(1200px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  @include respond(1000px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  @include respond(800px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  @include respond(500px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+  }
+
   .order {
     background-color: $clr-bcg-primary;
     padding: 1rem 2rem;

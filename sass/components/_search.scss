@@ -14,11 +14,11 @@
     border-color: $clr-gray-light;
     padding: 0 0.5rem;
 
-    @include respond(tab-portrait) {
-      height: 4.5rem;
+    @include respond(1300px) {
+      height: 3rem;
     }
-    @include respond(phone) {
-      height: 6rem;
+    @include respond(900) {
+      height: 2.7rem;
     }
   }
 

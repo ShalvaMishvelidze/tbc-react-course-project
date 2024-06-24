@@ -68,7 +68,7 @@ const AdminOrders = ({ text }: any) => {
           return (
             <AdminOrder
               order={order}
-              key={order.id}
+              key={order.order_id}
               setDel={setDel}
               text={text.refund}
             />

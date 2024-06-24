@@ -9,12 +9,21 @@
     align-items: center;
     gap: 2rem;
     margin-bottom: 2rem;
+    @include respond(500px) {
+      gap: 1rem;
+    }
 
     button {
       background-color: $clr-violet;
       font-size: $fs-bigger;
       padding: 0.5rem 1rem;
       border-radius: 0.8rem;
+      @include respond(500px) {
+        font-size: $fs-regular;
+      }
+      @include respond(350px) {
+        font-size: $fs-small;
+      }
 
       &:hover {
         background-color: $clr-purple;
@@ -35,6 +44,18 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
     margin-top: 3rem;
+
+    @include respond(1700px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @include respond(1350px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @include respond(900px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   &-user {
@@ -46,9 +67,31 @@
     border-radius: 1rem;
     box-shadow: 0 0 2rem $clr-bcg-secondary-dark;
 
+    @include respond(500px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    @include respond(400px) {
+      padding: 1rem;
+    }
+
     &-left {
       height: 12rem;
       width: 12rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      label {
+        background-color: $clr-violet;
+        color: $clr-white-1;
+        width: fit-content;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        text-transform: uppercase;
+      }
 
       img {
         width: 100%;
@@ -92,6 +135,16 @@
         }
       }
     }
+
+    input,
+    select {
+      height: 2rem;
+      padding-left: 0.5rem;
+    }
+
+    .file-input {
+      display: none;
+    }
   }
 
   &-posts {
@@ -99,6 +152,18 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
+
+    @include respond(1500px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @include respond(1000px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @include respond(600px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   &-post {
@@ -108,13 +173,16 @@
     border: 2px solid $clr-bcg-primary-light;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1rem;
     box-shadow: 0 0 4rem $clr-bcg-secondary-dark;
+    box-sizing: border-box;
 
     &-tags {
       display: flex;
       gap: 1rem;
       padding: 2rem 0;
+      flex-wrap: wrap;
 
       span {
         background-color: $clr-bcg-secondary-light;
@@ -248,6 +316,10 @@
           }
         }
       }
+    }
+
+    button {
+      color: $clr-white-1;
     }
   }
 
@@ -450,6 +522,19 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 4rem;
       margin-top: 3rem;
+
+      @include respond(1500px) {
+        gap: 2rem;
+      }
+      @include respond(1350px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      @include respond(1100px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include respond(750px) {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
   }
 
@@ -458,6 +543,19 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
     margin-top: 3rem;
+
+    @include respond(1350px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @include respond(1050px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @include respond(750px) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1rem;
+    }
   }
 
   &-order {
@@ -469,11 +567,14 @@
     padding: 2rem 3rem;
     border-radius: 1rem;
     box-shadow: 0 0 4rem $clr-bcg-secondary-dark;
+    @include respond(450px) {
+      padding: 1rem;
+    }
 
     &-container {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      flex-direction: column;
       gap: 1rem;
     }
 
@@ -484,6 +585,10 @@
     &-name,
     &-email {
       font-size: $fs-big;
+
+      @include respond(450px) {
+        font-size: $fs-regular;
+      }
     }
 
     &-date {

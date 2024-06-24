@@ -5,6 +5,21 @@
   height: 65rem;
   width: 45rem;
 
+  @include respond(1100px) {
+    width: 40rem;
+    height: 58rem;
+  }
+  @include respond(950px) {
+    width: 35rem;
+    height: 50rem;
+  }
+  @include respond(800px) {
+    width: 30rem;
+  }
+  @include respond(900px) {
+    height: 70rem !important;
+  }
+
   &__side {
     height: 65rem;
     transition: all 0.8s ease;
@@ -17,12 +32,37 @@
     box-shadow: 0 1.5rem 4rem $clr-black;
     overflow: hidden;
 
+    @include respond(1100px) {
+      width: 40rem;
+      height: 58rem;
+    }
+    @include respond(950px) {
+      width: 35rem;
+      height: 50rem;
+    }
+    @include respond(800px) {
+      width: 30rem;
+    }
+
+    @include respond(900px) {
+      height: 70rem !important;
+    }
+
     &--front {
       background-color: $clr-bcg-primary-dark;
+
+      @include respond(900px) {
+        height: 70rem !important;
+      }
     }
 
     &--back {
       transform: rotateY(180deg);
+
+      @include respond(900px) {
+        height: 25rem !important;
+        transform: translateY(-25rem) !important;
+      }
 
       &-1 {
         background-image: linear-gradient(
@@ -62,6 +102,9 @@
     background-size: cover;
     height: 23rem;
     background-blend-mode: screen;
+    @include respond(950px) {
+      height: 18rem;
+    }
 
     @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
       -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
@@ -106,11 +149,18 @@
     top: 12rem;
     right: 2rem;
     width: 70%;
+    @include respond(1100px) {
+      font-size: $fs-big;
+    }
   }
 
   &__heading-span {
     padding: 1rem 1.5rem;
     line-height: 4.5rem;
+
+    @include respond(950px) {
+      line-height: 3rem;
+    }
 
     @supports (-webkit-box-decoration-break: clone) or
       (box-decoration-break: clone) {
@@ -146,10 +196,17 @@
   &__details {
     padding: 3rem;
 
+    @include respond(1100px) {
+      padding: 1rem;
+    }
+
     ul {
       list-style-type: none;
       width: 80%;
       margin: 0 auto;
+      @include respond(1100px) {
+        width: 100%;
+      }
 
       li {
         text-align: center;
@@ -157,6 +214,16 @@
         font-weight: $fw-bold;
         padding: 1.5rem;
         color: $clr-charcoal-2;
+        @include respond(1100px) {
+          padding: 1rem;
+        }
+        @include respond(950px) {
+          font-size: $fs-regular-small;
+        }
+        @include respond(800px) {
+          padding: 0.5rem;
+          font-size: $fs-small;
+        }
 
         &:not(:last-child) {
           border-bottom: 2px solid $clr-bcg-primary-light;
@@ -227,6 +294,10 @@
       transform: translate(0);
       width: 100%;
       padding: 7rem 4rem 4rem;
+
+      @include respond(900px) {
+        padding: 7rem 0 4rem;
+      }
     }
 
     &__price-box {

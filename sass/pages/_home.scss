@@ -1,10 +1,7 @@
 .home {
   &-header {
     height: 85vh;
-    background-image: linear-gradient(to right bottom, #0673c2a9, #00246ba9),
-      url("../../utils/images/hero-small.jpg");
-    background-size: cover;
-    background-position: top;
+    background-image: linear-gradient(to right bottom, #0673c2a9, #00246ba9);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,9 +20,15 @@
         letter-spacing: 3.5rem;
         text-transform: uppercase;
         padding-left: 3rem;
-        // animation-name: moveInLeft;
-        // animation-duration: 1s;
-        // animation-timing-function: ease-out;
+
+        @include respond(900px) {
+          font-size: 4rem;
+          letter-spacing: 2.5rem;
+        }
+        @include respond(650px) {
+          font-size: 3rem;
+          letter-spacing: 2rem;
+        }
       }
 
       & > :last-child {
@@ -36,9 +39,18 @@
         font-weight: 700;
         letter-spacing: 1.65rem;
         text-transform: uppercase;
-        // animation-name: moveInRight;
-        // animation-duration: 1s;
-        // animation-timing-function: ease-out;
+
+        @include respond(900px) {
+          letter-spacing: 1rem;
+        }
+        @include respond(650px) {
+          font-size: 1.5rem;
+          letter-spacing: 0.8rem;
+        }
+        @include respond(520px) {
+          font-size: 1.2rem;
+          letter-spacing: 0.5rem;
+        }
       }
     }
 
@@ -58,6 +70,14 @@
       color: $clr-charcoal-2;
       margin: 0 auto;
       font-weight: $fw-bold;
+
+      @include respond(650px) {
+        font-size: $fs-regular;
+        padding: 0.5rem 1rem;
+      }
+      @include respond(520px) {
+        font-size: $fs-small;
+      }
     }
 
     @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
@@ -69,8 +89,7 @@
     @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
       only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
       (min-width: 125em) {
-      background-image: linear-gradient(to right bottom, #0673c2a9, #00246ba9),
-        url("../../utils/images/hero.jpg");
+      background-image: linear-gradient(to right bottom, #0673c2a9, #00246ba9);
     }
 
     @include respond(tab-landscape) {
@@ -87,13 +106,32 @@
   &-heading {
     text-align: center;
     margin: 3rem 0;
+
+    @include respond(700px) {
+      font-size: $fs-big;
+    }
+    @include respond(500px) {
+      font-size: $fs-regular;
+    }
+    @include respond(350px) {
+      font-size: $fs-regular-small;
+    }
   }
 
   &-features {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 30rem);
+    grid-template-columns: repeat(4, 1fr);
     justify-content: space-around;
+    row-gap: 1rem;
+    column-gap: 1rem;
+
+    @include respond(1100px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include respond(600px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
 
     .feature {
       display: flex;
@@ -111,11 +149,18 @@
       h3 {
         margin: 1rem 0;
         font-size: $fs-big;
+
+        @include respond(1350px) {
+          font-size: $fs-regular;
+        }
       }
 
       p {
         font-size: $fs-regular;
         text-align: center;
+        @include respond(1350px) {
+          font-size: $fs-regular-small;
+        }
       }
     }
   }
@@ -132,6 +177,17 @@
     padding: 1rem;
     border-radius: 1rem;
     transition: background-color 0.3s;
+
+    @include respond(1100px) {
+      font-size: $fs-big;
+    }
+    @include respond(1000px) {
+      font-size: $fs-regular;
+      padding: 0.5rem;
+    }
+    @include respond(500px) {
+      font-size: $fs-regular-small;
+    }
 
     &:hover {
       background-color: $clr-purple;

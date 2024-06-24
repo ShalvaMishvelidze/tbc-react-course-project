@@ -53,8 +53,12 @@ const AdminUser = ({ text, user: u, setDel }: any) => {
         <>
           <div className="admin-user-left edit">
             <Image src={user.image} alt="user image" width={100} height={100} />
+            <label htmlFor="file-input">{text.edit}</label>
             <input
+              id="file-input"
+              name="file-input"
               type="file"
+              className="file-input"
               onChange={(e) => {
                 const file = e.target.files![0];
                 const reader = new FileReader();

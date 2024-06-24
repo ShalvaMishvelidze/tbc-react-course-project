@@ -5,6 +5,13 @@
   gap: 5rem;
   margin-bottom: 3rem;
 
+  @include respond(950px) {
+    gap: 1rem;
+  }
+  @include respond(700px) {
+    grid-template-columns: 1fr;
+  }
+
   h1 {
     grid-column: 1 / -1;
     justify-self: start;

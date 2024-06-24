@@ -55,10 +55,6 @@
   &-title {
     padding: 1.2rem 0 1rem;
     font-weight: $fw-bold;
-
-    @media screen and (max-width: 1000px) {
-      font-size: 60%;
-    }
   }
 
   &-image {
@@ -119,13 +115,6 @@
   &-desc {
     font-size: $fs-small;
     padding: 0.5rem 0 1.2rem;
-
-    @include respond(tab-portrait) {
-      font-size: $fs-big;
-    }
-    @include respond(phone) {
-      font-size: $fs-bigger;
-    }
   }
 
   &:hover {

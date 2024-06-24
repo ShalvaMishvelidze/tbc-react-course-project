@@ -2,18 +2,25 @@
   display: flex;
   gap: 1rem;
 
-  @include normalizeForAll;
+  @include respond(800px) {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
 
   &-select {
     font-size: $fs-big;
     text-transform: capitalize;
     color: $clr-charcoal-2;
 
-    @include respond(tab-portrait) {
-      font-size: $fs-big;
+    @include respond(1300px) {
+      font-size: $fs-regular;
     }
-    @include respond(phone) {
-      font-size: $fs-bigger;
+    @include respond(900px) {
+      font-size: $fs-regular-small;
+    }
+    @include respond(550px) {
+      font-size: $fs-small;
     }
   }
 
@@ -23,8 +30,14 @@
     text-transform: capitalize;
     font-weight: $fw-bold;
 
-    @include respond(phone) {
-      font-size: $fs-giant;
+    @include respond(1300px) {
+      font-size: $fs-regular;
+    }
+    @include respond(900px) {
+      font-size: $fs-regular-small;
+    }
+    @include respond(550px) {
+      font-size: $fs-small;
     }
     &:hover {
       opacity: 0.8;

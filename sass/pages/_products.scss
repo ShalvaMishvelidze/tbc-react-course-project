@@ -3,8 +3,6 @@
   flex-direction: column;
   gap: 1.5rem;
 
-  @include normalizeForAll;
-
   &.loading {
     transition: all;
     backface-visibility: hidden;
@@ -14,16 +12,26 @@
       width: 100%;
       height: 3.5rem;
       @include loadAnimation;
+
+      @include respond(1300px) {
+        height: 3rem;
+      }
     }
     .sort {
       width: 20rem;
       height: 3rem;
       @include loadAnimation;
+      @include respond(1300px) {
+        height: 2.7rem;
+      }
     }
     .categories {
       width: 30rem;
       height: 3rem;
       @include loadAnimation;
+      @include respond(1300px) {
+        height: 2.7rem;
+      }
     }
     .products {
       &-header {
@@ -31,6 +39,9 @@
           width: 15rem;
           height: 3rem;
           @include loadAnimation;
+          @include respond(1300px) {
+            height: 2.7rem;
+          }
         }
       }
     }
@@ -40,12 +51,43 @@
     display: flex;
     gap: 2rem;
 
+    @include respond(800px) {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
     h3 {
       font-size: $fs-big;
+      @include respond(1300px) {
+        font-size: $fs-regular;
+      }
+      @include respond(900px) {
+        font-size: $fs-regular-small;
+      }
+      @include respond(550px) {
+        font-size: $fs-small;
+      }
     }
 
     select {
       font-size: $fs-big;
+      @include respond(1300px) {
+        font-size: $fs-regular;
+      }
+      @include respond(900px) {
+        font-size: $fs-regular-small;
+      }
+      @include respond(550px) {
+        font-size: $fs-small;
+        width: 10rem;
+      }
+
+      option {
+        @include respond(550px) {
+          width: 10rem;
+        }
+      }
     }
   }
 
@@ -57,6 +99,15 @@
     &-title {
       text-transform: capitalize;
       font-weight: $fw-bold;
+      @include respond(1300px) {
+        font-size: $fs-big;
+      }
+      @include respond(900px) {
+        font-size: $fs-regular;
+      }
+      @include respond(550px) {
+        font-size: $fs-regular-small;
+      }
     }
   }
 
@@ -64,5 +115,18 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2.5rem;
+
+    @include respond(1300px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @include respond(1000px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    @include respond(700px) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 2rem;
+    }
   }
 }
