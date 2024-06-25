@@ -4,10 +4,14 @@ import { getSystemPreferences } from "../utils/actions";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 export const metadata = {
-  title: "TBC final project🔥🔥🔥",
-  description: "Final project for TBC academy",
+  title: "Travel experience tracker🌍🌎🌏",
+  description: `
+  This is a travel experience tracker that allows you to 
+  track your travel experiences. 
+  You can add, edit, and delete your travel experiences. 
+  You can also view your travel experiences on a map.
+  `,
 };
-
 export default async function RootLayout({
   children,
 }: {
