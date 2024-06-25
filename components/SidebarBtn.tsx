@@ -1,14 +1,9 @@
 "use client";
 import { MdOutlineSegment } from "react-icons/md";
 
-const SidebarBtn = () => {
-  let sidebar: HTMLElement | null = null;
-  if (typeof document !== "undefined") {
-    sidebar = document.querySelector(".sidebar");
-  }
-
+const SidebarBtn = ({ setOpen, open }: any) => {
   const toggleSidebar = () => {
-    sidebar?.classList.toggle("sidebar-open");
+    setOpen(!open);
   };
 
   return (
