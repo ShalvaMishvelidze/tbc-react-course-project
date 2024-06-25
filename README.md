@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+# TBC FINAL APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a Next.js application that includes a store, tours, and a blog. Users can add, delete, and edit products in the store as well as posts in the blog.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Store**: Manage products (add, delete, edit).
+- **Tours**: Browse and book tours.
+- **Blog**: Manage posts (add, delete, edit).
+- **Admin**: Manage everything (add, delete, edit).
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Next.js
+- Vercel Postgres (for database)
+- Vercel Blob (for file storage)
+- Auth0 (for authentication)
+- Stripe (for handling payments)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+- Vercel account and project
+- Auth0 account and application
+- Stripe account
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+1. Clone the repository:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   git clone https://github.com/ShalvaMishvelidze/tbc-react-course-project
+   cd tbc-react-course-project
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   Using npm:
 
-### `npm run eject`
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   Using yarn:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   yarn install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Set up environment variables:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   Create a `.env.local` file in the root directory of your project and add vercel and auth0 variables together with:
 
-## Learn More
+   ```plaintext
+       NEXT_PUBLIC_URL="http://localhost:3000/"
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Set up Vercel Postgres:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   - Go to the Vercel dashboard and create a new Postgres database.
+   - Obtain the connection URL from the Vercel dashboard.
 
-### Code Splitting
+5. Set up Vercel Blob:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   - Go to the Vercel dashboard and create a new Blob storage.
+   - Obtain the API key and Blob URL from the Vercel dashboard.
 
-### Analyzing the Bundle Size
+6. Set up Auth0:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   - Go to the Auth0 dashboard and create a new application.
+   - Set the application type to "Single Page Application".
+   - Configure the callback URL to match your application.
 
-### Making a Progressive Web App
+7. Set up Stripe:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   - Go to the Stripe dashboard and create a new project.
+   - Obtain your public and secret keys from the dashboard.
 
-### Advanced Configuration
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Start the development server:
 
-### Deployment
+   Using npm:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+   ```bash
+   npm run dev
+   ```
 
-### `npm run build` fails to minify
+   Using yarn:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```bash
+   yarn dev
+   ```
+
+2. Open your browser and navigate to `http://localhost:3000`.
+
+## Project Structure
+
+- `/components`: Reusable React components
+- `/app`: Next.js pages
+- `/app/api`: Next.js api routes
+  - `/store`: Store-related pages
+  - `/tours`: Tours-related pages
+  - `/blog`: Blog-related pages
+- `/sass`: Global and component-specific styles
+- `/utils`: Utility functions and helpers
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a pull request.
+
+## Contact
+
+For any inquiries, please contact [shalva.mishvelidze111@gmail.com].

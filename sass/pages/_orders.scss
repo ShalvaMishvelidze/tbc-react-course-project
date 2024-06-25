@@ -26,8 +26,8 @@
     border-radius: 0.5rem;
     color: $clr-white-1;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1rem;
 
     p {
