@@ -154,10 +154,13 @@ const Review = ({ review: r, handleReviewDelete, id, role, text }: any) => {
                   );
                 }
 
-                const res = await editProductReview(review.id, review.review, [
-                  ...review.images,
-                  ...imageBlobs,
-                ]);
+                const res = await editProductReview(
+                  review.id,
+                  review.review,
+                  review.images
+                    ? [...review.images, ...imageBlobs]
+                    : [...imageBlobs]
+                );
                 setReview({ ...r, review: res.review, images: res.images });
                 setEditing(false);
                 toast.success("review saved!");
