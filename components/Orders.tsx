@@ -5,6 +5,8 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { UUID } from "crypto";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import Toast from "./Toast";
+import { toast } from "react-toastify";
 
 const Orders = ({ language }: { language: string }) => {
   const { user, error, isLoading } = useUser();
@@ -20,11 +22,13 @@ const Orders = ({ language }: { language: string }) => {
   }, [user]);
 
   const handleClick = (order_id: UUID) => {
+    toast.info("canceling order...");
     fetch("/api/refund", {
       method: "POST",
       body: JSON.stringify({ order_id }),
     }).then(() => {
       setOrders([...orders.filter((order) => order.order_id !== order_id)]);
+      toast.success("order canceled");
     });
   };
 
@@ -34,6 +38,7 @@ const Orders = ({ language }: { language: string }) => {
 
   return (
     <section className="orders">
+      <Toast />
       {orders.map((order) => {
         const userOffsetMinutes = order.created_at.getTimezoneOffset();
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { deletePost } from "@/utils/actions/admin_actions";
+import { toast } from "react-toastify";
 
 const AdminPost = ({ post, setDel, setPost, setEdit, text }: any) => {
   return (
@@ -23,8 +24,10 @@ const AdminPost = ({ post, setDel, setPost, setEdit, text }: any) => {
         </button>
         <button
           onClick={() => {
+            toast.info("deleting post...");
             deletePost(post.id).then(() => {
               setDel(true);
+              toast.success("post deleted");
             });
           }}
         >

@@ -16,8 +16,11 @@ const AdminUser = ({ text, user: u, setDel }: any) => {
   };
 
   const deleteHandler = (id: number) => {
-    deleteUser(id);
-    setDel(true);
+    toast.info("deleting user...");
+    deleteUser(id).then(() => {
+      setDel(true);
+      toast.success("user deleted");
+    });
   };
 
   const editHandler = async (user: any) => {

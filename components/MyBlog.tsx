@@ -3,6 +3,7 @@ import { Post } from "@/utils/interfaces";
 import Link from "next/link";
 import ReactionsContainer from "./ReactionsContainer";
 import { deletePost } from "@/utils/actions/blog_actions";
+import { toast } from "react-toastify";
 
 export function MyBlog({
   post,
@@ -49,10 +50,12 @@ export function MyBlog({
         <button
           type="button"
           onClick={() => {
+            toast.info("Deleting post...");
             deletePost(post.id).then(() => {
               setPosts((prev: Post[]) => [
                 ...prev.filter((p: Post) => p.id !== post.id),
               ]);
+              toast.success("Post deleted");
             });
           }}
         >

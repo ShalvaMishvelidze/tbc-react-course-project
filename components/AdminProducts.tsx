@@ -67,9 +67,12 @@ const AdminProducts = ({ products: p, text }: any) => {
   }, []);
 
   useEffect(() => {
-    getProducts(search, 1).then((res) => {
-      setProducts(res);
-    });
+    if (del) {
+      getProducts(search, 1).then((res) => {
+        setProducts(res);
+        setDel(false);
+      });
+    }
   }, [del]);
 
   return (

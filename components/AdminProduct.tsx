@@ -1,5 +1,6 @@
 import { deleteProduct } from "@/utils/actions/admin_actions";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 const AdminProduct = ({ product, setProduct, setEdit, setDel, text }: any) => {
   return (
@@ -42,7 +43,13 @@ const AdminProduct = ({ product, setProduct, setEdit, setDel, text }: any) => {
         </button>
         <button
           type="button"
-          onClick={() => deleteProduct(product.id).then(() => setDel(true))}
+          onClick={() => {
+            toast.info("deleting product...");
+            deleteProduct(product.id).then(() => {
+              setDel(true);
+              toast.success("product deleted");
+            });
+          }}
         >
           {text.delete}
         </button>
