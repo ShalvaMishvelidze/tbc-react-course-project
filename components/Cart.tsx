@@ -50,20 +50,25 @@ const Cart = async ({ data, text }: any) => {
         <h3>
           {text.totalPrice}: {totalPrice.toFixed(2)}$
         </h3>
-        <button className="cart-total-btn" onClick={handleClick}>
-          {text.payNow}
-        </button>
+
         {data.length === 0 ? (
           <p>{text.emptyCart}</p>
         ) : (
-          <button
-            className="cart-total-btn"
-            onClick={() => {
-              clearCart(user?.sub as string).then(() => setCartTotalCookie(0));
-            }}
-          >
-            {text.clearCart}
-          </button>
+          <>
+            <button className="cart-total-btn" onClick={handleClick}>
+              {text.payNow}
+            </button>
+            <button
+              className="cart-total-btn"
+              onClick={() => {
+                clearCart(user?.sub as string).then(() =>
+                  setCartTotalCookie(0)
+                );
+              }}
+            >
+              {text.clearCart}
+            </button>
+          </>
         )}
       </div>
       <section className="cart">

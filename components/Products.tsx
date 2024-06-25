@@ -7,6 +7,7 @@ import { Product as P, Products as Type } from "@/utils/interfaces";
 import PageSelector from "./PageSelector";
 import { useSearchParams } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import Toast from "./Toast";
 
 export const revalidate = 0;
 
@@ -179,6 +180,7 @@ const Products = ({
 
   return (
     <section className="products">
+      <Toast />
       <Search pageText={pageText.search} />
       <div className="products-header">
         <h2 className="products-header-title">{pageText.heading as string}</h2>

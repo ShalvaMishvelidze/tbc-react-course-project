@@ -2,7 +2,6 @@ import { addToCart, setCartTotalCookie } from "@/utils/actions/cart_actions";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Toast from "./Toast";
 import { toast } from "react-toastify";
 
 interface P {
@@ -60,7 +59,6 @@ const Product = (props: {
 
   return (
     <article className="product">
-      <Toast />
       <h3 className="product-title">{product.name.substring(0, 20)}</h3>
       <div className="product-image">
         <Image
