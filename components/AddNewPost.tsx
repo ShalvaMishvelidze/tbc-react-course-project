@@ -16,6 +16,7 @@ const AddNewPost = ({ language }: { language: string }) => {
     tags: [],
   });
   const [tag, setTag] = useState("");
+  const [dis, setDis] = useState(false);
 
   if (isLoading) {
     return <div className="loading">loading</div>;
@@ -36,6 +37,7 @@ const AddNewPost = ({ language }: { language: string }) => {
 
   const addNewTag = () => {
     if (post.tags.length >= 4) {
+      toast.warning("You can only add up to 4 tags");
       return;
     }
     setPost({ ...post, tags: [...post.tags, tag] });
@@ -84,6 +86,7 @@ const AddNewPost = ({ language }: { language: string }) => {
                   <span>{tag}</span>
                   <button
                     className="tag-btn"
+                    type="button"
                     onClick={() =>
                       setPost({
                         ...post,
@@ -106,7 +109,7 @@ const AddNewPost = ({ language }: { language: string }) => {
             maxLength={18}
           />
           <button
-            type="submit"
+            type="button"
             className="new-post-btn"
             onClick={(e) => {
               e.preventDefault();
@@ -120,6 +123,8 @@ const AddNewPost = ({ language }: { language: string }) => {
           onClick={async (e) => {
             e.preventDefault();
             try {
+              setDis(true);
+              toast.info("Adding post...");
               await addNewPost(
                 post.title,
                 post.body,
@@ -127,11 +132,14 @@ const AddNewPost = ({ language }: { language: string }) => {
                 user?.sub as string
               );
               toast.success("Post added successfully!");
+              setDis(false);
             } catch (error) {
               console.log(error);
               toast.error("Error adding post");
+              setDis(false);
             }
           }}
+          disabled={dis}
           type="submit"
           className="new-post-btn"
         >

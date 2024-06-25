@@ -19,6 +19,7 @@ const AddNewProduct = ({ text }: any) => {
     image: "",
     images: [],
   });
+  const [dis, setDis] = useState<boolean>(false);
 
   const [image, setImage] = useState<any>({});
   const [images, setImages] = useState<any[]>([]);
@@ -61,6 +62,9 @@ const AddNewProduct = ({ text }: any) => {
       return;
     }
 
+    setDis(true);
+    toast.info("Adding product...");
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL}api/image/upload?filename=${image.name}`,
       {
@@ -99,6 +103,7 @@ const AddNewProduct = ({ text }: any) => {
     });
 
     toast.success("Product added successfully!");
+    setDis(false);
   };
 
   const handleChange = (
@@ -302,21 +307,28 @@ const AddNewProduct = ({ text }: any) => {
             ref={inputImagesRef}
             multiple
           />
-          {product.images.length !== 0 &&
-            product.images.map((img: any, index: number) => {
-              return (
-                <Image
-                  key={index}
-                  src={img}
-                  width={100}
-                  height={100}
-                  alt="product-image"
-                />
-              );
-            })}
+          <div className="images-container-images">
+            {product.images.length !== 0 &&
+              product.images.map((img: any, index: number) => {
+                return (
+                  <Image
+                    key={index}
+                    src={img}
+                    width={100}
+                    height={100}
+                    alt="product-image"
+                  />
+                );
+              })}
+          </div>
         </div>
       </div>
-      <button type="submit" className="new-product-btn" onClick={handleSubmit}>
+      <button
+        type="submit"
+        className="new-product-btn"
+        onClick={handleSubmit}
+        disabled={dis}
+      >
         {text.addProduct}
       </button>
     </section>

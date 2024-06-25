@@ -11,6 +11,15 @@
     column-gap: 4rem;
     padding: 3rem 4rem;
 
+    @include respond(700px) {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      width: 100%;
+    }
+
     & > :nth-child(1),
     & > :nth-child(2),
     & > :nth-child(3) {
@@ -32,6 +41,10 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
+
+      @include respond(700px) {
+        width: 100%;
+      }
 
       label {
         text-transform: capitalize;
@@ -56,16 +69,27 @@
     gap: 10rem;
     margin-top: 2rem;
 
+    @include respond(1050px) {
+      gap: 5rem;
+    }
+    @include respond(400px) {
+      gap: 1rem;
+    }
+
     label {
       text-transform: capitalize;
       background-color: $clr-violet;
       padding: 0.5rem 1rem;
-      width: fit-content;
+      width: max-content;
       border-radius: 0.5rem;
       text-align: center;
       font-size: $fs-big;
       display: block;
       height: fit-content;
+
+      @include respond(1050px) {
+        font-size: $fs-regular;
+      }
 
       &:hover {
         background-color: $clr-purple;
@@ -91,17 +115,24 @@
 
     .images-container {
       display: flex;
-      gap: 2rem;
+      flex-direction: column;
+      gap: 1rem;
 
       &-images {
         display: flex;
         justify-content: flex-start;
-        gap: 2rem;
+        gap: 1rem;
+        flex-wrap: wrap;
 
-        .container {
-          width: 13rem;
-          position: relative;
-          z-index: 1;
+        img {
+          @include respond(700px) {
+            width: 10rem;
+            height: 10rem;
+          }
+          @include respond(500px) {
+            width: 6rem;
+            height: 6rem;
+          }
 
           button {
             position: absolute;

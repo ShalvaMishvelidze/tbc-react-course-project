@@ -2,6 +2,7 @@
 
 import { editPost } from "@/utils/actions/admin_actions";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AdminPostModal = ({
   post,
@@ -73,9 +74,11 @@ const AdminPostModal = ({
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
+                toast.info("editing post");
                 editPost(post).then(() => {
                   setEdit(false);
                   setGet(true);
+                  toast.success("post edited successfully");
                 });
               }}
             >

@@ -440,12 +440,26 @@ const myProducts_ka = {
   add: "ახალი პროდუქტის დამატება",
 };
 
+const cart_en = {
+  totalPrice: "total price",
+  payNow: "pay now",
+  emptyCart: "your cart is empty",
+  clearCart: "clear cart",
+};
+const cart_ka = {
+  totalPrice: "სულ ფასი",
+  payNow: "გადახდა",
+  emptyCart: "თქვენი კალათა ცარიელია",
+  clearCart: "კალათის გასუფთავება",
+};
+
 export const libraries: Libraries = {
   en: {
     auth: auth_en,
     header: header_en,
     main: {
       home: home_en,
+      cart: cart_en,
       products: products_en,
       blog: blog_en,
       contact: contact_en,
@@ -463,6 +477,7 @@ export const libraries: Libraries = {
     header: header_ka,
     main: {
       home: home_ka,
+      cart: cart_ka,
       products: products_ka,
       blog: blog_ka,
       contact: contact_ka,

@@ -20,6 +20,10 @@
 
     svg {
       font-size: $fs-giant;
+
+      @include respond(500px) {
+        font-size: $fs-bigger;
+      }
     }
 
     &.inactive {

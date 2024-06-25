@@ -31,11 +31,13 @@ const Product = (props: {
   }, [props.product]);
 
   const handleClick = () => {
+    toast.info("Adding to cart...");
     setDis(true);
     if (props.user?.sub) {
       addToCart(props.user?.sub as string, props.product.id).then((total) => {
         setCartTotalCookie(total);
         setDis(false);
+        toast.success("Added to cart");
       });
       return;
     } else {

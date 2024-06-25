@@ -4,6 +4,7 @@ import { getCartTotalCookie } from "@/utils/actions/cart_actions";
 import CartBtn from "./CartBtn";
 import User from "./User";
 import Link from "next/link";
+import Sidebar from "./Sidebar";
 
 const Nav = async ({
   nav,
@@ -44,6 +45,7 @@ const Nav = async ({
         <CartBtn cart_total={total} />
         <ChangeTheme />
         <User nav={nav} />
+        <Sidebar nav={nav} />
       </div>
     </nav>
   );

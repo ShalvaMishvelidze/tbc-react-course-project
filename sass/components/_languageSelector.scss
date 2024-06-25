@@ -7,6 +7,11 @@
   text-transform: uppercase;
   border-color: $clr-violet;
 
+  @include respond(500px) {
+    font-size: $fs-regular;
+    height: 2.5rem;
+  }
+
   &:focus {
     outline: none;
   }

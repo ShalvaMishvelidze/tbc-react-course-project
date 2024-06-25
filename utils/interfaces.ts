@@ -79,6 +79,7 @@ export interface Home {
 
 export interface Main {
   home: Home;
+  cart: { [key: string]: string };
   products: Products;
   blog: {
     [key: string]: string;

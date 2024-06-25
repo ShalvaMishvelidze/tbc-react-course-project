@@ -5,6 +5,9 @@
   justify-content: center;
   align-items: center;
   color: $clr-violet;
+  @include respond(500px) {
+    font-size: $fs-bigger;
+  }
 
   span {
     position: absolute;
@@ -19,5 +22,9 @@
     background-color: $clr-violet;
     border-radius: 50%;
     cursor: pointer;
+    @include respond(500px) {
+      font-size: $fs-small;
+      padding: 0 0.3rem;
+    }
   }
 }

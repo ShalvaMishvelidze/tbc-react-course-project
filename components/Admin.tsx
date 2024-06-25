@@ -6,6 +6,7 @@ import AdminPosts from "./AdminPosts";
 import AdminUsers from "./AdminUsers";
 import AdminOrders from "./AdminOrders";
 import { useRouter, useSearchParams } from "next/navigation";
+import Toast from "./Toast";
 
 const Admin = ({ products, text }: any) => {
   const router = useRouter();
@@ -66,6 +67,7 @@ const Admin = ({ products, text }: any) => {
         </button>
       </div>
       <div className="admin-container">
+        <Toast />
         {page === "products" && (
           <AdminProducts products={products} text={text} />
         )}

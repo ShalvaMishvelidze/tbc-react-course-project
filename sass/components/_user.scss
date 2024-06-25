@@ -6,6 +6,10 @@
   justify-content: center;
   align-items: center;
 
+  @include respond(800px) {
+    margin-right: 0;
+  }
+
   &.loading {
     & div {
       width: 3.6rem;
@@ -33,6 +37,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    @include respond(500px) {
+      font-size: $fs-bigger;
+    }
   }
 
   &-dropdown {

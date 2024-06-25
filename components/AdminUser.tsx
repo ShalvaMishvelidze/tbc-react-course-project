@@ -3,6 +3,7 @@ import { deleteUser, editUser } from "@/utils/actions/admin_actions";
 import { PutBlobResult } from "@vercel/blob";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 const AdminUser = ({ text, user: u, setDel }: any) => {
   const [user, setUser] = useState(u);
@@ -20,6 +21,7 @@ const AdminUser = ({ text, user: u, setDel }: any) => {
   };
 
   const editHandler = async (user: any) => {
+    toast.info("editing user");
     if (
       imageRef.current &&
       imageRef.current.files &&
@@ -38,11 +40,13 @@ const AdminUser = ({ text, user: u, setDel }: any) => {
       editUser({ ...user, image: newBlob.url }).then((res) => {
         setUser(res);
         setEdit(false);
+        toast.success("user edited");
       });
     } else {
       editUser(user).then((res) => {
         setUser(res);
         setEdit(false);
+        toast.success("user edited");
       });
     }
   };
@@ -53,7 +57,7 @@ const AdminUser = ({ text, user: u, setDel }: any) => {
         <>
           <div className="admin-user-left edit">
             <Image src={user.image} alt="user image" width={100} height={100} />
-            <label htmlFor="file-input">{text.edit}</label>
+            <label htmlFor="file-input">{text.changeImage}</label>
             <input
               id="file-input"
               name="file-input"

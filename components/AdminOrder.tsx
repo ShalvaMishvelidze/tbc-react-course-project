@@ -1,4 +1,7 @@
 "use client";
+
+import { toast } from "react-toastify";
+
 const AdminOrder = ({ order, setDel, text }: any) => {
   const userOffsetMinutes = order.created_at.getTimezoneOffset();
 
@@ -18,11 +21,13 @@ const AdminOrder = ({ order, setDel, text }: any) => {
       <button
         className="admin-order-btn"
         onClick={async () => {
+          toast.info("Refunding order");
           await fetch("/api/refund", {
             method: "POST",
             body: JSON.stringify({ order_id: order.order_id }),
           });
           setDel(true);
+          toast.success("Order refunded");
         }}
       >
         {text}

@@ -8,6 +8,8 @@ import Link from "next/link";
 import ProductEditModal from "./ProductEditModal";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import LoadingSpinner from "./LoadingSpinner";
+import { deleteProduct } from "@/utils/actions/admin_actions";
+import { toast } from "react-toastify";
 
 const MyProducts = ({ products: ps, text, adminText }: any) => {
   const { user, error, isLoading } = useUser();
@@ -60,7 +62,16 @@ const MyProducts = ({ products: ps, text, adminText }: any) => {
               <p>{p.price}$</p>
               <div className="my-products-btn-container">
                 <button onClick={() => handleEdit(p)}>{text.edit}</button>
-                <button>{text.delete}</button>
+                <button
+                  onClick={() =>
+                    deleteProduct(p.id).then(() => {
+                      setGet(true);
+                      toast.success("Product deleted successfully");
+                    })
+                  }
+                >
+                  {text.delete}
+                </button>
               </div>
             </div>
           );

@@ -36,6 +36,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-wrap: wrap;
 
       & span {
         margin-right: 1.6rem;
@@ -76,6 +77,9 @@
         font-weight: $fw-bold;
         text-transform: capitalize;
         color: $clr-white-1;
+        @include respond(500px) {
+          font-size: $fs-regular;
+        }
       }
     }
 
@@ -89,12 +93,16 @@
     .comment {
       margin-top: 2rem;
       display: grid;
-      grid-template-columns: 10rem 20rem 1fr;
+      grid-template-columns: 10rem 18rem 1fr;
       background-color: $clr-bcg-primary-light;
       padding: 1rem;
       row-gap: 2rem;
       column-gap: 1rem;
       border-radius: 1rem;
+
+      @include respond(500px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
 
       &-text {
         grid-column: 1/ -1;
@@ -140,6 +148,10 @@
           text-transform: uppercase;
           border-radius: 0.5rem;
           color: $clr-white-1;
+
+          @include respond(500px) {
+            font-size: $fs-small;
+          }
 
           &:hover {
             background-color: $clr-purple;
