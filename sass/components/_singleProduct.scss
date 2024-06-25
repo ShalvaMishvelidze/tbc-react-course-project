@@ -2,6 +2,11 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
 
+  @include respond(950px) {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+
   &-images {
     display: flex;
     flex-direction: column;
@@ -10,6 +15,16 @@
 
     &-img {
       object-fit: cover;
+
+      @include respond(950px) {
+        width: 100%;
+      }
+      @include respond(700px) {
+        height: 30rem;
+      }
+      @include respond(400px) {
+        height: 25rem;
+      }
 
       &-small {
         object-fit: cover;
@@ -24,6 +39,7 @@
     &-container {
       display: flex;
       gap: 1rem;
+      flex-wrap: wrap;
     }
   }
 
@@ -32,6 +48,14 @@
     flex-direction: column;
     gap: 2rem;
     padding: 1rem 6rem;
+
+    @include respond(1200px) {
+      padding: 1rem 3rem;
+      gap: 1rem;
+    }
+    @include respond(700px) {
+      padding: 1rem;
+    }
   }
 
   &-reviews {
@@ -58,6 +82,13 @@
         margin-top: 1rem;
         display: flex;
         gap: 2rem;
+
+        img {
+          @include respond(400px) {
+            width: 7rem;
+            height: 7rem;
+          }
+        }
       }
 
       .buttons {
@@ -76,12 +107,18 @@
           align-items: center;
           background-color: $clr-violet;
           padding: 0.2rem 0.5rem;
-          font-size: $fs-regular;
+          font-size: $fs-big;
           text-transform: uppercase;
           border-radius: 1rem;
           width: max-content;
           color: $clr-white-1;
-          font-weight: $fw-bold;
+
+          @include respond(700px) {
+            font-size: $fs-regular;
+          }
+          @include respond(400px) {
+            font-size: $fs-small;
+          }
 
           &:hover {
             background-color: $clr-purple;
@@ -97,6 +134,13 @@
       font-size: $fs-big;
       text-transform: uppercase;
       border-radius: 1rem;
+
+      @include respond(700px) {
+        font-size: $fs-regular;
+      }
+      @include respond(400px) {
+        font-size: $fs-small;
+      }
 
       &:hover {
         background-color: $clr-purple;
@@ -209,13 +253,24 @@
         gap: 2rem;
         margin-top: 3rem;
 
+        @include respond(500px) {
+          gap: 1rem;
+        }
+
+        img {
+          @include respond(500px) {
+            width: 6rem;
+            height: 6rem;
+          }
+        }
+
         div {
           position: relative;
 
           button {
             position: absolute;
-            top: -1.5rem;
-            right: -1.5rem;
+            top: -1rem;
+            right: -1rem;
             font-size: $fs-bigger;
             color: $clr-red-2;
           }
@@ -234,6 +289,9 @@
         text-transform: uppercase;
         border-radius: 0.5rem;
         color: $clr-white-1;
+        @include respond(400px) {
+          font-size: $fs-small;
+        }
 
         &:hover {
           background-color: $clr-purple;
@@ -259,6 +317,9 @@
           border-radius: 0.5rem;
           width: max-content;
           color: $clr-white-1;
+          @include respond(400px) {
+            font-size: $fs-small;
+          }
 
           &:hover {
             background-color: $clr-purple;

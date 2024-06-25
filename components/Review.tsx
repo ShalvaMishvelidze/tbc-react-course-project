@@ -20,7 +20,7 @@ const Review = ({ review: r, handleReviewDelete, id, role, text }: any) => {
   const [delImages, setDelImages] = useState<string[]>([]);
   const [newImages, setNewImages] = useState<any[]>([]);
 
-  const imageRef = useRef<HTMLInputElement>(null);
+  const rImageRef = useRef<HTMLInputElement>(null);
 
   const handleUpvote = () => {
     if (review.user_vote_type === "upvote") {
@@ -202,7 +202,7 @@ const Review = ({ review: r, handleReviewDelete, id, role, text }: any) => {
               <input
                 type="file"
                 id="img-input"
-                ref={imageRef}
+                ref={rImageRef}
                 multiple
                 onChange={(e) => {
                   if (displayImages.length >= 3) {
@@ -212,7 +212,7 @@ const Review = ({ review: r, handleReviewDelete, id, role, text }: any) => {
                     return;
                   }
                   if (e.target.files![0].size > 1024 * 1024) {
-                    imageRef.current!.value = "";
+                    rImageRef.current!.value = "";
                     toast.error(
                       "Image size is too big! You can only upload images up to 1MB."
                     );
