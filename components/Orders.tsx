@@ -60,6 +60,9 @@ const Orders = ({ language }: { language: string }) => {
             </div>
           );
         })}
+        {orders.length === 0 && (
+          <h1 className="orders-heading">no orders to show yet</h1>
+        )}
       </section>
     </>
   );

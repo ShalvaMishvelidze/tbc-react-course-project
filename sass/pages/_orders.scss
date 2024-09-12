@@ -20,6 +20,12 @@
     gap: 1rem;
   }
 
+  &-heading {
+    text-align: center;
+    text-transform: capitalize;
+    grid-column: 1/-1;
+  }
+
   .order {
     background-color: $clr-bcg-primary;
     padding: 1rem 2rem;
