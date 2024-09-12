@@ -61,7 +61,11 @@ const Orders = ({ language }: { language: string }) => {
           );
         })}
         {orders.length === 0 && (
-          <h1 className="orders-heading">no orders to show yet</h1>
+          <h1 className="orders-heading">
+            {language === "en"
+              ? "no orders to show yet"
+              : "ჯერ არ არის შეკვეთები"}
+          </h1>
         )}
       </section>
     </>

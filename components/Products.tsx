@@ -47,7 +47,13 @@ const Products = ({
       }),
     });
     const data: P[] = (await response.json()) as P[];
+    const res = await fetch("/api/product/page-count", {
+      method: "POST",
+      body: JSON.stringify({ search, category }),
+    });
+    const pageData = await res.json();
     setProducts(data);
+    setTotalPages(pageData.pages);
   };
 
   useEffect(() => {
@@ -68,20 +74,6 @@ const Products = ({
       currentPage
     );
   }, [search, currentPage, category]);
-
-  useEffect(() => {
-    const getPages = async () => {
-      const res = await fetch("/api/product/page-count", {
-        method: "POST",
-        body: JSON.stringify({ search, category }),
-      });
-      const data = await res.json();
-      console.log(data);
-
-      setTotalPages(data.pages);
-    };
-    getPages();
-  }, [search, category]);
 
   useEffect(() => {
     setProducts([...p]);

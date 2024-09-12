@@ -70,6 +70,7 @@
       color: $clr-charcoal-2;
       margin: 0 auto;
       font-weight: $fw-bold;
+      text-transform: capitalize;
 
       @include respond(650px) {
         font-size: $fs-regular;
@@ -106,6 +107,7 @@
   &-heading {
     text-align: center;
     margin: 3rem 0;
+    text-transform: capitalize;
 
     @include respond(700px) {
       font-size: $fs-big;
@@ -141,6 +143,10 @@
       padding: 2rem 1.5rem;
       background-color: $clr-bcg-primary-light;
 
+      &-heading {
+        text-transform: capitalize;
+      }
+
       svg {
         font-size: $fs-huge;
         color: $clr-violet;
@@ -174,16 +180,17 @@
     font-size: $fs-bigger;
     font-weight: $fw-bold;
     color: $clr-white-1;
-    padding: 1rem;
+    padding: 1rem 2rem;
     border-radius: 1rem;
     transition: background-color 0.3s;
+    text-transform: capitalize;
 
     @include respond(1100px) {
       font-size: $fs-big;
     }
     @include respond(1000px) {
       font-size: $fs-regular;
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
     }
     @include respond(500px) {
       font-size: $fs-regular-small;
