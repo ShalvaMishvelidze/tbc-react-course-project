@@ -1,0 +1,201 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model cart {
+  id         Int       @id @default(autoincrement())
+  owner_id   String?
+  product_id Int?
+  quantity   Int?
+  users      users?    @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  products   products? @relation(fields: [product_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model comment_likes {
+  id         Int      @id @default(autoincrement())
+  comment_id Int
+  owner_id   String
+  vote_type  String   @db.VarChar(10)
+  comments   comments @relation(fields: [comment_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users      users    @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([comment_id, owner_id])
+}
+
+model comments {
+  id            Int             @id @default(autoincrement())
+  post_id       Int
+  owner_id      String
+  content       String
+  created_at    DateTime?       @default(now()) @db.Timestamp(6)
+  comment_likes comment_likes[]
+  users         users           @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  posts         posts           @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([post_id, owner_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model jobs {
+  id         Int      @id @default(autoincrement())
+  position   String   @db.VarChar(100)
+  company    String   @db.VarChar(100)
+  location   String   @db.VarChar(255)
+  status     String   @db.VarChar(10)
+  type       String   @db.VarChar(10)
+  userid     Int
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  jobusers   jobusers @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user")
+}
+
+model jobusers {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique @db.VarChar(255)
+  name     String  @db.VarChar(100)
+  password String  @db.VarChar(255)
+  lastname String? @db.VarChar(100)
+  location String? @db.VarChar(255)
+  jobs     jobs[]
+}
+
+model orders {
+  order_id       String    @id @db.Uuid
+  payment_intent String    @db.VarChar(255)
+  title          String
+  user_id        String
+  price          Decimal   @db.Decimal(100, 2)
+  created_at     DateTime? @default(now()) @db.Timestamp(6)
+  users          users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model post_likes {
+  id        Int    @id @default(autoincrement())
+  post_id   Int
+  owner_id  String
+  vote_type String @db.VarChar(10)
+  users     users  @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  posts     posts  @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([post_id, owner_id])
+}
+
+model post_views {
+  id        Int       @id @default(autoincrement())
+  post_id   Int
+  viewer_id String
+  viewed_at DateTime? @default(now()) @db.Timestamp(6)
+  posts     posts     @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users     users     @relation(fields: [viewer_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([post_id, viewer_id])
+}
+
+model posts {
+  id         Int          @id @default(autoincrement())
+  title      String       @db.VarChar(255)
+  body       String
+  tags       Json?
+  owner_id   String
+  created_at DateTime?    @default(now()) @db.Timestamp(6)
+  updated_at DateTime?    @default(now()) @db.Timestamp(6)
+  comments   comments[]
+  post_likes post_likes[]
+  post_views post_views[]
+  users      users        @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model products {
+  id                 Int       @id @default(autoincrement())
+  name               String
+  description        String
+  category           String
+  brand              String
+  discountpercentage Int       @default(0)
+  price              Decimal   @db.Decimal(15, 2)
+  image              String?
+  images             Json?
+  owner_id           String?
+  cart               cart[]
+  users              users?    @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  ratings            ratings[]
+  reviews            reviews[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model ratings {
+  id         Int      @id @default(autoincrement())
+  owner_id   String
+  product_id Int
+  rating     Decimal  @db.Decimal(2, 1)
+  users      users    @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  products   products @relation(fields: [product_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([owner_id, product_id])
+}
+
+model reviews {
+  id         Int       @id @default(autoincrement())
+  owner_id   String
+  product_id Int
+  review     String
+  votes      Int?      @default(0)
+  images     Json?
+  users      users     @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  products   products  @relation(fields: [product_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  upvotes    upvotes[]
+
+  @@unique([owner_id, product_id], map: "unique_owner_product_review")
+}
+
+model subscriptions {
+  user_id                            String    @id
+  email                              String
+  invoice                            Json
+  created_at                         DateTime? @default(now()) @db.Timestamptz(6)
+  users_subscriptions_emailTousers   users     @relation("subscriptions_emailTousers", fields: [email], references: [email], onDelete: NoAction, onUpdate: NoAction, map: "fk_email")
+  users_subscriptions_user_idTousers users     @relation("subscriptions_user_idTousers", fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model upvotes {
+  id        Int     @id @default(autoincrement())
+  owner_id  String
+  review_id Int
+  vote_type String  @default("upvote") @db.VarChar(10)
+  users     users   @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  reviews   reviews @relation(fields: [review_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([owner_id, review_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model users {
+  id                                         String          @id(map: "customers_pkey")
+  name                                       String
+  lastname                                   String?
+  email                                      String          @unique(map: "customers_email_key")
+  image                                      String?
+  role                                       String?         @default("user")
+  cart                                       cart[]
+  comment_likes                              comment_likes[]
+  comments                                   comments[]
+  orders                                     orders[]
+  post_likes                                 post_likes[]
+  post_views                                 post_views[]
+  posts                                      posts[]
+  products                                   products[]
+  ratings                                    ratings[]
+  reviews                                    reviews[]
+  subscriptions_subscriptions_emailTousers   subscriptions[] @relation("subscriptions_emailTousers")
+  subscriptions_subscriptions_user_idTousers subscriptions?  @relation("subscriptions_user_idTousers")
+  upvotes                                    upvotes[]
+}

@@ -61,7 +61,6 @@ const ChangeTheme = () => {
         language: languagePreference,
       }).then((res) => {
         document.documentElement.classList.toggle("light");
-        console.log(res, "setSystemPreferences");
         return res;
       });
     }
