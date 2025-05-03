@@ -5,16 +5,18 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 
   button {
     background-color: $clr-violet;
-    height: 2.5rem;
-    padding: 0 0.7rem;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0.5rem 0.5rem;
+    line-height: 1rem;
     border-radius: 0.5rem;
     font-size: $fs-big;
-    font-weight: $fw-bold;
     color: $clr-white-1;
+
     &.active {
       background-color: $clr-purple;
     }

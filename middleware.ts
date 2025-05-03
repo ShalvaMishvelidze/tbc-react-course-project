@@ -1,47 +1,50 @@
 import { NextRequest, NextResponse } from "next/server";
+import { validateJWT, createJWT } from "@/utils/auth_functions";
 
-export default function middleware(request: NextRequest) {
-  let language = request.cookies.get("language");
+export async function middleware(req: NextRequest) {
+  const token = req.cookies.get("token")?.value?.replace("Bearer ", "");
 
-  if (
-    request.nextUrl.pathname === "/api/auth/login" ||
-    request.nextUrl.pathname === "/api/auth/logout" ||
-    request.nextUrl.pathname === "/api/auth/callback" ||
-    request.nextUrl.pathname === "/api/auth/me" ||
-    request.nextUrl.pathname === "/api/product/page-count" ||
-    request.nextUrl.pathname === "/api/product/categories" ||
-    request.nextUrl.pathname === "/api/product/products" ||
-    request.nextUrl.pathname === "/api/blog/page-count" ||
-    request.nextUrl.pathname === "/api/blog/blogs" ||
-    request.nextUrl.pathname === "/api/avatar/upload" ||
-    request.nextUrl.pathname === "/api/image/upload" ||
-    request.nextUrl.pathname === "/api/product/upload" ||
-    request.nextUrl.pathname === "/api/user/updateProfile" ||
-    request.nextUrl.pathname === "/api/cart" ||
-    request.nextUrl.pathname === "/api/webhook" ||
-    request.nextUrl.pathname === "/api/refund" ||
-    request.nextUrl.pathname === "/api/save-transaction" ||
-    request.nextUrl.pathname === "/api/products" ||
-    request.nextUrl.pathname === "/api/user/getUser" ||
-    request.nextUrl.pathname === "/api/product"
-  ) {
+  if (!token) return NextResponse.next();
+
+  try {
+    const payload = await validateJWT(token);
+
+    // Check time left until expiry
+    const exp = payload.exp! * 1000;
+    const now = Date.now();
+    const timeLeft = exp - now;
+
+    const threeDays = 3 * 24 * 60 * 60 * 1000; // 3 days in milliseconds
+    const oneDay = 1 * 24 * 60 * 60 * 1000; // 1 day in milliseconds
+
+    if (timeLeft < oneDay) {
+      const newToken = await createJWT({
+        id: payload.id as string,
+        name: payload.name as string,
+        email: payload.email as string,
+      });
+
+      const res = NextResponse.next();
+      res.cookies.set("token", `Bearer ${newToken}`, {
+        httpOnly: true, // necessary for xss attack prevention. cookies are not accessible from client-side javascript
+        path: "/", // decide where the cookie is accessible
+        maxAge: threeDays / 1000, // 3 days in seconds
+        sameSite: "lax", // CSRF protection. CSRF attacks are when a malicious site makes a request to your site with the user's credentials. SameSite prevents this by not sending cookies on cross-origin requests.
+        secure: process.env.NODE_ENV === "production", // only send cookies over HTTPS in production
+      });
+
+      return res;
+    }
+
     return NextResponse.next();
+  } catch (err) {
+    // Invalid token – remove it
+    const res = NextResponse.next();
+    res.cookies.delete("token");
+    return res;
   }
-
-  if (request.nextUrl.pathname === "/api/old-auth/logout") {
-    const response = NextResponse.next();
-    response.cookies.delete("token");
-    return response;
-  }
-
-  if (!language) {
-    const response = NextResponse.next();
-    response.cookies.set("language", "en");
-    return response;
-  }
-  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/((?!_next|favicon.ico).*)"],
+  matcher: ["/api/v2/protected/:path*"], // or add protected routes only
 };

@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
-import "./globals.css";
+import "../sass/main.scss";
+import { getSystemPreferences } from "../utils/server_actions";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 export const metadata = {
   title: "Travel experience tracker🌍🌎🌏",
@@ -15,9 +17,17 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
+  const { language, theme }: { language: string; theme: string } =
+    await getSystemPreferences();
+
   return (
-    <html lang={"en"}>
-      <body>{children}</body>
+    <html
+      lang={language ? language : "en"}
+      className={theme === "light" ? "light" : ""}
+    >
+      <UserProvider>
+        <body>{children}</body>
+      </UserProvider>
     </html>
   );
 }
